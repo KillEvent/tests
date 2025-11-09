@@ -1,1 +1,1287 @@
-Test
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Kill Event – Contact & FAQ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --ke-bg-main: #000000;
+      --ke-bg-secondary: #121212;
+      --ke-text: #ffffff;
+      --ke-accent-orange: #DA4F40;
+      --ke-accent-gold: #D4AF37;
+      --ke-blur: #7B0C05;
+      --ke-radius-xl: 24px;
+      --ke-shadow-soft: 0 18px 50px rgba(0, 0, 0, 0.7);
+      --ke-transition-fast: 0.2s ease-out;
+      --ke-transition-med: 0.35s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1b0503 0, #000 50%, #000 100%);
+      color: var(--ke-text);
+      min-height: 100vh;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ==== Décors floutés === */
+    .ke-glow {
+      position: fixed;
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, rgba(122, 12, 5, 0.9), transparent 60%);
+      filter: blur(40px);
+      opacity: 0.55;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .ke-glow--top-left {
+      top: -120px;
+      left: -120px;
+    }
+
+    .ke-glow--bottom-right {
+      bottom: -140px;
+      right: -160px;
+    }
+
+    /* ==== Layout principal ==== */
+    .ke-shell {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px 16px 80px;
+    }
+
+    /* ==== Header ==== */
+    .ke-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 12px 18px;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.75), rgba(18, 18, 18, 0.85));
+      border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.8);
+      position: sticky;
+      top: 12px;
+      z-index: 20;
+    }
+
+    .ke-header-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+    }
+
+    .ke-header-logo-dot {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: conic-gradient(from 210deg, var(--ke-accent-orange), var(--ke-accent-gold), var(--ke-accent-orange));
+      box-shadow: 0 0 18px rgba(218, 79, 64, 0.9);
+      position: relative;
+    }
+
+    .ke-header-logo-dot::after {
+      content: "";
+      position: absolute;
+      inset: 5px;
+      border-radius: inherit;
+      background: #000;
+    }
+
+    .ke-header-brand span {
+      font-weight: 600;
+    }
+
+    .ke-header-nav {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 0.9rem;
+    }
+
+    .ke-header-nav a {
+      color: #f5f5f5;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.75rem;
+      opacity: 0.8;
+      position: relative;
+      padding-bottom: 4px;
+      transition: opacity var(--ke-transition-fast), transform var(--ke-transition-fast);
+    }
+
+    .ke-header-nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--ke-accent-gold), var(--ke-accent-orange));
+      border-radius: 999px;
+      transition: width var(--ke-transition-med);
+    }
+
+    .ke-header-nav a:hover {
+      opacity: 1;
+      transform: translateY(-1px);
+    }
+
+    .ke-header-nav a:hover::after {
+      width: 100%;
+    }
+
+    .ke-cta-pill {
+      border-radius: 999px;
+      padding: 8px 18px;
+      border: 1px solid rgba(212, 175, 55, 0.6);
+      background: radial-gradient(circle at top left, rgba(212, 175, 55, 0.22), transparent 60%);
+      font-size: 0.8rem;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: background var(--ke-transition-med), transform var(--ke-transition-med), box-shadow var(--ke-transition-med);
+    }
+
+    .ke-cta-pill span {
+      font-size: 1.1rem;
+    }
+
+    .ke-cta-pill:hover {
+      background: linear-gradient(120deg, rgba(212, 175, 55, 0.35), rgba(218, 79, 64, 0.35));
+      transform: translateY(-1px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+    }
+
+    /* ==== Hero ==== */
+    .ke-hero {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.8fr);
+      gap: 30px;
+      align-items: center;
+    }
+
+    .ke-hero-copy {
+      background: radial-gradient(circle at top left, rgba(212, 175, 55, 0.18), transparent 55%),
+                  linear-gradient(145deg, rgba(24, 24, 24, 0.95), rgba(8, 8, 8, 0.98));
+      border-radius: var(--ke-radius-xl);
+      border: 1px solid rgba(212, 175, 55, 0.55);
+      box-shadow: var(--ke-shadow-soft);
+      padding: 26px 24px 22px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ke-hero-copy::before {
+      content: "Contact & FAQ";
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.28);
+    }
+
+    .ke-tagline {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(218, 79, 64, 0.7);
+      margin-bottom: 12px;
+      gap: 8px;
+    }
+
+    .ke-tagline-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--ke-accent-orange);
+      box-shadow: 0 0 10px rgba(218, 79, 64, 0.9);
+    }
+
+    .ke-hero-title {
+      font-size: clamp(1.9rem, 3vw, 2.4rem);
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .ke-hero-title span {
+      background: linear-gradient(100deg, var(--ke-accent-gold), var(--ke-accent-orange));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .ke-hero-sub {
+      font-size: 0.95rem;
+      color: #d8d8d8;
+      max-width: 32rem;
+      margin-bottom: 18px;
+    }
+
+    .ke-hero-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+      font-size: 0.8rem;
+    }
+
+    .ke-pill {
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(0, 0, 0, 0.7);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .ke-pill-icon {
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+    }
+
+    .ke-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .ke-btn {
+      border-radius: 999px;
+      padding: 10px 18px;
+      border: none;
+      font-size: 0.86rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform var(--ke-transition-med), box-shadow var(--ke-transition-med), background var(--ke-transition-med), border-color var(--ke-transition-med);
+    }
+
+    .ke-btn-primary {
+      background: linear-gradient(135deg, var(--ke-accent-orange), var(--ke-accent-gold));
+      color: #000;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+    }
+
+    .ke-btn-primary:hover {
+      transform: translateY(-1px) scale(1.01);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 1);
+    }
+
+    .ke-btn-ghost {
+      background: rgba(0, 0, 0, 0.6);
+      color: #f7f7f7;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .ke-btn-ghost:hover {
+      border-color: rgba(212, 175, 55, 0.7);
+      background: linear-gradient(120deg, rgba(18, 18, 18, 0.95), rgba(0, 0, 0, 0.95));
+    }
+
+    .ke-hero-meta {
+      margin-top: 6px;
+      font-size: 0.75rem;
+      color: #b3b3b3;
+    }
+
+    .ke-hero-meta strong {
+      color: var(--ke-accent-gold);
+      font-weight: 500;
+    }
+
+    .ke-hero-visual {
+      position: relative;
+    }
+
+    .ke-hero-card {
+      background: radial-gradient(circle at top, rgba(123, 12, 5, 0.24), transparent 62%),
+                  linear-gradient(155deg, rgba(10, 10, 10, 0.98), rgba(18, 18, 18, 0.97));
+      border-radius: var(--ke-radius-xl);
+      border: 1px solid rgba(218, 79, 64, 0.6);
+      box-shadow: var(--ke-shadow-soft);
+      padding: 18px 18px 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ke-hero-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #e8e8e8;
+    }
+
+    .ke-hero-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.5);
+    }
+
+    .ke-hero-status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #24c46b;
+      box-shadow: 0 0 12px rgba(36, 196, 107, 0.9);
+    }
+
+    .ke-hero-mascotte-wrap {
+      margin-top: 6px;
+      display: grid;
+      grid-template-columns: 1.1fr 1.2fr;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .ke-mascotte {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ke-mascotte img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      transform: translateY(0);
+      animation: ke-float 4.5s ease-in-out infinite;
+      filter: drop-shadow(0 18px 25px rgba(0, 0, 0, 0.9));
+    }
+
+    .ke-mascotte-glow-ring {
+      position: absolute;
+      inset: 10%;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.6);
+      opacity: 0.4;
+    }
+
+    .ke-storefront {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .ke-storefront img {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      filter: saturate(1.1) contrast(1.05);
+      transform: scale(1.02);
+      transition: transform 0.6s ease-out;
+    }
+
+    .ke-storefront::after {
+      content: "Devanture Kill Event";
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.8);
+      border: 1px solid rgba(212, 175, 55, 0.5);
+    }
+
+    .ke-storefront:hover img {
+      transform: scale(1.05);
+    }
+
+    .ke-hero-mini-stats {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-size: 0.72rem;
+      opacity: 0.82;
+    }
+
+    .ke-hero-mini-stats span strong {
+      color: var(--ke-accent-orange);
+    }
+
+    @keyframes ke-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ==== Sections Contact & FAQ ==== */
+    .ke-section {
+      margin-top: 40px;
+      background: radial-gradient(circle at top left, rgba(212, 175, 55, 0.12), transparent 60%),
+                  linear-gradient(160deg, rgba(10, 10, 10, 0.96), rgba(18, 18, 18, 0.98));
+      border-radius: var(--ke-radius-xl);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      padding: 22px 20px 20px;
+      box-shadow: var(--ke-shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ke-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(123, 12, 5, 0.26), transparent 55%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .ke-section-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .ke-section-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      margin-bottom: 18px;
+    }
+
+    .ke-section-title {
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .ke-section-title span {
+      background: linear-gradient(95deg, var(--ke-accent-gold), var(--ke-accent-orange));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .ke-section-sub {
+      font-size: 0.85rem;
+      max-width: 26rem;
+      color: #d0d0d0;
+    }
+
+    /* ==== Contact content ==== */
+    .ke-contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1.2fr);
+      gap: 24px;
+    }
+
+    .ke-contact-info-columns {
+      display: grid;
+      gap: 12px;
+    }
+
+    .ke-contact-card {
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 12px 12px 10px;
+      font-size: 0.86rem;
+    }
+
+    .ke-contact-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 4px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      opacity: 0.85;
+    }
+
+    .ke-badge {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.6);
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    .ke-contact-highlight {
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+    }
+
+    .ke-contact-highlight strong {
+      color: var(--ke-accent-orange);
+      font-weight: 600;
+    }
+
+    .ke-contact-details {
+      font-size: 0.8rem;
+      color: #cccccc;
+    }
+
+    .ke-contact-details a {
+      color: var(--ke-accent-gold);
+      text-decoration: none;
+    }
+
+    .ke-contact-details a:hover {
+      text-decoration: underline;
+    }
+
+    .ke-contact-availability {
+      font-size: 0.78rem;
+      margin-top: 4px;
+      color: #b8b8b8;
+    }
+
+    .ke-contact-availability strong {
+      color: var(--ke-accent-gold);
+    }
+
+    /* Formulaire */
+    .ke-form {
+      background: radial-gradient(circle at top left, rgba(212, 175, 55, 0.1), transparent 55%),
+                  rgba(8, 8, 8, 0.95);
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 12px 12px 10px;
+      font-size: 0.86rem;
+    }
+
+    .ke-form-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .ke-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .ke-field label {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      opacity: 0.85;
+    }
+
+    .ke-input,
+    .ke-textarea {
+      background: #000;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 8px 11px;
+      color: var(--ke-text);
+      font-size: 0.85rem;
+      outline: none;
+      transition: border-color var(--ke-transition-fast), box-shadow var(--ke-transition-fast), background var(--ke-transition-fast);
+    }
+
+    .ke-input::placeholder,
+    .ke-textarea::placeholder {
+      color: #666666;
+    }
+
+    .ke-input:focus,
+    .ke-textarea:focus {
+      border-color: var(--ke-accent-orange);
+      box-shadow: 0 0 0 1px rgba(218, 79, 64, 0.7);
+      background: #050505;
+    }
+
+    .ke-textarea {
+      resize: vertical;
+      min-height: 110px;
+      border-radius: 16px;
+    }
+
+    .ke-form-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      margin-top: 4px;
+      font-size: 0.75rem;
+      color: #b8b8b8;
+      flex-wrap: wrap;
+    }
+
+    .ke-form-note {
+      max-width: 15rem;
+    }
+
+    /* ==== FAQ ==== */
+    .ke-faq-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .ke-faq-item {
+      background: rgba(0, 0, 0, 0.80);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      overflow: hidden;
+      transition: border-color var(--ke-transition-fast), background var(--ke-transition-fast), transform var(--ke-transition-fast), box-shadow var(--ke-transition-fast);
+    }
+
+    .ke-faq-item:hover {
+      border-color: rgba(212, 175, 55, 0.7);
+      transform: translateY(-1px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.8);
+    }
+
+    .ke-faq-header {
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .ke-faq-question {
+      font-size: 0.86rem;
+    }
+
+    .ke-faq-question span {
+      color: var(--ke-accent-orange);
+      margin-right: 4px;
+    }
+
+    .ke-faq-toggle {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(212, 175, 55, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+      transition: transform var(--ke-transition-fast), background var(--ke-transition-fast);
+      background: rgba(0, 0, 0, 0.7);
+    }
+
+    .ke-faq-item.open .ke-faq-toggle {
+      background: linear-gradient(135deg, var(--ke-accent-orange), var(--ke-accent-gold));
+      color: #000;
+      transform: rotate(90deg);
+    }
+
+    .ke-faq-body {
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 12px;
+      font-size: 0.8rem;
+      color: #d2d2d2;
+      transition: max-height 0.35s ease, padding-bottom 0.35s ease;
+    }
+
+    .ke-faq-item.open .ke-faq-body {
+      padding-bottom: 10px;
+    }
+
+    .ke-faq-body p {
+      margin-top: 4px;
+    }
+
+    .ke-faq-subnote {
+      font-size: 0.76rem;
+      color: #b6b6b6;
+      margin-top: 8px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.12);
+      padding-top: 6px;
+    }
+
+    /* ==== Footer simple ==== */
+    .ke-footer {
+      margin-top: 30px;
+      font-size: 0.75rem;
+      text-align: center;
+      color: #999999;
+      opacity: 0.85;
+    }
+
+    .ke-footer span {
+      color: var(--ke-accent-gold);
+    }
+
+    /* ==== Responsive ==== */
+    @media (max-width: 900px) {
+      .ke-header {
+        flex-wrap: wrap;
+        border-radius: 18px;
+      }
+
+      .ke-header-nav {
+        width: 100%;
+        justify-content: flex-end;
+      }
+
+      .ke-hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .ke-hero-copy {
+        order: 2;
+      }
+
+      .ke-hero-visual {
+        order: 1;
+      }
+
+      .ke-contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .ke-shell {
+        padding: 18px 14px 60px;
+      }
+
+      .ke-header {
+        padding-inline: 12px;
+      }
+
+      .ke-section {
+        padding-inline: 14px;
+      }
+
+      .ke-contact-grid {
+        gap: 16px;
+      }
+
+      .ke-form-row {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .ke-section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .ke-hero-mascotte-wrap {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .ke-hero-mini-stats {
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .ke-form-footer {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Décors -->
+  <div class="ke-glow ke-glow--top-left"></div>
+  <div class="ke-glow ke-glow--bottom-right"></div>
+
+  <div class="ke-shell">
+    <!-- Header -->
+    <header class="ke-header">
+      <div class="ke-header-brand">
+        <div class="ke-header-logo-dot"></div>
+        <span>Kill Event</span>
+      </div>
+      <nav class="ke-header-nav">
+        <a href="#contact">Contact</a>
+        <a href="#faq">FAQ</a>
+        <button class="ke-cta-pill" type="button" data-scroll="#contact">
+          <span>✉</span> Nous écrire
+        </button>
+      </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="ke-hero">
+      <div class="ke-hero-copy">
+        <div class="ke-tagline">
+          <div class="ke-tagline-dot"></div>
+          Soirées enquête clé en main
+        </div>
+        <h1 class="ke-hero-title">
+          Une question avant de commettre… <span>le crime parfait&nbsp;?</span>
+        </h1>
+        <p class="ke-hero-sub">
+          Besoin d’un conseil pour choisir votre murder party, d’un renseignement
+          technique ou d’un coup de pouce organisation&nbsp;? Vous êtes au bon endroit.
+          Kill Event vous répond dans les coulisses du Golden Ace Casino, du manoir
+          hanté… et de votre boîte mail.
+        </p>
+
+        <div class="ke-hero-highlights">
+          <div class="ke-pill">
+            <div class="ke-pill-icon">☎</div>
+            Support email & messagerie
+          </div>
+          <div class="ke-pill">
+            <div class="ke-pill-icon">⚡</div>
+            Réponse rapide les jours ouvrés
+          </div>
+          <div class="ke-pill">
+            <div class="ke-pill-icon">🎭</div>
+            +2000 soirées déjà organisées
+          </div>
+        </div>
+
+        <div class="ke-hero-actions">
+          <button class="ke-btn ke-btn-primary" type="button" data-scroll="#contact">
+            Nous contacter
+          </button>
+          <button class="ke-btn ke-btn-ghost" type="button" data-scroll="#faq">
+            Voir la FAQ
+          </button>
+        </div>
+
+        <p class="ke-hero-meta">
+          <strong>Astuce :</strong> décrivez brièvement votre événement (date, nombre de joueurs,
+          lieu, thème envisagé) pour une réponse ultra ciblée.
+        </p>
+      </div>
+
+      <div class="ke-hero-visual">
+        <div class="ke-hero-card">
+          <div class="ke-hero-card-header">
+            <span>Jack Event à votre service</span>
+            <div class="ke-hero-status">
+              <div class="ke-hero-status-dot"></div>
+              En ligne
+            </div>
+          </div>
+
+          <div class="ke-hero-mascotte-wrap">
+            <div class="ke-mascotte">
+              <div class="ke-mascotte-glow-ring"></div>
+              <img
+                src="https://cdn.shopify.com/s/files/1/0726/0690/8753/files/mascotte_fond_transparent-min.png?v=1760630439"
+                alt="Mascotte Jack Event - Kill Event"
+              />
+            </div>
+            <div class="ke-storefront">
+              <img
+                src="https://cdn.shopify.com/s/files/1/0726/0690/8753/files/Lejeuestenprecommandeetseraenvoyele.png?v=1762674117"
+                alt="Devanture de boutique Kill Event"
+              />
+            </div>
+          </div>
+
+          <div class="ke-hero-mini-stats">
+            <span><strong>Format</strong> 100% numérique à imprimer</span>
+            <span><strong>Support</strong> avant & après commande</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section class="ke-section" id="contact">
+      <div class="ke-section-inner">
+        <div class="ke-section-header">
+          <h2 class="ke-section-title">
+            <span>Contact</span> & support
+          </h2>
+          <p class="ke-section-sub">
+            Un doute sur un kit, une question sur les précommandes, la taille
+            idéale des groupes, l’adaptation en entreprise ou en bibliothèque&nbsp;?
+            Dites-en un maximum, Jack Event fera le tri (promis, sans gants pleins de sang).
+          </p>
+        </div>
+
+        <div class="ke-contact-grid">
+          <!-- Infos -->
+          <div class="ke-contact-info-columns">
+            <div class="ke-contact-card">
+              <div class="ke-contact-card-header">
+                <span>Contact principal</span>
+                <span class="ke-badge">Email</span>
+              </div>
+              <p class="ke-contact-highlight">
+                Le moyen <strong>le plus rapide</strong> pour nous joindre.
+              </p>
+              <p class="ke-contact-details">
+                ✉ <a href="mailto:contact@kill-event.com">contact@kill-event.com</a><br />
+                Merci d’indiquer&nbsp;: date de l’événement, nombre de joueurs
+                et murder party concernée.
+              </p>
+              <p class="ke-contact-availability">
+                Réponse habituellement sous <strong>24 à 72 heures ouvrées</strong>.
+              </p>
+            </div>
+
+            <div class="ke-contact-card">
+              <div class="ke-contact-card-header">
+                <span>Organisation d’événements</span>
+                <span class="ke-badge">Pro / Collectivités</span>
+              </div>
+              <p class="ke-contact-highlight">
+                Vous organisez une soirée pour une <strong>entreprise, médiathèque
+                ou association</strong> ?
+              </p>
+              <p class="ke-contact-details">
+                Précisez votre structure, le public visé et si vous avez besoin
+                d’une <strong>facture</strong> ou d’un devis.
+              </p>
+              <p class="ke-contact-availability">
+                Possibilité d’adapter certains formats (multi-équipes, extérieur, etc.).
+              </p>
+            </div>
+
+            <div class="ke-contact-card">
+              <div class="ke-contact-card-header">
+                <span>Avant d’écrire</span>
+                <span class="ke-badge">Conseil</span>
+              </div>
+              <p class="ke-contact-highlight">
+                Vous trouverez peut-être déjà la réponse dans notre <strong>FAQ</strong>.
+              </p>
+              <p class="ke-contact-details">
+                Questions fréquentes sur&nbsp;:<br />
+                – précommandes et dates d’envoi<br />
+                – difficulté & durée des scénarios<br />
+                – nombre de joueurs et rôles indispensables<br />
+                – utilisation pour des <strong>team building</strong> ou soirées privées.
+              </p>
+            </div>
+          </div>
+
+          <!-- Formulaire -->
+          <form class="ke-form">
+            <div class="ke-form-row">
+              <div class="ke-field">
+                <label for="ke-nom">Nom / Pseudo</label>
+                <input
+                  id="ke-nom"
+                  class="ke-input"
+                  type="text"
+                  name="nom"
+                  placeholder="Comment doit-on vous appeler ?"
+                />
+              </div>
+              <div class="ke-field">
+                <label for="ke-email">Adresse email</label>
+                <input
+                  id="ke-email"
+                  class="ke-input"
+                  type="email"
+                  name="email"
+                  placeholder="Votre adresse pour la réponse"
+                />
+              </div>
+            </div>
+
+            <div class="ke-form-row">
+              <div class="ke-field">
+                <label for="ke-sujet">Sujet</label>
+                <input
+                  id="ke-sujet"
+                  class="ke-input"
+                  type="text"
+                  name="sujet"
+                  placeholder="Précommande, question sur un kit, autre..."
+                />
+              </div>
+              <div class="ke-field">
+                <label for="ke-date">Date de votre soirée</label>
+                <input
+                  id="ke-date"
+                  class="ke-input"
+                  type="text"
+                  name="date"
+                  placeholder="Ex : 31/12/2025 – Nouvel an"
+                />
+              </div>
+            </div>
+
+            <div class="ke-field">
+              <label for="ke-message">Votre message</label>
+              <textarea
+                id="ke-message"
+                class="ke-textarea"
+                name="message"
+                placeholder="Parlez-nous de votre événement : nombre de joueurs, âge approximatif, lieu (maison, entreprise...), murder party visée, contraintes particulières..."
+              ></textarea>
+            </div>
+
+            <div class="ke-form-footer">
+              <p class="ke-form-note">
+                Aucun meurtre réel ne sera commis pendant le traitement de votre demande.
+                Seuls quelques <strong>indices</strong> pourraient disparaître.
+              </p>
+              <button class="ke-btn ke-btn-primary" type="submit">
+                Envoyer ma demande
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section FAQ -->
+    <section class="ke-section" id="faq" style="margin-top: 32px;">
+      <div class="ke-section-inner">
+        <div class="ke-section-header">
+          <h2 class="ke-section-title">
+            <span>FAQ</span> – Avant de crier au meurtre
+          </h2>
+          <p class="ke-section-sub">
+            Voici les questions qui reviennent le plus souvent quand les joueurs
+            s’apprêtent à plonger dans l’univers de Kill Event. Si vous ne trouvez
+            pas votre bonheur, écrivez-nous juste au-dessus.
+          </p>
+        </div>
+
+        <div class="ke-faq-list">
+          <div class="ke-faq-item open">
+            <div class="ke-faq-header">
+              <div class="ke-faq-question">
+                <span>01.</span> Quand vais-je recevoir ma murder party si elle est en précommande&nbsp;?
+              </div>
+              <div class="ke-faq-toggle">+</div>
+            </div>
+            <div class="ke-faq-body">
+              <p>
+                Pour les précommandes, la date d’envoi prévue est toujours indiquée sur
+                la fiche produit et/ou dans l’email récapitulatif. Le kit complet
+                (fiches personnages, livret maître du jeu, indices, etc.) est envoyé
+                à cette date par email, au format PDF à imprimer.
+              </p>
+              <p class="ke-faq-subnote">
+                <strong>Astuce :</strong> prévoyez une marge d’une semaine entre la
+                date d’envoi annoncée et votre événement, afin d’avoir le temps
+                d’imprimer et de répartir les rôles.
+              </p>
+            </div>
+          </div>
+
+          <div class="ke-faq-item">
+            <div class="ke-faq-header">
+              <div class="ke-faq-question">
+                <span>02.</span> Combien de joueurs peuvent participer à une murder party Kill Event&nbsp;?
+              </div>
+              <div class="ke-faq-toggle">+</div>
+            </div>
+            <div class="ke-faq-body">
+              <p>
+                La plupart de nos scénarios proposent des personnages <strong>indispensables</strong>
+                (cœur de l’intrigue) et des personnages <strong>secondaires</strong>
+                optionnels. Cela permet d’adapter le nombre de joueurs : par exemple,
+                une murder party peut souvent se jouer de 8 à 16 participants,
+                selon les rôles utilisés.
+              </p>
+              <p class="ke-faq-subnote">
+                Si vous organisez une <strong>soirée avec plusieurs équipes</strong>
+                (entreprise, comité des fêtes, médiathèque), n’hésitez pas à nous
+                contacter pour voir les adaptations possibles.
+              </p>
+            </div>
+          </div>
+
+          <div class="ke-faq-item">
+            <div class="ke-faq-header">
+              <div class="ke-faq-question">
+                <span>03.</span> Le kit est-il entièrement numérique ou vais-je recevoir quelque chose par courrier&nbsp;?
+              </div>
+              <div class="ke-faq-toggle">+</div>
+            </div>
+            <div class="ke-faq-body">
+              <p>
+                Les murder parties Kill Event sont des <strong>kits 100% numériques</strong> :
+                vous recevez des fichiers PDF à télécharger, imprimer et préparer chez vous
+                (ou au bureau). Aucun envoi papier n’est effectué par la poste.
+              </p>
+              <p class="ke-faq-subnote">
+                Vous pouvez imprimer en noir et blanc ou en couleur selon votre budget
+                et le style que vous souhaitez donner à la soirée.
+              </p>
+            </div>
+          </div>
+
+          <div class="ke-faq-item">
+            <div class="ke-faq-header">
+              <div class="ke-faq-question">
+                <span>04.</span> Est-ce adapté pour des entreprises, bibliothèques ou associations&nbsp;?
+              </div>
+              <div class="ke-faq-toggle">+</div>
+            </div>
+            <div class="ke-faq-body">
+              <p>
+                Oui, plusieurs scénarios se prêtent très bien aux <strong>team building</strong>,
+                animations de médiathèques, soirées d’associations ou événements publics.
+                Nous pouvons vous conseiller sur le choix du scénario, la répartition
+                des rôles, la gestion de plusieurs équipes et certains ajustements
+                pratiques.
+              </p>
+              <p class="ke-faq-subnote">
+                Pour les besoins administratifs (devis, facture, numéro de SIRET, etc.),
+                contactez-nous via le formulaire en précisant votre structure.
+              </p>
+            </div>
+          </div>
+
+          <div class="ke-faq-item">
+            <div class="ke-faq-header">
+              <div class="ke-faq-question">
+                <span>05.</span> Je ne suis pas maître du jeu expérimenté, est-ce que je vais m’en sortir&nbsp;?
+              </div>
+              <div class="ke-faq-toggle">+</div>
+            </div>
+            <div class="ke-faq-body">
+              <p>
+                Oui&nbsp;! Chaque murder party est fournie avec un <strong>guide maître du jeu</strong>
+                détaillé&nbsp;: préparation, mise en place, déroulé de la soirée,
+                gestion des indices, conseils pour relancer les joueurs…
+                Vous n’avez pas besoin d’être comédien professionnel pour créer
+                une ambiance inoubliable.
+              </p>
+              <p class="ke-faq-subnote">
+                Si vous hésitez entre plusieurs scénarios ou niveaux de difficulté,
+                décrivez votre groupe dans le formulaire de contact et nous vous
+                aiguillerons.
+              </p>
+            </div>
+          </div>
+
+          <div class="ke-faq-item">
+            <div class="ke-faq-header">
+              <div class="ke-faq-question">
+                <span>06.</span> Puis-je modifier certains éléments du scénario ou des fiches personnages&nbsp;?
+              </div>
+              <div class="ke-faq-toggle">+</div>
+            </div>
+            <div class="ke-faq-body">
+              <p>
+                Vous pouvez adapter quelques détails (prénoms, petites répliques,
+                éléments d’ambiance) pour coller à votre groupe, tant que vous ne
+                modifiez pas la <strong>structure de l’enquête</strong> ni les indices clés.
+                Cela garantit que l’intrigue reste cohérente et jouable.
+              </p>
+              <p class="ke-faq-subnote">
+                Pour des adaptations plus poussées (par exemple pour un contexte
+                très spécifique), écrivez-nous avant de couper des fils rouges…
+                on préférerait éviter un meurtre du scénario lui-même.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="ke-footer">
+      Kill Event – Murder parties & soirées enquête à imprimer.
+      <br />
+      <span>Jack Event</span> veille sur vos crimes… fictifs seulement.
+    </footer>
+  </div>
+
+  <script>
+    // Smooth scroll pour les boutons & liens ancrés
+    document.querySelectorAll('[data-scroll], a[href^="#"]').forEach(function (el) {
+      el.addEventListener("click", function (e) {
+        var targetSelector = el.getAttribute("data-scroll") || el.getAttribute("href");
+        if (!targetSelector || targetSelector === "#") return;
+        var target = document.querySelector(targetSelector);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    });
+
+    // Accordéon FAQ
+    document.querySelectorAll(".ke-faq-item").forEach(function (item) {
+      var header = item.querySelector(".ke-faq-header");
+      var body = item.querySelector(".ke-faq-body");
+
+      // calcul de hauteur initiale
+      if (item.classList.contains("open") && body) {
+        body.style.maxHeight = body.scrollHeight + "px";
+      }
+
+      header.addEventListener("click", function () {
+        var isOpen = item.classList.contains("open");
+        // fermer les autres
+        document.querySelectorAll(".ke-faq-item.open").forEach(function (other) {
+          if (other !== item) {
+            other.classList.remove("open");
+            var obody = other.querySelector(".ke-faq-body");
+            if (obody) obody.style.maxHeight = null;
+          }
+        });
+
+        if (!isOpen) {
+          item.classList.add("open");
+          if (body) body.style.maxHeight = body.scrollHeight + "px";
+        } else {
+          item.classList.remove("open");
+          if (body) body.style.maxHeight = null;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
