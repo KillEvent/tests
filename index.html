@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -32,9 +33,15 @@
       color: var(--text-main);
       min-height: 100vh;
       display: flex;
-      justify-content: center;
-      align-items: stretch;
+      flex-direction: column;
+      align-items: center;
       padding: 24px;
+    }
+
+    main {
+      width: 100%;
+      max-width: 1180px;
+      margin-top: 24px;
     }
 
     .page-wrapper {
@@ -122,7 +129,7 @@
       margin-left: 26px;
     }
 
-    /* Contenu principal */
+    /* Contenu principal (hero) */
     .content-left {
       padding: 40px 56px 56px;
       border-right: 1px solid rgba(0, 0, 0, 0.06);
@@ -346,6 +353,329 @@
       box-shadow: 0 0 0 4px rgba(87, 180, 106, 0.3);
     }
 
+    /* --- SECTIONS SOUS LE HERO --- */
+
+    .section-block {
+      margin-top: 28px;
+      background: var(--bg-main);
+      border-radius: 26px;
+      box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.18),
+        0 0 0 1px rgba(255, 255, 255, 0.6);
+      padding: 34px 40px 40px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      font-family: "Playfair Display", serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .section-subtitle {
+      font-size: 0.96rem;
+      color: var(--text-soft);
+      max-width: 380px;
+      line-height: 1.6;
+    }
+
+    /* Prestations */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 10px;
+    }
+
+    .service-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(200, 167, 136, 0.5);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+      position: relative;
+    }
+
+    .service-tag {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(244, 227, 206, 0.94);
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-soft);
+      border: 1px solid rgba(212, 175, 55, 0.8);
+    }
+
+    .service-image {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .service-body {
+      padding: 14px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .service-name {
+      font-family: "Playfair Display", serif;
+      font-size: 1.1rem;
+    }
+
+    .service-desc {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    .service-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px;
+      font-size: 0.86rem;
+    }
+
+    .service-price {
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .service-duration {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+    }
+
+    .service-cta {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-main);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .service-cta::after {
+      content: "→";
+      font-size: 0.9rem;
+      transform: translateY(1px);
+    }
+
+    /* Avis clients */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 12px;
+    }
+
+    .testimonial-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 18px;
+      padding: 16px 16px 18px;
+      border: 1px solid rgba(200, 167, 136, 0.5);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-stamp {
+      position: absolute;
+      right: -22px;
+      top: -22px;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 1px dashed rgba(212, 175, 55, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent-soft);
+      background: radial-gradient(circle, rgba(248, 239, 228, 0.9), transparent 55%);
+      transform: rotate(-10deg);
+    }
+
+    .stars {
+      color: #f2b544;
+      font-size: 0.9rem;
+    }
+
+    .testimonial-text {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--text-main);
+    }
+
+    .testimonial-author {
+      font-size: 0.86rem;
+      color: var(--text-soft);
+    }
+
+    /* Avant / Après */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 12px;
+    }
+
+    .ba-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 18px;
+      border: 1px solid rgba(200, 167, 136, 0.5);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.18);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .ba-images {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      position: relative;
+    }
+
+    .ba-images img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .ba-label {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(0, 0, 0, 0.6);
+      color: var(--white);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      padding: 4px 8px;
+      border-radius: 999px;
+    }
+
+    .ba-label.after {
+      left: auto;
+      right: 8px;
+      background: rgba(218, 79, 64, 0.9);
+    }
+
+    .ba-body {
+      padding: 10px 14px 12px;
+      font-size: 0.86rem;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 28px;
+      background: #2a1b11;
+      color: #f6e5cf;
+      width: 100%;
+      max-width: 1180px;
+      border-radius: 24px;
+      padding: 26px 32px 18px;
+      box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.55),
+        0 0 0 1px rgba(255, 255, 255, 0.15);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 28px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      padding-bottom: 18px;
+      margin-bottom: 12px;
+    }
+
+    .footer-logo {
+      font-family: "Playfair Display", serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .footer-text {
+      font-size: 0.9rem;
+      color: #f1ddc2;
+      line-height: 1.6;
+    }
+
+    .footer-title {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 10px;
+      color: #f3d4a4;
+    }
+
+    .footer-links,
+    .footer-infos {
+      font-size: 0.86rem;
+      color: #f6e5cf;
+      line-height: 1.6;
+    }
+
+    .footer-links a {
+      color: inherit;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .footer-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      height: 1px;
+      width: 0;
+      background: var(--accent-soft);
+      transition: width 0.2s ease;
+    }
+
+    .footer-links a:hover::after {
+      width: 100%;
+    }
+
+    .footer-bottom {
+      font-size: 0.76rem;
+      color: #e2caa8;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
     /* Responsive */
     @media (max-width: 960px) {
       body {
@@ -390,15 +720,29 @@
 
       .nav-left,
       .nav-right {
-        display: none; /* version simple mobile */
+        display: none;
+      }
+
+      .section-block {
+        padding: 24px 20px 26px;
+      }
+
+      .services-grid,
+      .testimonials-grid,
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 
 <body>
+  <!-- HERO -->
   <div class="page-wrapper">
-    <!-- Barre de navigation -->
     <header class="top-bar">
       <nav class="nav-left">
         <span class="nav-link">Réserver</span>
@@ -414,7 +758,6 @@
       </nav>
     </header>
 
-    <!-- Colonne texte -->
     <section class="content-left">
       <div>
         <div class="eyebrow">Esthétique & bien-être</div>
@@ -447,7 +790,6 @@
       </article>
     </section>
 
-    <!-- Colonne image -->
     <section class="content-right" aria-hidden="true">
       <div class="right-inner">
         <div class="right-bg"></div>
@@ -461,14 +803,227 @@
         <div class="esth-image-wrapper">
           <img
             class="esth-image"
-            src="https://cdn.shopify.com/s/files/1/0726/0690/8753/files/estheticienne.png?v=1763140257" alt="">
-"
+            src="https://cdn.shopify.com/s/files/1/0726/0690/8753/files/estheticienne.png?v=1763140257"
             alt="Esthéticienne souriante dans son espace de soins"
           />
         </div>
       </div>
     </section>
   </div>
+
+  <!-- CONTENU PRINCIPAL -->
+  <main>
+    <!-- Prestations -->
+    <section class="section-block" id="prestations">
+      <div class="section-header">
+        <div class="section-title">Nos prestations</div>
+        <p class="section-subtitle">
+          Des soins pensés pour sublimer vos mains, vos pieds et votre peau,
+          en respectant votre confort et votre sensibilité. Chaque geste est
+          réalisé avec précision et douceur.
+        </p>
+      </div>
+
+      <div class="services-grid">
+        <!-- Beauté des pieds -->
+        <article class="service-card">
+          <div class="service-tag">Best-seller</div>
+          <img class="service-image" src="https://admin.shopify.com/store/kill-event/content/files/65271703437649?selectedView=all" alt="Beauté des pieds" />
+          <div class="service-body">
+            <h3 class="service-name">Beauté des pieds</h3>
+            <p class="service-desc">
+              Bain tiède, limage, cuticules, soin nourrissant et pose de vernis.
+              Vos pieds ressortent lissés, légers et impeccablement soignés.
+            </p>
+            <div class="service-meta">
+              <span class="service-price">À partir de 35&nbsp;€</span>
+              <span class="service-duration">Durée&nbsp;: 45&nbsp;min</span>
+            </div>
+            <div class="service-cta">Voir le détail du soin</div>
+          </div>
+        </article>
+
+        <!-- Beauté des mains -->
+        <article class="service-card">
+          <div class="service-tag">Mains</div>
+          <img class="service-image" src="https://admin.shopify.com/store/kill-event/content/files/65271703437649?selectedView=all" alt="Beauté des mains" />
+          <div class="service-body">
+            <h3 class="service-name">Beauté des mains</h3>
+            <p class="service-desc">
+              Manucure complète, soin des ongles et des cuticules,
+              massage délicat et finition vernis ou naturelle, selon vos envies.
+            </p>
+            <div class="service-meta">
+              <span class="service-price">À partir de 30&nbsp;€</span>
+              <span class="service-duration">Durée&nbsp;: 40&nbsp;min</span>
+            </div>
+            <div class="service-cta">Découvrir le soin</div>
+          </div>
+        </article>
+
+        <!-- Épilations -->
+        <article class="service-card">
+          <div class="service-tag">Confort</div>
+          <img class="service-image" src="https://admin.shopify.com/store/kill-event/content/files/65271703437649?selectedView=all" alt="Épilations" />
+          <div class="service-body">
+            <h3 class="service-name">Épilations douces</h3>
+            <p class="service-desc">
+              Épilations à la cire tiède, adaptées aux peaux sensibles,
+              pour un résultat net et une repousse plus confortable.
+            </p>
+            <div class="service-meta">
+              <span class="service-price">À partir de 12&nbsp;€</span>
+              <span class="service-duration">Selon zone</span>
+            </div>
+            <div class="service-cta">Voir les zones & tarifs</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Avis clients -->
+    <section class="section-block" id="avis">
+      <div class="section-header">
+        <div class="section-title">Avis clients</div>
+        <p class="section-subtitle">
+          Elles et ils ont pris un moment pour souffler au Belvaux.
+          Voici ce qu’ils retiennent de leur parenthèse bien-être.
+        </p>
+      </div>
+
+      <div class="testimonials-grid">
+        <article class="testimonial-card">
+          <div class="testimonial-stamp">BELVAUX • SPA</div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">
+            “Un vrai cocon. La beauté des pieds a complètement transformé mes
+            talons, et j’ai enfin l’impression de marcher sur des nuages.”
+          </p>
+          <p class="testimonial-author">Claire D. – Cliente beauté des pieds</p>
+        </article>
+
+        <article class="testimonial-card">
+          <div class="testimonial-stamp">SOINS • MAINS</div>
+          <div class="stars">★★★★★</div>
+          <p class="testimonial-text">
+            “Une manucure parfaite, réalisée avec beaucoup de douceur.
+            On se sent écoutée, jamais pressée. Je reviendrai sans hésiter.”
+          </p>
+          <p class="testimonial-author">Julie M. – Beauté des mains</p>
+        </article>
+
+        <article class="testimonial-card">
+          <div class="testimonial-stamp">ÉPILATIONS</div>
+          <div class="stars">★★★★☆</div>
+          <p class="testimonial-text">
+            “Moi qui redoutais toujours les épilations, j’ai été bluffée.
+            Vraiment minutieuse, respectueuse de la peau et de la pudeur.”
+          </p>
+          <p class="testimonial-author">Élodie R. – Épilations</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Avant / Après -->
+    <section class="section-block" id="galerie">
+      <div class="section-header">
+        <div class="section-title">Avant / après</div>
+        <p class="section-subtitle">
+          Quelques transformations réalisées au Belvaux. Les images parlent
+          souvent mieux que les mots. (Les photos sont indicatives, vous pourrez
+          les adapter avec vos propres clichés.)
+        </p>
+      </div>
+
+      <div class="gallery-grid">
+        <!-- Carte 1 -->
+        <article class="ba-card">
+          <div class="ba-images">
+            <span class="ba-label">Avant</span>
+            <span class="ba-label after">Après</span>
+            <img src="https://admin.shopify.com/store/kill-event/content/files/65271703437649?selectedView=all" alt="Pieds avant soin" />
+            <img src="https://admin.shopify.com/store/kill-event/content/files/65271703437649?selectedView=all" alt="Pieds après soin" />
+          </div>
+          <div class="ba-body">
+            Talons adoucis, ongles nets et vernis lumineux pour une allure soignée
+            jusqu’au bout des pieds.
+          </div>
+        </article>
+
+        <!-- Carte 2 -->
+        <article class="ba-card">
+          <div class="ba-images">
+            <span class="ba-label">Avant</span>
+            <span class="ba-label after">Après</span>
+            <img src="https://admin.shopify.com/store/kill-event/content/files/65271703437649?selectedView=all" alt="Mains avant soin" />
+            <img src="https://admin.shopify.com/store/kill-event/content/files/65271703437649?selectedView=all" alt="Mains après soin" />
+          </div>
+          <div class="ba-body">
+            Cuticules disciplinées, ongles harmonisés et peau réhydratée : des
+            mains prêtes à tout montrer.
+          </div>
+        </article>
+
+        <!-- Carte 3 -->
+        <article class="ba-card">
+          <div class="ba-images">
+            <span class="ba-label">Avant</span>
+            <span class="ba-label after">Après</span>
+            <img src="https://admin.shopify.com/store/kill-event/content/files/65271703437649?selectedView=all" alt="Zone avant épilation" />
+            <img src="https://admin.shopify.com/store/kill-event/content/files/65271703437649?selectedView=all" alt="Zone après épilation" />
+          </div>
+          <div class="ba-body">
+            Une peau nette, douce au toucher, sans rougeurs excessives grâce à
+            des gestes précis et maîtrisés.
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- PIED DE PAGE -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">BELVAUX</div>
+        <p class="footer-text">
+          Un espace intimiste dédié à votre bien-être, au cœur de la nature.
+          Des soins sur mesure, des produits sélectionnés avec soin et une
+          écoute attentive pour chaque rendez-vous.
+        </p>
+      </div>
+
+      <div>
+        <div class="footer-title">Navigation</div>
+        <div class="footer-links">
+          <p><a href="#prestations">Prestations</a></p>
+          <p><a href="#avis">Avis clients</a></p>
+          <p><a href="#galerie">Avant / après</a></p>
+          <p><a href="#contact">Contact</a></p>
+        </div>
+      </div>
+
+      <div id="contact">
+        <div class="footer-title">Contact & horaires</div>
+        <div class="footer-infos">
+          <p>Carolles, France</p>
+          <p>Tél. : 06 00 00 00 00</p>
+          <p>E-mail : contact@belvaux.fr</p>
+          <p>Du lundi au samedi, sur rendez-vous.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Belvaux – Tous droits réservés.</span>
+      <span>Site vitrine réalisé dans un univers naturel & chaleureux.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Année automatique dans le footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
 
