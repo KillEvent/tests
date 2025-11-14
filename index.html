@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Mon histoire – Kill Event</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Belvaux – L'évasion par excellence</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      --ke-bg-main: #000000;
-      --ke-bg-card: #121212;
-      --ke-text: #ffffff;
-      --ke-orange: #DA4F40;
-      --ke-gold: #D4AF37;
-      --ke-blood: #7B0C05;
+      --bg-main: #f4e3ce;
+      --bg-body: #f8efe4;
+      --text-main: #3f2717;
+      --text-soft: #7b5a41;
+      --accent: #da4f40;
+      --accent-soft: #d4af37;
+      --line: #c8a788;
+      --white: #ffffff;
     }
 
     * {
@@ -22,419 +27,447 @@
     }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #111 0%, #000 55%, #000 100%);
-      color: var(--ke-text);
-      line-height: 1.6;
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #fdf7ee 0%, var(--bg-body) 40%, #f2e2d2 100%);
+      color: var(--text-main);
       min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      padding: 24px;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
+    .page-wrapper {
+      max-width: 1180px;
+      width: 100%;
+      background: var(--bg-main);
+      border-radius: 26px;
+      overflow: hidden;
+      box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.18),
+        0 0 0 1px rgba(255, 255, 255, 0.6);
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      position: relative;
     }
 
-    /* --------- Layout global --------- */
-
-    .ke-page {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 30px 18px 60px;
+    /* Barre supérieure */
+    .top-bar {
+      grid-column: 1 / -1;
+      padding: 18px 56px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      position: relative;
+      background: linear-gradient(to right, #f7e7d3 0%, #f3ddc5 50%, #f8efe4 100%);
     }
 
-    .ke-card {
-      background: var(--ke-bg-card);
-      border-radius: 18px;
-      padding: 24px 22px;
-      margin-bottom: 26px;
-      border: 1px solid rgba(212, 175, 55, 0.25);
-      box-shadow: 0 0 25px rgba(123, 12, 5, 0.5);
+    .nav-left,
+    .nav-right {
+      display: flex;
+      gap: 32px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .nav-link {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      height: 1px;
+      width: 0;
+      background: var(--accent);
+      transition: width 0.25s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .brand {
+      font-family: "Playfair Display", serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      position: relative;
+    }
+
+    .brand::before,
+    .brand::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 120px;
+      height: 1px;
+      background: var(--line);
+      opacity: 0.7;
+      transform: translateY(-50%);
+    }
+
+    .brand::before {
+      right: 100%;
+      margin-right: 26px;
+    }
+
+    .brand::after {
+      left: 100%;
+      margin-left: 26px;
+    }
+
+    /* Contenu principal */
+    .content-left {
+      padding: 40px 56px 56px;
+      border-right: 1px solid rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 32px;
       position: relative;
       overflow: hidden;
     }
 
-    .ke-card::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background: radial-gradient(circle at top left, rgba(218,79,64,0.18), transparent 60%);
-      opacity: 0.65;
-      pointer-events: none;
-      mix-blend-mode: screen;
-    }
-
-    .ke-card-inner {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* --------- Effet de survol texte --------- */
-
-    .ke-hover-text {
-      transition: color 0.25s ease, text-shadow 0.25s ease;
-      cursor: default;
-    }
-
-    .ke-hover-text:hover {
-      color: var(--ke-gold);
-      text-shadow: 0 0 6px rgba(212, 175, 55, 0.8);
-    }
-
-    .ke-link-hover {
-      transition: color 0.25s ease, text-shadow 0.25s ease, transform 0.2s ease;
-    }
-
-    .ke-link-hover:hover {
-      color: var(--ke-orange);
-      text-shadow: 0 0 8px rgba(123, 12, 5, 0.9);
-      transform: translateY(-1px);
-    }
-
-    /* --------- Header / Hero --------- */
-
-    .ke-hero {
-      text-align: center;
-      margin-bottom: 32px;
-    }
-
-    .ke-logo-title {
-      font-size: clamp(2.2rem, 4vw, 3rem);
+    .eyebrow {
       text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--ke-gold);
-      margin-bottom: 10px;
+      letter-spacing: 0.24em;
+      font-size: 0.78rem;
+      color: var(--text-soft);
     }
 
-    .ke-logo-title span {
-      color: var(--ke-orange);
+    h1 {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(2.3rem, 3vw + 1rem, 3.1rem);
+      line-height: 1.15;
+      max-width: 18ch;
+      font-weight: 600;
     }
 
-    .ke-hero-sub {
-      font-size: 0.95rem;
-      opacity: 0.9;
-      max-width: 600px;
-      margin: 0 auto;
+    .subtitle {
+      font-size: 0.98rem;
+      color: var(--text-soft);
+      max-width: 34ch;
+      line-height: 1.55;
     }
 
-    /* --------- Bloc mascotte --------- */
-
-    .ke-mascotte-wrap {
+    .cta-row {
       display: flex;
       align-items: center;
       gap: 18px;
+      margin-top: 4px;
       flex-wrap: wrap;
     }
 
-    .ke-mascotte-img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: radial-gradient(circle at top, var(--ke-orange), #121212);
-      box-shadow: 0 0 25px rgba(123, 12, 5, 0.9);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent) 0%, #d44435 40%, #f0ba60 110%);
+      color: var(--white);
+      border: none;
+      padding: 13px 26px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      cursor: pointer;
+      box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(255, 255, 255, 0.35);
+      position: relative;
       overflow: hidden;
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
     }
 
-    .ke-mascotte-img img {
-      max-width: 110%;
-      height: auto;
+    .btn-primary::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -40%;
+      width: 40%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.55), transparent);
+      transform: skewX(-25deg);
+      opacity: 0;
+      transition: all 0.35s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow:
+        0 14px 30px rgba(0, 0, 0, 0.35),
+        0 0 0 1px rgba(255, 255, 255, 0.6);
+    }
+
+    .btn-primary:hover::after {
+      left: 120%;
+      opacity: 1;
+    }
+
+    .cta-note {
+      font-size: 0.86rem;
+      color: var(--text-soft);
+    }
+
+    /* Carte "beauté des pieds" */
+    .feet-card {
+      position: absolute;
+      right: 40px;
+      bottom: 34px;
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 20px;
+      box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.28),
+        0 0 0 1px rgba(255, 255, 255, 0.8);
+      overflow: hidden;
+      max-width: 260px;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      backdrop-filter: blur(6px);
+    }
+
+    .feet-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
       display: block;
     }
 
-    .ke-mascotte-text strong {
-      color: var(--ke-gold);
+    .feet-card-body {
+      padding: 10px 14px 12px;
     }
 
-    /* --------- Titres de section --------- */
-
-    .ke-section-title {
-      font-size: 1.05rem;
+    .feet-title {
+      font-size: 0.88rem;
       text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--ke-gold);
-      margin-bottom: 10px;
-      position: relative;
-      padding-left: 14px;
-    }
-
-    .ke-section-title::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 50%;
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--ke-orange);
-      transform: translateY(-50%);
-      box-shadow: 0 0 10px rgba(218, 79, 64, 0.9);
-    }
-
-    .ke-section-sub {
-      font-size: 0.9rem;
-      opacity: 0.9;
-      margin-bottom: 8px;
-    }
-
-    /* --------- Timeline --------- */
-
-    .ke-timeline {
-      margin-top: 14px;
-      border-left: 1px solid rgba(212, 175, 55, 0.4);
-      padding-left: 18px;
-    }
-
-    .ke-timeline-item {
-      margin-bottom: 14px;
-      position: relative;
-    }
-
-    .ke-timeline-item::before {
-      content: "";
-      position: absolute;
-      left: -19px;
-      top: 4px;
-      width: 9px;
-      height: 9px;
-      border-radius: 999px;
-      background: var(--ke-orange);
-      box-shadow: 0 0 14px rgba(218, 79, 64, 0.9);
-    }
-
-    .ke-timeline-year {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: rgba(212, 175, 55, 0.85);
-      margin-bottom: 3px;
-    }
-
-    .ke-timeline-text {
-      font-size: 0.9rem;
-    }
-
-    /* --------- Grille 2 colonnes --------- */
-
-    .ke-grid-2 {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 18px;
-      margin-top: 12px;
-    }
-
-    .ke-pill {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(212, 175, 55, 0.5);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: rgba(255,255,255,0.9);
-      margin-bottom: 6px;
-    }
-
-    .ke-list {
-      list-style: none;
-      padding-left: 0;
-      margin-top: 6px;
-    }
-
-    .ke-list li {
-      font-size: 0.9rem;
+      letter-spacing: 0.18em;
+      color: var(--text-soft);
       margin-bottom: 4px;
+    }
+
+    .feet-text {
+      font-size: 0.82rem;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+
+    /* Colonne droite : image esthéticienne */
+    .content-right {
       position: relative;
-      padding-left: 16px;
+      background: #f8efe4;
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      overflow: hidden;
     }
 
-    .ke-list li::before {
-      content: "✦";
+    .right-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .right-bg {
       position: absolute;
-      left: 0;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(255, 255, 255, 0.8) 0%, transparent 55%),
+                  linear-gradient(to bottom, #f7ebdd, #f1dfcf);
+    }
+
+    .vertical-wood {
+      position: absolute;
       top: 0;
-      color: var(--ke-orange);
-      font-size: 0.7rem;
-      transform: translateY(2px);
+      left: 14%;
+      width: 36px;
+      height: 100%;
+      background: linear-gradient(to bottom, #c39a6b, #a97743);
+      opacity: 0.7;
+      mix-blend-mode: multiply;
     }
 
-    /* --------- Call to action --------- */
-
-    .ke-cta {
-      text-align: center;
-      margin-top: 6px;
+    .esth-image-wrapper {
+      position: relative;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 40px 28px 30px;
+      z-index: 2;
     }
 
-    .ke-cta-btn {
-      display: inline-block;
-      margin-top: 12px;
-      padding: 9px 20px;
+    .esth-image-wrapper::before {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      box-shadow: 0 22px 40px rgba(0, 0, 0, 0.2);
+      opacity: 0.8;
+    }
+
+    .esth-image {
+      max-height: 100%;
+      max-width: 100%;
+      border-radius: 22px;
+      display: block;
+      object-fit: cover;
+      box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.45),
+        0 0 0 1px rgba(255, 255, 255, 0.9);
+    }
+
+    .right-badge {
+      position: absolute;
+      top: 30px;
+      right: 34px;
+      padding: 8px 14px;
       border-radius: 999px;
-      border: 1px solid var(--ke-gold);
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-size: 0.8rem;
-      background: transparent;
-      color: var(--ke-text);
-      cursor: pointer;
-      transition: background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(212, 175, 55, 0.7);
+      color: var(--text-soft);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(4px);
     }
 
-    .ke-cta-btn:hover {
-      background: linear-gradient(90deg, var(--ke-gold), var(--ke-orange));
-      color: #121212;
-      box-shadow: 0 0 18px rgba(212, 175, 55, 0.9);
-      transform: translateY(-1px);
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #57b46a;
+      box-shadow: 0 0 0 4px rgba(87, 180, 106, 0.3);
     }
 
-    /* --------- Responsive --------- */
-
-    @media (max-width: 768px) {
-      .ke-grid-2 {
-        grid-template-columns: minmax(0, 1fr);
+    /* Responsive */
+    @media (max-width: 960px) {
+      body {
+        padding: 12px;
       }
 
-      .ke-mascotte-wrap {
-        flex-direction: column;
-        text-align: center;
+      .page-wrapper {
+        grid-template-columns: 1fr;
+      }
+
+      .top-bar {
+        padding: 14px 20px 8px;
+      }
+
+      .brand::before,
+      .brand::after {
+        display: none;
+      }
+
+      .content-left {
+        padding: 26px 20px 90px;
+      }
+
+      .feet-card {
+        position: static;
+        margin-top: 14px;
+        max-width: 100%;
+      }
+
+      .content-right {
+        min-height: 380px;
+      }
+
+      .esth-image-wrapper {
+        padding: 26px 20px 24px;
+      }
+
+      .right-badge {
+        top: 16px;
+        right: 18px;
+      }
+
+      .nav-left,
+      .nav-right {
+        display: none; /* version simple mobile */
       }
     }
   </style>
 </head>
-<body>
 
-  <main class="ke-page ke-hover-text">
-    <!-- HERO -->
-    <header class="ke-hero">
-      <div class="ke-card">
-        <div class="ke-card-inner">
-          <h1 class="ke-logo-title">
-            <span>KILL</span> EVENT
-          </h1>
-          <p class="ke-hero-sub">
-            Derrière chaque soirée enquête, il y a une histoire. Voici comment un simple goût pour les mystères
-            s’est transformé en une entreprise entièrement dédiée aux Murder Party clé en main.
-          </p>
-        </div>
-      </div>
+<body>
+  <div class="page-wrapper">
+    <!-- Barre de navigation -->
+    <header class="top-bar">
+      <nav class="nav-left">
+        <span class="nav-link">Réserver</span>
+        <span class="nav-link">Prestations</span>
+        <span class="nav-link">Galerie</span>
+      </nav>
+
+      <div class="brand">BELVAUX</div>
+
+      <nav class="nav-right">
+        <span class="nav-link">Avis clients</span>
+        <span class="nav-link">Contact</span>
+      </nav>
     </header>
 
-    <!-- MASCOTTE / VOIX NARRATIVE -->
-    <section class="ke-card">
-      <div class="ke-card-inner ke-mascotte-wrap">
-        <div class="ke-mascotte-img">
-          <img src="https://cdn.shopify.com/s/files/1/0726/0690/8753/files/mascotte_fond_transparent-min.png?v=1760630439"
-               alt="Mascotte Kill Event Jack Event">
-        </div>
-        <div class="ke-mascotte-text">
-          <h2 class="ke-section-title">Qui parle ?</h2>
-          <p class="ke-section-sub ke-hover-text">
-            On m’appelle <strong>Jack Event</strong>. Je suis le narrateur de vos futurs crimes… fictifs.
+    <!-- Colonne texte -->
+    <section class="content-left">
+      <div>
+        <div class="eyebrow">Esthétique & bien-être</div>
+        <h1>Bienvenue au Belvaux, l’évasion par excellence.</h1>
+      </div>
+
+      <p class="subtitle">
+        Soins du visage, beauté des pieds et rituels relaxants réalisés avec douceur,
+        dans un univers naturel, chaleureux et apaisant. Ici, chaque détail est pensé
+        pour que vous puissiez enfin souffler.
+      </p>
+
+      <div class="cta-row">
+        <button class="btn-primary">
+          Réserver votre soin
+        </button>
+        <span class="cta-note">Un moment rien que pour vous, à Carolles.</span>
+      </div>
+
+      <!-- Carte beauté des pieds -->
+      <article class="feet-card">
+        <img src="tests/ChatGPT Image 14 nov. 2025, 17_48_46.png" alt="Beauté des pieds en institut – soin et pédicure professionnelle" />
+        <div class="feet-card-body">
+          <div class="feet-title">Beauté des pieds</div>
+          <p class="feet-text">
+            Laissez vos pieds se délasser : bain tiède, limage, soin des cuticules et pose de vernis
+            soignée pour une finition ultra élégante.
           </p>
-          <p class="ke-hover-text">
-            Ma mission ? Transformer vos salons, vos bureaux et vos salles des fêtes en véritables scènes de crime,
-            où chaque invité devient suspect. Dans l’ombre, je veille à ce que tout soit fluide, jouissivement
-            immersif, mais toujours simple à organiser.
-          </p>
+        </div>
+      </article>
+    </section>
+
+    <!-- Colonne image -->
+    <section class="content-right" aria-hidden="true">
+      <div class="right-inner">
+        <div class="right-bg"></div>
+        <div class="vertical-wood"></div>
+
+        <div class="right-badge">
+          <span class="badge-dot"></span>
+          <span>Soins sur rendez-vous</span>
+        </div>
+
+        <div class="esth-image-wrapper">
+          <img
+            class="esth-image"
+            src="tests/EMXN1y8qTQoGdXBsb2FkEg55bGFiLXN0dW50LXNncBoza2xpbmcvZG93bmxvYWQvTWprMU1UQTRPVE0yTlRJME1UQTJNVE15TVRjNE16UTNNdz09.png"
+            alt="Esthéticienne souriante dans son espace de soins"
+          />
         </div>
       </div>
     </section>
-
-    <!-- NAISSANCE DE KILL EVENT / TIMELINE -->
-    <section class="ke-card">
-      <div class="ke-card-inner">
-        <h2 class="ke-section-title">Naissance d’une obsession</h2>
-        <p class="ke-section-sub ke-hover-text">
-          Une simple envie de jouer, puis une idée : et si l’on pouvait offrir à tout le monde des enquêtes
-          scénarisées, prêtes à imprimer, dignes d’un film… mais chez soi ?
-        </p>
-
-        <div class="ke-timeline">
-          <div class="ke-timeline-item">
-            <div class="ke-timeline-year">Avant Kill Event</div>
-            <p class="ke-timeline-text ke-hover-text">
-              Des soirées entre amis, des carnets de notes griffonnés, des scénarios improvisés,
-              des intrigues qui finissent à 3h du matin. L’ADN était déjà là.
-            </p>
-          </div>
-
-          <div class="ke-timeline-item">
-            <div class="ke-timeline-year">Création de Kill Event</div>
-            <p class="ke-timeline-text ke-hover-text">
-              Une marque naît : <strong>Kill Event</strong>. Objectif : rendre la Murder Party accessible,
-              clé en main, imprimable, sans sacrifier la profondeur de l’histoire ni la tension du crime.
-            </p>
-          </div>
-
-          <div class="ke-timeline-item">
-            <div class="ke-timeline-year">Aujourd’hui</div>
-            <p class="ke-timeline-text ke-hover-text">
-              Des dizaines de scénarios, des centaines d’invitations suspectes, des milliers de joueurs.
-              Des entreprises, des familles, des groupes d’amis, tous réunis autour d’un même frisson :
-              et si le meurtrier était assis juste à côté de vous ?
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- UNIVERS / VALEURS -->
-    <section class="ke-card">
-      <div class="ke-card-inner">
-        <h2 class="ke-section-title">Ce que Kill Event promet</h2>
-
-        <div class="ke-grid-2">
-          <div>
-            <span class="ke-pill">Notre univers</span>
-            <p class="ke-hover-text">
-              Un mélange de cinéma noir, de roman policier et de jeux de rôle. Chaque kit est conçu pour
-              que vous ayez l’impression de pousser la porte d’un club très privé : décors visuels, trames
-              solides, personnages plus ou moins innocents.
-            </p>
-            <p class="ke-hover-text">
-              Vous n’achetez pas seulement un jeu : vous entrez dans une <strong>soirée dont on reparlera</strong>
-              encore des semaines après.
-            </p>
-          </div>
-
-          <div>
-            <span class="ke-pill">Nos principes</span>
-            <ul class="ke-list">
-              <li class="ke-hover-text">Des scénarios écrits pour être joués, pas juste lus.</li>
-              <li class="ke-hover-text">Des fiches claires, même pour ceux qui n’ont jamais fait de Murder Party.</li>
-              <li class="ke-hover-text">Un équilibre entre mystère, roleplay, humour… et quelques coups de théâtre.</li>
-              <li class="ke-hover-text">Une esthétique sombre et élégante, jamais gore, toujours raffinée.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- POURQUOI ON FAIT ÇA / CTA -->
-    <section class="ke-card">
-      <div class="ke-card-inner ke-cta">
-        <h2 class="ke-section-title" style="justify-content:center; text-align:center;">Et vous, quel sera votre crime ?</h2>
-        <p class="ke-section-sub ke-hover-text" style="max-width:640px; margin:0 auto 6px;">
-          Derrière Kill Event, il y a l’envie de faire vivre des soirées où l’on oublie les téléphones,
-          où tout le monde joue, rit, suspecte, accuse… et finit par se souvenir de cette nuit comme
-          <strong>“la meilleure soirée qu’on ait organisée”</strong>.
-        </p>
-        <p class="ke-hover-text" style="max-width:640px; margin:0 auto;">
-          Que vous prépariez un Nouvel An, un anniversaire, un team building ou un simple samedi soir,
-          Jack Event a forcément une histoire à vous confier.
-        </p>
-
-        <!-- Bouton : tu peux changer le lien -->
-        <a href="https://kill-event.com/collections/all" class="ke-cta-btn ke-link-hover">
-          Découvrir les scénarios
-        </a>
-      </div>
-    </section>
-
-  </main>
-
+  </div>
 </body>
 </html>
 
