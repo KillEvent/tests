@@ -533,67 +533,62 @@ header[data-open="true"] .mobile-panel{
 
 <body>
   <!-- Header -->
-  <header id="top" data-open="false">
-    <div class="container">
-      <div class="nav">
-        <!-- Left (desktop) -->
-        <div class="nav-left">
-          <nav class="navlinks" aria-label="Navigation principale">
-            <a href="#prestations">Prestations</a>
-            <a href="#histoire">Mon histoire</a>
-            <a href="#avis">Les avis</a>
-            <a href="#contact">Contact</a>
-          </nav>
-        </div>
+ <header id="top" data-open="false">
+  <div class="container">
+    <div class="nav">
 
-        <!-- Burger (mobile) -->
-        <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" type="button">
-          <span></span>
-        </button>
+      <!-- LOGO À GAUCHE -->
+      <a class="brand" href="#top" aria-label="Retour en haut">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0726/0690/8753/files/Design_sans_titre_-_2026-01-16T163325.793.png?v=1768577623"
+          alt="Logo Beauté Mélisse"
+        />
+      </a>
 
-        <!-- Center Logo -->
-        <a class="brand" href="#top" aria-label="Retour en haut">
-          <img
-            src="https://cdn.shopify.com/s/files/1/0726/0690/8753/files/Design_sans_titre_-_2026-01-16T163325.793.png?v=1768577623"
-            alt="Logo Beauté Mélisse"
-            loading="eager"
-          />
-        </a>
-
-        <!-- Right (desktop) -->
-        <div class="nav-right">
-          <!-- WhatsApp direct -->
-          <a class="btn" href="https://wa.me/33643896341?text=Bonjour%20Beaut%C3%A9%20M%C3%A9lisse%20%F0%9F%8C%BF%20Je%20souhaite%20prendre%20rendez-vous%20(%C3%A0%20Pourri%C3%A8res%20et%20alentours).%20Pouvez-vous%20me%20proposer%20un%20cr%C3%A9neau%20%3F"
-             target="_blank" rel="noopener" aria-label="Contacter sur WhatsApp">
-            <span class="wa-dot" aria-hidden="true"></span>
-            WhatsApp
-          </a>
-        </div>
-
-        <!-- spacer (mobile) -->
-        <div aria-hidden="true"></div>
-      </div>
-
-      <!-- Mobile dropdown -->
-      <div class="mobile-panel" id="mobilePanel">
-        <nav class="navlinks" aria-label="Navigation mobile">
+      <!-- DROITE : MENU + WHATSAPP -->
+      <div class="nav-right">
+        <nav class="navlinks">
           <a href="#prestations">Prestations</a>
           <a href="#histoire">Mon histoire</a>
-          <a href="#avis">Les avis</a>
-          <a href="#faq">FAQ</a>
+          <a href="#avis">Avis</a>
           <a href="#contact">Contact</a>
         </nav>
 
-        <div style="margin-top:12px;">
-          <a class="btn" href="https://wa.me/33643896341?text=Bonjour%20Beaut%C3%A9%20M%C3%A9lisse%20%F0%9F%8C%BF%20Je%20souhaite%20prendre%20rendez-vous%20(%C3%A0%20Pourri%C3%A8res%20et%20alentours).%20Pouvez-vous%20me%20proposer%20un%20cr%C3%A9neau%20%3F"
-             target="_blank" rel="noopener">
-            <span class="wa-dot" aria-hidden="true"></span>
-            Me contacter sur WhatsApp
-          </a>
-        </div>
+        <a class="btn"
+           href="https://wa.me/33643896341?text=Bonjour%20Beaut%C3%A9%20M%C3%A9lisse%20%F0%9F%8C%BF%20Je%20souhaite%20prendre%20rendez-vous."
+           target="_blank">
+          <span class="wa-dot"></span>
+          WhatsApp
+        </a>
+
+        <button class="burger" id="burger" aria-label="Menu mobile">
+          <span></span>
+        </button>
       </div>
     </div>
-  </header>
+
+    <!-- MENU MOBILE -->
+    <div class="mobile-panel">
+      <nav class="navlinks">
+        <a href="#prestations">Prestations</a>
+        <a href="#histoire">Mon histoire</a>
+        <a href="#avis">Avis</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div style="margin-top:14px;">
+        <a class="btn"
+           href="https://wa.me/33643896341"
+           target="_blank">
+          <span class="wa-dot"></span>
+          WhatsApp direct
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
 
   <!-- HERO / BANNER -->
   <section class="hero">
