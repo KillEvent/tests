@@ -70,11 +70,19 @@
       justify-content:center;
       padding: 6px 8px;
     }
-    .brand img{
-      height: 62px; /* plus gros */
-      width:auto;
-      filter: drop-shadow(0 12px 22px rgba(63,46,31,.20));
-    }
+   /* Logo plus grand (desktop) */
+.brand img{
+  height: 92px;          /* <- augmente ici si tu veux encore + */
+  width: auto;
+}
+
+/* Logo plus grand (mobile aussi) */
+@media (max-width: 860px){
+  .brand img{
+    height: 96px;        /* <- augmente ici si tu veux encore + */
+  }
+}
+
 
     .nav-left, .nav-right{
       display:flex;
