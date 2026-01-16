@@ -178,11 +178,19 @@ header[data-open="true"] .mobile-panel{
   gap:10px;
 }
 
-/* RESPONSIVE */
 @media (max-width: 900px){
-  .navlinks{ display:none; }
+  /* cache seulement le menu DESKTOP (dans la barre du haut) */
+  .nav > .nav-right > nav.navlinks{ display:none; }
+
+  /* le burger apparaît */
   .burger{ display:flex; }
-  .brand img{ height: 96px; }   /* logo encore bien gros sur mobile */
+
+  /* le menu déroulant reste visible quand ouvert */
+  header[data-open="true"] .mobile-panel{ display:block; }
+  .mobile-panel nav.navlinks{ display:flex; }
+
+  /* logo bien grand sur mobile */
+  .brand img{ height: 96px; }
 }
 
 
