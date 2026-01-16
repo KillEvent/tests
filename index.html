@@ -528,6 +528,14 @@ header[data-open="true"] .mobile-panel{
       .brand img{ height: 66px; } /* logo encore bien visible sur mobile */
       section{ padding: 70px 0; }
     }
+    /* FIX : bannière voilée blanche sur mobile */
+@media (max-width: 980px){
+  .banner::after{
+    /* on supprime le voile qui blanchit trop sur mobile */
+    background: none !important;
+  }
+}
+
   </style>
 </head>
 
