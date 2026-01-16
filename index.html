@@ -566,24 +566,56 @@ header[data-open="true"] .mobile-panel{
       .contact-grid{ grid-template-columns: 1fr; }
     }
 
-   @media (max-width: 860px){
+  @media (max-width: 860px){
 
-  /* On cache uniquement le menu desktop, pas le burger ni le bouton */
+  /* Le header devient une colonne */
+  .nav{
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  /* LOGO EN HAUT */
+  .brand{
+    justify-content: center;
+  }
+  .brand img{
+    height: 120px; /* logo bien dominant sur mobile */
+  }
+
+  /* Ligne du bas : WhatsApp à gauche / menu à droite */
+  .nav-right{
+    width:100%;
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+  }
+
+  /* On cache le menu desktop */
   .nav > .nav-right > nav.navlinks{
     display:none;
   }
 
-  /* Le burger reste visible */
+  /* Burger visible */
   .burger{
     display:flex;
   }
 
-  /* Logo bien grand sur mobile */
-  .brand img{
-    height: 96px;
+  /* Menu déroulant OK */
+  header[data-open="true"] .mobile-panel{
+    display:block;
   }
 
-  section{ padding: 70px 0; }
+  .mobile-panel nav.navlinks{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:10px;
+  }
+
+  section{
+    padding: 70px 0;
+  }
 }
 
 @media (max-width: 980px){
