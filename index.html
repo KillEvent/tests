@@ -12,6 +12,29 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
+    /* Source des avis Google */
+.google-source{
+  margin-top: 28px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  opacity:.85;
+}
+
+.google-source img{
+  height: 42px;          /* bien visible mais élégant */
+  width:auto;
+  filter: grayscale(100%);
+}
+
+.google-source p{
+  margin:0;
+  font-size:14px;
+  color: rgba(63,46,31,.75);
+  text-align:center;
+}
+
     :root{
       --text: #3f2e1f;
       --accent: #305718;
@@ -742,7 +765,7 @@ header[data-open="true"] .mobile-panel{
     <div class="container">
       <h2 class="section-title">Les avis</h2>
       <p class="section-kicker">
-        Exemples d’avis clients (Google) — tu peux remplacer ces textes par tes avis réels.
+        Elles m'ont fait confiance...
       </p>
 
       <div class="reviews">
@@ -759,6 +782,16 @@ header[data-open="true"] .mobile-panel{
           <p>On sent la qualité et la passion. Manucure parfaite, et en plus j’étais chez moi, trop bien.</p>
         </div>
       </div>
+      <div class="google-source">
+  <img
+    src="https://cdn.shopify.com/s/files/1/0726/0690/8753/files/1200px-Logo_Google.png?v=1768595885"
+    alt="Avis Google"
+  />
+  <p>
+    Avis clients <strong>collectés via Google</strong>
+  </p>
+</div>
+
     </div>
   </section>
 
