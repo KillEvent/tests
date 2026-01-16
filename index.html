@@ -209,22 +209,33 @@
        ========================= */
     .hero{ padding-top: 34px; }
     .banner{
-      position:relative;
-      border-radius: 32px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.45);
-      box-shadow: var(--shadow);
-      background:
-        radial-gradient(900px 500px at 18% 18%, rgba(127,167,122,.22), transparent 60%),
-        radial-gradient(800px 500px at 92% 20%, rgba(48,87,24,.16), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.30), rgba(255,255,255,.10));
-    }
-    .banner::after{
-      content:"";
-      position:absolute; inset:0;
-      background: linear-gradient(90deg, rgba(244,231,215,.92), rgba(244,231,215,.65) 55%, rgba(244,231,215,.10));
-      pointer-events:none;
-    }
+  position:relative;
+  border-radius: 32px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.45);
+  box-shadow: var(--shadow);
+
+  /* ✅ Fond bien visible (plus riche, plus “bannière”) */
+  background:
+    radial-gradient(900px 520px at 18% 18%, rgba(127,167,122,.28), transparent 62%),
+    radial-gradient(820px 520px at 92% 16%, rgba(48,87,24,.20), transparent 60%),
+    linear-gradient(135deg, rgba(244,231,215,1), rgba(234,215,192,1));
+}
+
+.banner::after{
+  content:"";
+  position:absolute; inset:0;
+
+  /* ✅ Voile beaucoup plus léger (ne blanchit plus) */
+  background:
+    linear-gradient(90deg,
+      rgba(255,255,255,.18),
+      rgba(255,255,255,.08) 55%,
+      rgba(255,255,255,0)
+    );
+  pointer-events:none;
+}
+
     .banner-inner{
       position:relative;
       display:grid;
