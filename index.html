@@ -45,36 +45,55 @@
     img{ max-width:100%; display:block; }
     .container{ width:min(var(--max), calc(100% - 48px)); margin-inline:auto; }
 
-    /* Header */
+    /* =========================
+       HEADER (LOGO CENTRÉ GROS)
+       ========================= */
     header{
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(10px);
-      background: rgba(244,231,215,.72);
+      background: rgba(244,231,215,.78);
       border-bottom:1px solid var(--stroke);
     }
+
     .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:12px 0;
-      gap:14px;
+      display:grid;
+      grid-template-columns: 1fr auto 1fr; /* gauche / logo / droite */
+      align-items:center;
+      gap:12px;
+      padding: 10px 0;
     }
+
     .brand{
-      display:flex; align-items:center; gap:12px;
-      min-width: 220px;
+      justify-self:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 6px 8px;
     }
     .brand img{
-      height:52px; width:auto;
-      filter: drop-shadow(0 10px 18px rgba(63,46,31,.18));
+      height: 62px; /* plus gros */
+      width:auto;
+      filter: drop-shadow(0 12px 22px rgba(63,46,31,.20));
     }
+
+    .nav-left, .nav-right{
+      display:flex;
+      align-items:center;
+      gap: 14px;
+    }
+    .nav-left{ justify-content:flex-start; }
+    .nav-right{ justify-content:flex-end; }
+
     .navlinks{
-      display:flex; align-items:center; gap:18px;
+      display:flex; align-items:center; gap:16px;
       flex-wrap:wrap;
-      justify-content:flex-end;
     }
     .navlinks a{
       position:relative;
-      font-weight:600;
+      font-weight:700;
       padding:10px 6px;
       opacity:.92;
+      white-space:nowrap;
     }
     .navlinks a::after{
       content:"";
@@ -89,16 +108,14 @@
     .navlinks a:hover::after{ transform: scaleX(1); }
     .navlinks a:hover{ opacity:1; }
 
-    .cta{
-      display:flex; align-items:center; gap:10px;
-    }
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
       padding:11px 16px;
       border-radius: 999px;
       background: linear-gradient(180deg, var(--btn), #6f9f6a);
       color: var(--btn-text);
-      font-weight:700;
+      font-weight:800;
       border:1px solid rgba(255,255,255,.25);
       box-shadow: 0 12px 26px rgba(67,41,12,.18);
       transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
@@ -114,14 +131,21 @@
       color: var(--btn-dark);
       border:1px solid rgba(67,41,12,.30);
       box-shadow:none;
-      font-weight:700;
+      font-weight:800;
     }
     .btn.secondary:hover{
       transform: translateY(-1px);
       background: rgba(255,255,255,.35);
     }
 
-    /* Mobile menu */
+    /* WhatsApp icon (simple) */
+    .wa-dot{
+      width:10px; height:10px; border-radius:999px;
+      background: rgba(255,255,255,.9);
+      box-shadow: 0 0 0 4px rgba(255,255,255,.18);
+    }
+
+    /* Mobile menu button */
     .burger{
       display:none;
       width:44px; height:44px;
@@ -142,9 +166,13 @@
     .burger span::before{ top:-6px; }
     .burger span::after{ top:6px; }
 
+    /* Mobile dropdown panel (FIXED) */
     .mobile-panel{
       display:none;
       padding: 10px 0 18px;
+    }
+    header[data-open="true"] .mobile-panel{
+      display:block; /* <- le dropdown s’affiche vraiment */
     }
     .mobile-panel .navlinks{
       flex-direction:column;
@@ -152,11 +180,12 @@
       gap:6px;
       padding-top:10px;
     }
-    .mobile-panel .cta{ padding-top:10px; width:100%; }
     .mobile-panel .btn{ width:100%; }
 
-    /* Sections */
-    section{ padding: 84px 0; scroll-margin-top: 88px; }
+    /* =========================
+       SECTIONS
+       ========================= */
+    section{ padding: 84px 0; scroll-margin-top: 110px; }
     .section-title{
       font-family: "Playfair Display", serif;
       font-weight: 700;
@@ -170,9 +199,64 @@
       margin: 0 0 26px;
       max-width: 70ch;
     }
+    .highlight{
+      color: var(--accent);
+      font-weight: 900;
+    }
+
+    /* =========================
+       HERO BANNER (VRAIE BANNIÈRE)
+       ========================= */
+    .hero{ padding-top: 34px; }
+    .banner{
+      position:relative;
+      border-radius: 32px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.45);
+      box-shadow: var(--shadow);
+      background:
+        radial-gradient(900px 500px at 18% 18%, rgba(127,167,122,.22), transparent 60%),
+        radial-gradient(800px 500px at 92% 20%, rgba(48,87,24,.16), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.30), rgba(255,255,255,.10));
+    }
+    .banner::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(90deg, rgba(244,231,215,.92), rgba(244,231,215,.65) 55%, rgba(244,231,215,.10));
+      pointer-events:none;
+    }
+    .banner-inner{
+      position:relative;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items:stretch;
+      min-height: 520px;
+    }
+
+    .banner-left{
+      padding: 44px 38px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap: 14px;
+    }
+    .headline{
+      font-family:"Playfair Display", serif;
+      font-weight:800;
+      font-size: clamp(34px, 4vw, 56px);
+      line-height: 1.06;
+      margin:0;
+    }
+    .lead{
+      margin:0;
+      font-size: 18px;
+      color: rgba(63,46,31,.88);
+      max-width: 66ch;
+    }
+
     .pill{
-      display:inline-flex; gap:10px; flex-wrap:wrap;
-      margin-top:18px;
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top: 8px;
     }
     .tag{
       display:inline-flex; align-items:center; gap:10px;
@@ -181,8 +265,8 @@
       background: rgba(255,255,255,.35);
       border:1px solid var(--stroke);
       box-shadow: 0 10px 22px rgba(63,46,31,.08);
-      font-weight:600;
-      color: rgba(63,46,31,.9);
+      font-weight:700;
+      color: rgba(63,46,31,.92);
     }
     .dot{
       width:9px; height:9px; border-radius:999px;
@@ -190,54 +274,42 @@
       box-shadow: 0 0 0 4px rgba(48,87,24,.12);
     }
 
-    /* Hero */
-    .hero{
-      padding-top: 54px;
-    }
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 34px;
-      align-items:center;
-    }
-    .headline{
-      font-family: "Playfair Display", serif;
-      font-weight: 700;
-      font-size: clamp(34px, 4vw, 54px);
-      line-height: 1.08;
-      margin: 0 0 14px;
-    }
-    .headline .accent{ color: var(--accent); }
-    .lead{
-      font-size: 18px;
-      color: rgba(63,46,31,.85);
-      margin:0 0 18px;
-      max-width: 64ch;
-    }
     .hero-actions{
       display:flex; gap:12px; flex-wrap:wrap;
-      margin-top: 18px;
+      margin-top: 8px;
     }
-    .frame{
-      border-radius: var(--radius2);
-      overflow:hidden;
-      border: 1px solid rgba(255,255,255,.45);
-      box-shadow: var(--shadow);
+
+    .banner-right{
       position:relative;
-      background: rgba(255,255,255,.25);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 18px 18px 18px 0;
     }
-    .frame::after{
+    .portrait{
+      width:100%;
+      height:100%;
+      min-height: 520px;
+      border-top-left-radius: 28px;
+      border-bottom-left-radius: 28px;
+      overflow:hidden;
+      border-left: 1px solid rgba(63,46,31,.10);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.22);
+      position:relative;
+    }
+    .portrait img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      transform: scale(1.02);
+    }
+    .portrait::after{
       content:"";
       position:absolute; inset:0;
-      background: radial-gradient(400px 300px at 20% 10%, rgba(127,167,122,.22), transparent 55%),
-                  radial-gradient(500px 350px at 90% 20%, rgba(48,87,24,.14), transparent 60%);
+      background:
+        radial-gradient(420px 260px at 20% 10%, rgba(127,167,122,.18), transparent 60%),
+        linear-gradient(180deg, rgba(0,0,0,.12), transparent 40%, rgba(0,0,0,.16));
       pointer-events:none;
-    }
-    .frame img{
-      width:100%;
-      height: 520px;
-      object-fit: cover;
-      transform: scale(1.01);
     }
 
     /* Prestations */
@@ -266,24 +338,18 @@
       width:100%;
       object-fit: cover;
     }
-    .card .body{
-      padding: 16px 16px 18px;
-    }
+    .card .body{ padding: 16px 16px 18px; }
     .card h3{
       margin:0 0 6px;
       font-family:"Playfair Display", serif;
       font-size: 22px;
       letter-spacing:.2px;
     }
-    .card p{
-      margin:0;
-      color: rgba(63,46,31,.82);
-      font-size: 15px;
-    }
+    .card p{ margin:0; color: rgba(63,46,31,.82); font-size: 15px; }
     .card .linkrow{
       display:flex; align-items:center; justify-content:space-between;
       margin-top: 12px;
-      font-weight: 700;
+      font-weight: 800;
       color: var(--btn-dark);
     }
     .arrow{
@@ -313,16 +379,8 @@
       box-shadow: 0 12px 28px rgba(63,46,31,.08);
       padding: 18px;
     }
-    .panel h4{
-      margin: 0 0 10px;
-      font-size: 16px;
-      letter-spacing:.2px;
-    }
+    .panel h4{ margin: 0 0 10px; font-size: 16px; letter-spacing:.2px; }
     .panel p{ margin:0; color: rgba(63,46,31,.84); }
-    .highlight{
-      color: var(--accent);
-      font-weight: 800;
-    }
 
     /* Reviews */
     .reviews{
@@ -343,9 +401,7 @@
       gap: 10px;
       margin-bottom: 10px;
     }
-    .review .name{
-      font-weight: 800;
-    }
+    .review .name{ font-weight: 900; }
     .stars{
       letter-spacing: 1px;
       color: var(--btn-dark);
@@ -353,11 +409,7 @@
       font-size: 14px;
       white-space:nowrap;
     }
-    .review p{
-      margin:0;
-      color: rgba(63,46,31,.84);
-      font-size: 15px;
-    }
+    .review p{ margin:0; color: rgba(63,46,31,.84); font-size: 15px; }
 
     /* FAQ */
     .faq{
@@ -375,7 +427,7 @@
     }
     summary{
       cursor:pointer;
-      font-weight: 800;
+      font-weight: 900;
       list-style:none;
       display:flex; align-items:center; justify-content:space-between;
       gap:10px;
@@ -391,11 +443,7 @@
       flex: 0 0 auto;
     }
     details[open] summary .chev{ transform: rotate(180deg); }
-    details p{
-      margin: 10px 0 0;
-      color: rgba(63,46,31,.84);
-      font-size: 15px;
-    }
+    details p{ margin: 10px 0 0; color: rgba(63,46,31,.84); font-size: 15px; }
 
     /* Contact */
     .contact-grid{
@@ -405,11 +453,8 @@
       margin-top: 22px;
       align-items:start;
     }
-    form{
-      display:grid;
-      gap: 12px;
-    }
-    label{ font-weight: 700; font-size: 14px; }
+    form{ display:grid; gap: 12px; }
+    label{ font-weight: 800; font-size: 14px; }
     input, textarea{
       width:100%;
       padding: 12px 12px;
@@ -444,21 +489,28 @@
 
     /* Responsive */
     @media (max-width: 980px){
-      .hero-grid{ grid-template-columns: 1fr; }
-      .frame img{ height: 430px; }
+      .banner-inner{ grid-template-columns: 1fr; }
+      .banner::after{
+        background: linear-gradient(180deg, rgba(244,231,215,.92), rgba(244,231,215,.78), rgba(244,231,215,.20));
+      }
+      .banner-right{ padding: 0 18px 18px; }
+      .portrait{ min-height: 420px; border-radius: 24px; border-left: none; }
+      .banner-left{ padding: 34px 22px 18px; }
       .cards{ grid-template-columns: 1fr; }
       .split{ grid-template-columns: 1fr; }
       .reviews{ grid-template-columns: 1fr; }
       .faq{ grid-template-columns: 1fr; }
       .contact-grid{ grid-template-columns: 1fr; }
     }
-    @media (max-width: 820px){
-      .navlinks, .cta{ display:none; }
-      .burger{ display:flex; }
-      .mobile-panel{ display:none; }
-      header[data-open="true"] .mobile-panel{ display:block; }
-      .brand{ min-width: unset; }
-      .brand img{ height: 46px; }
+
+    @media (max-width: 860px){
+      .nav{
+        grid-template-columns: 44px 1fr 44px; /* burger / logo / spacer */
+      }
+      .nav-left, .nav-right{ display:none; }
+      .burger{ display:flex; justify-self:start; }
+      .brand{ justify-self:center; }
+      .brand img{ height: 66px; } /* logo encore bien visible sur mobile */
       section{ padding: 70px 0; }
     }
   </style>
@@ -466,9 +518,25 @@
 
 <body>
   <!-- Header -->
-  <header id="top">
+  <header id="top" data-open="false">
     <div class="container">
       <div class="nav">
+        <!-- Left (desktop) -->
+        <div class="nav-left">
+          <nav class="navlinks" aria-label="Navigation principale">
+            <a href="#prestations">Prestations</a>
+            <a href="#histoire">Mon histoire</a>
+            <a href="#avis">Les avis</a>
+            <a href="#contact">Contact</a>
+          </nav>
+        </div>
+
+        <!-- Burger (mobile) -->
+        <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false" type="button">
+          <span></span>
+        </button>
+
+        <!-- Center Logo -->
         <a class="brand" href="#top" aria-label="Retour en haut">
           <img
             src="https://cdn.shopify.com/s/files/1/0726/0690/8753/files/Design_sans_titre_-_2026-01-16T163325.793.png?v=1768577623"
@@ -477,24 +545,21 @@
           />
         </a>
 
-        <nav class="navlinks" aria-label="Navigation principale">
-          <a href="#prestations">Prestations</a>
-          <a href="#histoire">Mon histoire</a>
-          <a href="#avis">Les avis</a>
-          <a href="#contact">Contact</a>
-        </nav>
-
-        <div class="cta">
-          <a class="btn secondary" href="#faq">FAQ</a>
-          <a class="btn" href="#contact">Prendre rendez-vous</a>
+        <!-- Right (desktop) -->
+        <div class="nav-right">
+          <!-- WhatsApp direct -->
+          <a class="btn" href="https://wa.me/33643896341?text=Bonjour%20Beaut%C3%A9%20M%C3%A9lisse%20%F0%9F%8C%BF%20Je%20souhaite%20prendre%20rendez-vous%20(%C3%A0%20Pourri%C3%A8res%20et%20alentours).%20Pouvez-vous%20me%20proposer%20un%20cr%C3%A9neau%20%3F"
+             target="_blank" rel="noopener" aria-label="Contacter sur WhatsApp">
+            <span class="wa-dot" aria-hidden="true"></span>
+            WhatsApp
+          </a>
         </div>
 
-        <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
-          <span></span>
-        </button>
+        <!-- spacer (mobile) -->
+        <div aria-hidden="true"></div>
       </div>
 
-      <!-- Mobile panel -->
+      <!-- Mobile dropdown -->
       <div class="mobile-panel" id="mobilePanel">
         <nav class="navlinks" aria-label="Navigation mobile">
           <a href="#prestations">Prestations</a>
@@ -503,49 +568,63 @@
           <a href="#faq">FAQ</a>
           <a href="#contact">Contact</a>
         </nav>
-        <div class="cta">
-          <a class="btn" href="#contact">Prendre rendez-vous</a>
+
+        <div style="margin-top:12px;">
+          <a class="btn" href="https://wa.me/33643896341?text=Bonjour%20Beaut%C3%A9%20M%C3%A9lisse%20%F0%9F%8C%BF%20Je%20souhaite%20prendre%20rendez-vous%20(%C3%A0%20Pourri%C3%A8res%20et%20alentours).%20Pouvez-vous%20me%20proposer%20un%20cr%C3%A9neau%20%3F"
+             target="_blank" rel="noopener">
+            <span class="wa-dot" aria-hidden="true"></span>
+            Me contacter sur WhatsApp
+          </a>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- Hero -->
+  <!-- HERO / BANNER -->
   <section class="hero">
     <div class="container">
-      <div class="hero-grid">
-        <div>
-          <h1 class="headline">
-            Esthéticienne à domicile,
-            <span class="accent">à Pourrières et alentours</span>
-          </h1>
+      <div class="banner">
+        <div class="banner-inner">
+          <div class="banner-left">
+            <h1 class="headline">
+              Esthéticienne à domicile,
+              <span class="highlight">à Pourrières et alentours</span>
+            </h1>
 
-          <p class="lead">
-            Offrez-vous une parenthèse beauté sans contrainte : je viens à vous avec une
-            sélection de <span class="highlight">soins naturels</span>, pensés pour les
-            <span class="highlight">peaux sensibles</span> et exigeantes.
-            Résultat : une expérience <span class="highlight">douce, efficace</span>, et
-            <span class="highlight">sans sortir de chez vous</span>.
-          </p>
+            <p class="lead">
+              Une parenthèse beauté <span class="highlight">chez vous</span>, sans stress :
+              je me déplace avec un matériel professionnel et une sélection de
+              <span class="highlight">soins naturels</span>, pensés pour les
+              <span class="highlight">peaux sensibles</span>.
+              L’objectif : un résultat net, une sensation de confort, et une expérience
+              <span class="highlight">douce & haut de gamme</span>.
+            </p>
 
-          <div class="pill" aria-label="Points forts">
-            <div class="tag"><span class="dot"></span>Produits hypoallergéniques & respectueux</div>
-            <div class="tag"><span class="dot"></span>Hygiène irréprochable, matériel professionnel</div>
-            <div class="tag"><span class="dot"></span>Rendez-vous flexible, chez vous</div>
+            <div class="pill" aria-label="Points forts">
+              <div class="tag"><span class="dot"></span>Produits hypoallergéniques & respectueux</div>
+              <div class="tag"><span class="dot"></span>Hygiène irréprochable, gestes professionnels</div>
+              <div class="tag"><span class="dot"></span>Rendez-vous flexible, à domicile</div>
+            </div>
+
+            <div class="hero-actions">
+              <a class="btn secondary" href="#prestations">Découvrir les prestations</a>
+              <a class="btn" href="https://wa.me/33643896341?text=Bonjour%20Beaut%C3%A9%20M%C3%A9lisse%20%F0%9F%8C%BF%20Je%20souhaite%20prendre%20rendez-vous%20(%C3%A0%20Pourri%C3%A8res%20et%20alentours).%20Pouvez-vous%20me%20proposer%20un%20cr%C3%A9neau%20%3F"
+                 target="_blank" rel="noopener">
+                <span class="wa-dot" aria-hidden="true"></span>
+                WhatsApp direct
+              </a>
+            </div>
           </div>
 
-          <div class="hero-actions">
-            <a class="btn" href="#prestations">Découvrir les prestations</a>
-            <a class="btn secondary" href="#avis">Voir les avis</a>
+          <div class="banner-right">
+            <div class="portrait" aria-label="Photo de présentation">
+              <img
+                src="https://cdn.shopify.com/s/files/1/0726/0690/8753/files/kling_20260116_Image_Reference_Using_the__6000_1.png?v=1768577545"
+                alt="Beauté Mélisse - Esthéticienne à domicile"
+                loading="lazy"
+              />
+            </div>
           </div>
-        </div>
-
-        <div class="frame" aria-label="Photo de présentation">
-          <img
-            src="https://cdn.shopify.com/s/files/1/0726/0690/8753/files/kling_20260116_Image_Reference_Using_the__6000_1.png?v=1768577545"
-            alt="Beauté Mélisse - Esthéticienne à domicile"
-            loading="lazy"
-          />
         </div>
       </div>
     </div>
@@ -557,7 +636,7 @@
       <h2 class="section-title">Prestations</h2>
       <p class="section-kicker">
         Trois univers pour prendre soin de vous : des gestes précis, une approche douce,
-        et une sélection de produits orientés <span class="highlight">tolérance</span> & <span class="highlight">qualité</span>.
+        et des produits orientés <span class="highlight">tolérance</span> & <span class="highlight">qualité</span>.
       </p>
 
       <div class="cards">
@@ -566,10 +645,7 @@
           <div class="body">
             <h3>Beauté des ongles</h3>
             <p>Pose soignée, finitions impeccables, rendu élégant et durable — avec une application tout en douceur.</p>
-            <div class="linkrow">
-              <span>Découvrir</span>
-              <span class="arrow" aria-hidden="true">➜</span>
-            </div>
+            <div class="linkrow"><span>Découvrir</span><span class="arrow" aria-hidden="true">➜</span></div>
           </div>
         </a>
 
@@ -578,10 +654,7 @@
           <div class="body">
             <h3>Épilations douces</h3>
             <p>Une méthode respectueuse de la peau, pour un résultat net et une sensation de confort après la séance.</p>
-            <div class="linkrow">
-              <span>Découvrir</span>
-              <span class="arrow" aria-hidden="true">➜</span>
-            </div>
+            <div class="linkrow"><span>Découvrir</span><span class="arrow" aria-hidden="true">➜</span></div>
           </div>
         </a>
 
@@ -590,10 +663,7 @@
           <div class="body">
             <h3>Rituels beauté & bien-être</h3>
             <p>Des rituels apaisants pour relâcher la pression, retrouver de l’éclat et vous sentir bien, tout simplement.</p>
-            <div class="linkrow">
-              <span>Découvrir</span>
-              <span class="arrow" aria-hidden="true">➜</span>
-            </div>
+            <div class="linkrow"><span>Découvrir</span><span class="arrow" aria-hidden="true">➜</span></div>
           </div>
         </a>
       </div>
@@ -637,30 +707,20 @@
     <div class="container">
       <h2 class="section-title">Les avis</h2>
       <p class="section-kicker">
-        Exemples d’avis clients (Google) — pour vous donner un aperçu de l’expérience à domicile.
-        <span class="highlight">Tu peux remplacer ces textes</span> par tes vrais avis quand tu veux.
+        Exemples d’avis clients (Google) — tu peux remplacer ces textes par tes avis réels.
       </p>
 
       <div class="reviews">
         <div class="review">
-          <div class="top">
-            <div class="name">Sophie M.</div>
-            <div class="stars">★★★★★</div>
-          </div>
+          <div class="top"><div class="name">Sophie M.</div><div class="stars">★★★★★</div></div>
           <p>Très douce, super pro, et un résultat impeccable. Le confort du domicile change tout !</p>
         </div>
         <div class="review">
-          <div class="top">
-            <div class="name">Camille R.</div>
-            <div class="stars">★★★★★</div>
-          </div>
+          <div class="top"><div class="name">Camille R.</div><div class="stars">★★★★★</div></div>
           <p>Peau sensible ici : aucune irritation. Produits top, hygiène irréprochable, je recommande.</p>
         </div>
         <div class="review">
-          <div class="top">
-            <div class="name">Nadia L.</div>
-            <div class="stars">★★★★★</div>
-          </div>
+          <div class="top"><div class="name">Nadia L.</div><div class="stars">★★★★★</div></div>
           <p>On sent la qualité et la passion. Manucure parfaite, et en plus j’étais chez moi, trop bien.</p>
         </div>
       </div>
@@ -671,54 +731,27 @@
   <section id="faq">
     <div class="container">
       <h2 class="section-title">FAQ</h2>
-      <p class="section-kicker">
-        Les réponses aux questions qu’on me pose le plus souvent.
-      </p>
+      <p class="section-kicker">Les réponses aux questions qu’on me pose le plus souvent.</p>
 
       <div class="faq">
         <details>
-          <summary>
-            Dans quelle zone te déplaces-tu ?
-            <span class="chev" aria-hidden="true">⌄</span>
-          </summary>
-          <p>
-            Je me déplace à <span class="highlight">Pourrières</span> et dans les alentours.
-            Dis-moi simplement ta commune, et je te confirme la disponibilité.
-          </p>
+          <summary>Dans quelle zone te déplaces-tu ? <span class="chev" aria-hidden="true">⌄</span></summary>
+          <p>Je me déplace à <span class="highlight">Pourrières</span> et dans les alentours. Dis-moi ta commune et je te confirme.</p>
         </details>
 
         <details>
-          <summary>
-            Est-ce adapté aux peaux sensibles ?
-            <span class="chev" aria-hidden="true">⌄</span>
-          </summary>
-          <p>
-            Oui : j’utilise des produits orientés <span class="highlight">douceur</span> et
-            <span class="highlight">hypoallergénicité</span>. En cas d’allergies connues, on fait le point ensemble
-            avant la séance.
-          </p>
+          <summary>Est-ce adapté aux peaux sensibles ? <span class="chev" aria-hidden="true">⌄</span></summary>
+          <p>Oui : produits orientés <span class="highlight">douceur</span> et <span class="highlight">hypoallergénicité</span>. On fait le point avant la séance si besoin.</p>
         </details>
 
         <details>
-          <summary>
-            Combien de temps dure une prestation ?
-            <span class="chev" aria-hidden="true">⌄</span>
-          </summary>
-          <p>
-            Cela dépend de la prestation et de tes envies. Lors de la prise de rendez-vous,
-            je t’indique une durée estimée et je prévois une marge pour travailler sans stress.
-          </p>
+          <summary>Comment prendre rendez-vous ? <span class="chev" aria-hidden="true">⌄</span></summary>
+          <p>Clique simplement sur le bouton <span class="highlight">WhatsApp</span> (en haut ou dans la bannière), et envoie ton message.</p>
         </details>
 
         <details>
-          <summary>
-            Comment prendre rendez-vous ?
-            <span class="chev" aria-hidden="true">⌄</span>
-          </summary>
-          <p>
-            Le plus simple : via la section <span class="highlight">Contact</span> ci-dessous.
-            Tu peux aussi mettre un lien vers ton Instagram ou WhatsApp si tu veux.
-          </p>
+          <summary>Comment se passe une prestation à domicile ? <span class="chev" aria-hidden="true">⌄</span></summary>
+          <p>Je viens avec tout le nécessaire. Tu n’as qu’à prévoir un petit espace confortable (table/chaise selon la prestation).</p>
         </details>
       </div>
     </div>
@@ -729,32 +762,35 @@
     <div class="container">
       <h2 class="section-title">Contact</h2>
       <p class="section-kicker">
-        Dis-moi ce que tu souhaites (prestation, zone, créneaux). Je te réponds rapidement.
+        Le plus simple : WhatsApp direct au <span class="highlight">06 43 89 63 41</span>.
       </p>
 
       <div class="contact-grid">
         <div class="panel">
-          <h4>Me contacter</h4>
+          <h4>WhatsApp direct</h4>
           <p>
-            <span class="highlight">Astuce :</span> sur GitHub Pages, ce formulaire n’envoie pas d’email tout seul.
-            Tu as 3 options simples :
-            <br>• remplacer par un lien WhatsApp / Instagram,
-            <br>• utiliser Formspree,
-            <br>• ou mettre un mail cliquable.
+            Clique ici pour m’écrire (avec un message pré-rempli) :
           </p>
 
-          <div class="pill" style="margin-top:14px;">
-            <a class="btn" href="mailto:contact@votredomaine.fr">Envoyer un email</a>
+          <div style="margin-top:14px; display:flex; gap:12px; flex-wrap:wrap;">
+            <a class="btn" href="https://wa.me/33643896341?text=Bonjour%20Beaut%C3%A9%20M%C3%A9lisse%20%F0%9F%8C%BF%20Je%20souhaite%20prendre%20rendez-vous.%20Je%20suis%20%C3%A0%20Pourri%C3%A8res%20/%20alentours.%20Mes%20disponibilit%C3%A9s%20%3A%20_____%20.%20Prestation%20souhait%C3%A9e%20%3A%20_____%20."
+               target="_blank" rel="noopener">
+              <span class="wa-dot" aria-hidden="true"></span>
+              Écrire sur WhatsApp
+            </a>
             <a class="btn secondary" href="#top">Retour en haut</a>
           </div>
 
-          <p class="note">Remplace <strong>contact@votredomaine.fr</strong> par ton vrai email.</p>
+          <p class="note">Numéro : 06 43 89 63 41 (format WhatsApp : +33 6 43 89 63 41)</p>
         </div>
 
         <div class="panel">
           <h4>Formulaire (optionnel)</h4>
+          <p class="note" style="margin:0 0 10px;">
+            Si tu veux absolument un formulaire sur GitHub Pages : Formspree.
+            Sinon, garde uniquement WhatsApp (souvent mieux pour les RDV).
+          </p>
 
-          <!-- Option GitHub Pages: Formspree (remplace YOUR_FORM_ID) -->
           <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
             <div>
               <label for="name">Nom</label>
@@ -766,12 +802,11 @@
             </div>
             <div>
               <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="Votre demande (prestation, zone, créneaux)…" required></textarea>
+              <textarea id="message" name="message" placeholder="Votre demande (prestation, commune, créneaux)…" required></textarea>
             </div>
             <button class="btn" type="submit">Envoyer</button>
             <div class="note">
-              Pour activer l’envoi, crée un formulaire sur Formspree et remplace <strong>YOUR_FORM_ID</strong>.
-              Sinon, garde juste le bouton “Envoyer un email”.
+              Remplace <strong>YOUR_FORM_ID</strong> par ton ID Formspree.
             </div>
           </form>
         </div>
@@ -794,35 +829,32 @@
   </footer>
 
   <script>
-    // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Mobile menu toggle
     const header = document.querySelector("header");
     const burger = document.getElementById("burger");
-    const closeMenu = () => {
-      header.dataset.open = "false";
-      burger.setAttribute("aria-expanded", "false");
-    };
-    const openMenu = () => {
-      header.dataset.open = "true";
-      burger.setAttribute("aria-expanded", "true");
-    };
+
+    function setOpen(isOpen){
+      header.dataset.open = isOpen ? "true" : "false";
+      burger.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    }
 
     burger.addEventListener("click", () => {
       const isOpen = header.dataset.open === "true";
-      isOpen ? closeMenu() : openMenu();
+      setOpen(!isOpen);
     });
 
-    // Close menu on link click (mobile)
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener("click", () => {
-        if (window.innerWidth <= 820) closeMenu();
-      });
+    // Ferme le menu mobile au clic sur un lien
+    document.querySelectorAll('.mobile-panel a[href^="#"]').forEach(a => {
+      a.addEventListener("click", () => setOpen(false));
+    });
+
+    // Ferme si on repasse en desktop
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 860) setOpen(false);
     });
   </script>
 </body>
 </html>
-
 
 
