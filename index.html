@@ -526,17 +526,26 @@ header[data-open="true"] .mobile-panel{
       .contact-grid{ grid-template-columns: 1fr; }
     }
 
-    @media (max-width: 860px){
-      .nav{
-        grid-template-columns: 44px 1fr 44px; /* burger / logo / spacer */
-      }
-      .nav-left, .nav-right{ display:none; }
-      .burger{ display:flex; justify-self:start; }
-      .brand{ justify-self:center; }
-      .brand img{ height: 66px; } /* logo encore bien visible sur mobile */
-      section{ padding: 70px 0; }
-    }
-    /* FIX : bannière voilée blanche sur mobile */
+   @media (max-width: 860px){
+
+  /* On cache uniquement le menu desktop, pas le burger ni le bouton */
+  .nav > .nav-right > nav.navlinks{
+    display:none;
+  }
+
+  /* Le burger reste visible */
+  .burger{
+    display:flex;
+  }
+
+  /* Logo bien grand sur mobile */
+  .brand img{
+    height: 96px;
+  }
+
+  section{ padding: 70px 0; }
+}
+
 @media (max-width: 980px){
   .banner::after{
     /* on supprime le voile qui blanchit trop sur mobile */
