@@ -46,110 +46,137 @@
       padding: 18px 18px 70px;
     }
 
-    /* HEADER */
-    .site-header{
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      backdrop-filter: blur(12px);
-      background: rgba(244,231,215,.88);
-      border-bottom: 1px solid var(--stroke);
-    }
-    .nav-wrap{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 10px 18px;
-      display:flex;
-      align-items:center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      text-decoration:none;
-      color: inherit;
-    }
-    .brand img{
-      height: 204px;
-      width: auto;
-      object-fit: contain;
-      display:block;
-      filter: drop-shadow(0 10px 20px rgba(63,46,31,.16));
-    }
-    .menu{
-      display:flex;
-      align-items:center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .nav-link, .dropbtn{
-      text-decoration:none;
-      color: var(--text);
-      font-weight: 850;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      background: transparent;
-      cursor: pointer;
-      font: inherit;
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      transition: .18s ease;
-    }
-    .nav-link:hover, .dropbtn:hover{
-      background: rgba(127,167,122,.18);
-      color: var(--accent);
-      border-color: rgba(48,87,24,.18);
-    }
+    /* =========================
+   HEADER (logo grand + marge faible)
+   ========================= */
 
-    .dropdown{ position: relative; }
-    .caret{
-      width: 10px;
-      height: 10px;
-      border-right: 2px solid currentColor;
-      border-bottom: 2px solid currentColor;
-      transform: rotate(45deg);
-      margin-top: -2px;
-      opacity: .85;
-    }
-    .dropdown-menu{
-      position:absolute;
-      right: 0;
-      top: calc(100% + 10px);
-      min-width: 220px;
-      padding: 10px;
-      border-radius: 18px;
-      border: 1px solid var(--stroke);
-      background: rgba(255,255,255,.85);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(12px);
-      display: none;
-    }
-    .dropdown-menu a{
-      display:block;
-      padding: 10px 12px;
-      border-radius: 14px;
-      text-decoration:none;
-      color: var(--text);
-      font-weight: 750;
-      border: 1px solid transparent;
-      transition: .15s ease;
-    }
-    .dropdown-menu a:hover{
-      background: rgba(127,167,122,.18);
-      color: var(--accent);
-      border-color: rgba(48,87,24,.18);
-    }
-    .dropdown.is-open .dropdown-menu{ display:block; }
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  backdrop-filter: blur(12px);
+  background: rgba(244,231,215,.88);
+  border-bottom: 1px solid var(--stroke);
+}
 
-    @media (max-width: 720px){
-      .brand img{ height: 70px; }
-      .nav-wrap{ gap: 10px; }
-      .dropdown-menu{ left: 0; right: 0; min-width: unset; }
-    }
+/* ↓ marge plus faible autour du header */
+.nav-wrap{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 4px 18px;              /* avant: 10px 18px */
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 12px;                       /* un peu plus compact */
+}
+
+/* ↓ supprime l'espace "texte" résiduel autour de l'image */
+.brand{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  text-decoration:none;
+  color: inherit;
+  padding: 0;
+  line-height: 0;                  /* important */
+}
+
+/* ↓ logo grand, mais sans "marge" visuelle (zoom léger) */
+.brand img{
+  height: 204px;
+  width: auto;
+  display:block;
+  object-fit: contain;
+  transform: scale(1.06);          /* réduit les bords transparents du PNG */
+  transform-origin: left center;
+  filter: drop-shadow(0 10px 20px rgba(63,46,31,.16));
+}
+
+.menu{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nav-link, .dropbtn{
+  text-decoration:none;
+  color: var(--text);
+  font-weight: 850;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  display:inline-flex;
+  align-items:center;
+  gap: 8px;
+  transition: .18s ease;
+}
+
+.nav-link:hover, .dropbtn:hover{
+  background: rgba(127,167,122,.18);
+  color: var(--accent);
+  border-color: rgba(48,87,24,.18);
+}
+
+/* Dropdown */
+.dropdown{ position: relative; }
+
+.caret{
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg);
+  margin-top: -2px;
+  opacity: .85;
+}
+
+.dropdown-menu{
+  position:absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  min-width: 220px;
+  padding: 10px;
+  border-radius: 18px;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,.85);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+  display: none;
+}
+
+.dropdown-menu a{
+  display:block;
+  padding: 10px 12px;
+  border-radius: 14px;
+  text-decoration:none;
+  color: var(--text);
+  font-weight: 750;
+  border: 1px solid transparent;
+  transition: .15s ease;
+}
+
+.dropdown-menu a:hover{
+  background: rgba(127,167,122,.18);
+  color: var(--accent);
+  border-color: rgba(48,87,24,.18);
+}
+
+.dropdown.is-open .dropdown-menu{ display:block; }
+
+/* Mobile */
+@media (max-width: 720px){
+  .nav-wrap{ padding: 6px 14px; gap: 10px; }
+  .brand img{
+    height: 70px;
+    transform: scale(1.04);
+  }
+  .dropdown-menu{ left: 0; right: 0; min-width: unset; }
+}
+
 
     /* CARD SYSTEM */
     .card{
