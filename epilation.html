@@ -59,38 +59,32 @@
   border-bottom: 1px solid var(--stroke);
 }
 
-/* ↓ marge plus faible autour du header */
 .nav-wrap{
   max-width: var(--max);
   margin: 0 auto;
-  padding: 4px 18px;              /* avant: 10px 18px */
+  padding: 0 18px;        /* ← retire presque toute la marge */
+  height: 95px;           /* ← hauteur FIXE du header */
   display:flex;
   align-items:center;
   justify-content: space-between;
-  gap: 12px;                       /* un peu plus compact */
 }
 
-/* ↓ supprime l'espace "texte" résiduel autour de l'image */
+/* conteneur logo */
 .brand{
   display:flex;
   align-items:center;
-  gap: 10px;
-  text-decoration:none;
-  color: inherit;
-  padding: 0;
-  line-height: 0;                  /* important */
+  height:100%;
+  overflow:hidden;        /* ← coupe le vide du PNG */
 }
 
-/* ↓ logo grand, mais sans "marge" visuelle (zoom léger) */
+/* logo */
 .brand img{
-  height: 204px;
-  width: auto;
+  height: 150px;          /* plus grand que le header */
+  transform: translateY(-18px);  /* ← remonte pour couper le vide du haut */
   display:block;
-  object-fit: contain;
-  transform: scale(1.06);          /* réduit les bords transparents du PNG */
-  transform-origin: left center;
-  filter: drop-shadow(0 10px 20px rgba(63,46,31,.16));
+  filter: drop-shadow(0 8px 18px rgba(63,46,31,.15));
 }
+
 
 .menu{
   display:flex;
