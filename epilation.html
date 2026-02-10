@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Élégance & Douceur des Jambes — Tarifs Épilation</title>
+
   <style>
     :root{
       --text: #3f2e1f;
@@ -13,16 +14,21 @@
       --btn-text: #ffffff;
       --bg: #f4e7d7;
       --bg2: #ead7c0;
-      --card: rgba(255,255,255,.58);
+      --card: rgba(255,255,255,.62);
       --stroke: rgba(63,46,31,.18);
       --shadow: 0 14px 35px rgba(63,46,31,.15);
       --radius: 18px;
       --radius2: 26px;
       --max: 1120px;
-      --shine: linear-gradient(135deg, rgba(255,255,255,.65), rgba(255,255,255,.12));
+
+      /* IMPORTANT: le bug venait surtout de ce masque/shine qui peut casser l'affichage sur certains navigateurs */
+      --shine: radial-gradient(700px 280px at 15% 10%, rgba(255,255,255,.55), transparent 60%);
     }
 
     *{box-sizing:border-box}
+    img{max-width:100%; height:auto;}
+
+    html{ scroll-behavior:smooth; }
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
@@ -37,9 +43,115 @@
     .wrap{
       max-width: var(--max);
       margin: 0 auto;
-      padding: 26px 18px 70px;
+      padding: 18px 18px 70px;
     }
 
+    /* HEADER */
+    .site-header{
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      backdrop-filter: blur(12px);
+      background: rgba(244,231,215,.88);
+      border-bottom: 1px solid var(--stroke);
+    }
+    .nav-wrap{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 10px 18px;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      text-decoration:none;
+      color: inherit;
+    }
+    .brand img{
+      height: 86px;
+      width: auto;
+      object-fit: contain;
+      display:block;
+      filter: drop-shadow(0 10px 20px rgba(63,46,31,.16));
+    }
+    .menu{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .nav-link, .dropbtn{
+      text-decoration:none;
+      color: var(--text);
+      font-weight: 850;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: transparent;
+      cursor: pointer;
+      font: inherit;
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      transition: .18s ease;
+    }
+    .nav-link:hover, .dropbtn:hover{
+      background: rgba(127,167,122,.18);
+      color: var(--accent);
+      border-color: rgba(48,87,24,.18);
+    }
+
+    .dropdown{ position: relative; }
+    .caret{
+      width: 10px;
+      height: 10px;
+      border-right: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: rotate(45deg);
+      margin-top: -2px;
+      opacity: .85;
+    }
+    .dropdown-menu{
+      position:absolute;
+      right: 0;
+      top: calc(100% + 10px);
+      min-width: 220px;
+      padding: 10px;
+      border-radius: 18px;
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.85);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      display: none;
+    }
+    .dropdown-menu a{
+      display:block;
+      padding: 10px 12px;
+      border-radius: 14px;
+      text-decoration:none;
+      color: var(--text);
+      font-weight: 750;
+      border: 1px solid transparent;
+      transition: .15s ease;
+    }
+    .dropdown-menu a:hover{
+      background: rgba(127,167,122,.18);
+      color: var(--accent);
+      border-color: rgba(48,87,24,.18);
+    }
+    .dropdown.is-open .dropdown-menu{ display:block; }
+
+    @media (max-width: 720px){
+      .brand img{ height: 70px; }
+      .nav-wrap{ gap: 10px; }
+      .dropdown-menu{ left: 0; right: 0; min-width: unset; }
+    }
+
+    /* CARD SYSTEM */
     .card{
       background: var(--card);
       border: 1px solid var(--stroke);
@@ -49,13 +161,19 @@
       overflow:hidden;
       position:relative;
     }
+    /* FIX: pseudo-element ne doit JAMAIS passer au-dessus du contenu */
     .card::before{
       content:"";
-      position:absolute; inset:-2px;
+      position:absolute;
+      inset:0;
       background: var(--shine);
-      opacity:.35;
       pointer-events:none;
-      mask: radial-gradient(650px 260px at 18% 10%, #000 0%, transparent 60%);
+      z-index:0;        /* <-- clé */
+    }
+    /* FIX: tout le contenu des cards passe au-dessus */
+    .card > *{
+      position: relative;
+      z-index: 1;       /* <-- clé */
     }
 
     /* HERO */
@@ -63,7 +181,7 @@
       display:grid;
       grid-template-columns: 1.15fr .85fr;
       gap: 18px;
-      margin-top: 10px;
+      margin-top: 18px;
       align-items: stretch;
     }
     @media (max-width: 920px){ header.hero{grid-template-columns: 1fr;} }
@@ -96,7 +214,6 @@
       opacity: .92;
       max-width: 64ch;
     }
-
     .pill-row{ display:flex; flex-wrap:wrap; gap:10px; margin-top: 12px; }
     .pill{
       display:inline-flex;
@@ -113,168 +230,186 @@
     .imgbox{
       border-radius: var(--radius2);
       overflow:hidden;
-      min-height:280px;
+      min-height: 320px;
       border: 1px solid rgba(63,46,31,.12);
       box-shadow: 0 10px 28px rgba(63,46,31,.10);
       background: rgba(255,255,255,.25);
     }
+    /* FIX: éviter que l'image prenne une hauteur incohérente */
     .imgbox img{
+      width:100%;
+      height: 320px;
+      object-fit: cover;
+      display:block;
+    }
+
+    /* SECTIONS */
+    .section{ margin-top: 26px; }
+    .section-head{
+      display:flex;
+      align-items: stretch;
+      gap: 12px;
+      margin: 18px 0 12px;
+    }
+    @media (max-width: 720px){ .section-head{flex-direction:column;} }
+
+    .section-banner{
+      flex: 1;
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 14px 14px 16px;
+      border-radius: var(--radius2);
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.40);
+      box-shadow: 0 12px 30px rgba(63,46,31,.10);
+      overflow:hidden;
+      position:relative;
+    }
+    .section-banner::after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(650px 260px at 85% 10%, rgba(127,167,122,.25), transparent 60%);
+      pointer-events:none;
+    }
+    .section-title{
+      margin:0;
+      font-size: 1.35rem;
+      font-weight: 900;
+      letter-spacing:-.2px;
+    }
+    .section-sub{
+      margin: 2px 0 0;
+      opacity:.85;
+      font-size:.95rem;
+    }
+    .section-media{
+      width: 110px;
+      min-width:110px;
+      height: 74px;
+      border-radius: 16px;
+      overflow:hidden;
+      border: 1px solid rgba(63,46,31,.12);
+      background: rgba(255,255,255,.22);
+      box-shadow: 0 10px 20px rgba(63,46,31,.10);
+      z-index:1;
+    }
+    .section-media img{
       width:100%;
       height:100%;
       object-fit: cover;
       display:block;
-      transform: scale(1.02);
     }
-/* HEADER */
-.site-header{
-  position: sticky;
-  top: 0;
-  z-index: 999;
-  backdrop-filter: blur(12px);
-  background: rgba(244,231,215,.86);
-  border-bottom: 1px solid var(--stroke);
-}
 
-.nav-wrap{
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 10px 18px;
-  display:flex;
-  align-items:center;
-  justify-content: space-between;
-  gap: 16px;
-}
+    /* GRID & SERVICES */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 12px;
+    }
+    .service{
+      grid-column: span 6;
+      padding: 16px 16px 14px;
+      border-radius: var(--radius2);
+      display:flex;
+      flex-direction:column;
+      height: 100%;
+      transition: transform .12s ease, filter .15s ease;
+    }
+    .service:hover{ transform: translateY(-1px); filter: brightness(1.01); }
+    @media (max-width: 920px){ .service{ grid-column: span 12; } }
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap: 12px;
-  text-decoration:none;
-  color: inherit;
-}
+    .service-head{
+      display:flex;
+      justify-content: space-between;
+      gap:10px;
+      margin-bottom: 8px;
+      align-items:flex-start;
+    }
+    .service h3{
+      margin:0;
+      font-size:1.08rem;
+      line-height:1.25;
+      letter-spacing:-.1px;
+    }
+    .price{
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(48,87,24,.12);
+      border: 1px solid rgba(48,87,24,.18);
+      font-weight: 900;
+      white-space:nowrap;
+    }
 
-.brand img{
-  height: 84px; /* logo plus grand */
-  width: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 10px 20px rgba(63,46,31,.16));
-}
+    .list{
+      margin: 10px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:8px;
+    }
+    .row{
+      display:flex;
+      align-items:baseline;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(63,46,31,.12);
+      background: rgba(255,255,255,.30);
+    }
+    .row b{ font-weight: 750; }
+    .row span{ font-weight: 900; }
 
-.menu{
-  display:flex;
-  align-items:center;
-  gap: 10px;
-  flex-wrap: wrap;
-}
+    .hint{
+      margin-top:auto;
+      padding-top: 10px;
+      font-size:.95rem;
+      opacity:.9;
+    }
 
-.nav-link, .dropbtn{
-  text-decoration:none;
-  color: var(--text);
-  font-weight: 800;
-  padding: 10px 14px;
-  border-radius: 999px;
-  border: 1px solid transparent;
-  background: transparent;
-  cursor: pointer;
-  font: inherit;
-  display:inline-flex;
-  align-items:center;
-  gap: 8px;
-  transition: .18s ease;
-}
-
-.nav-link:hover, .dropbtn:hover{
-  background: rgba(127,167,122,.18);
-  color: var(--accent);
-  border-color: rgba(48,87,24,.18);
-}
-
-.dropdown{
-  position: relative;
-}
-
-.caret{
-  width: 10px;
-  height: 10px;
-  border-right: 2px solid currentColor;
-  border-bottom: 2px solid currentColor;
-  transform: rotate(45deg);
-  margin-top: -2px;
-  opacity: .85;
-}
-
-.dropdown-menu{
-  position:absolute;
-  right: 0;
-  top: calc(100% + 10px);
-  min-width: 220px;
-  padding: 10px;
-  border-radius: 18px;
-  border: 1px solid var(--stroke);
-  background: rgba(255,255,255,.78);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(12px);
-  display: none;
-}
-
-.dropdown-menu a{
-  display:block;
-  padding: 10px 12px;
-  border-radius: 14px;
-  text-decoration:none;
-  color: var(--text);
-  font-weight: 750;
-  border: 1px solid transparent;
-  transition: .15s ease;
-}
-
-.dropdown-menu a:hover{
-  background: rgba(127,167,122,.18);
-  color: var(--accent);
-  border-color: rgba(48,87,24,.18);
-}
-
-.dropdown.is-open .dropdown-menu{
-  display:block;
-}
-
-/* Mobile */
-@media (max-width: 720px){
-  .brand img{ height: 68px; }
-  .nav-wrap{ gap: 10px; }
-  .dropdown-menu{ left: 0; right: 0; min-width: unset; }
-}
-
+    .note{
+      grid-column: span 12;
+      padding: 16px;
+    }
+    .divider{
+      height:1px;
+      background: rgba(63,46,31,.12);
+      margin: 12px 0;
+    }
   </style>
 </head>
 
 <body>
+  <div id="top"></div>
+
   <header class="site-header">
-  <div class="nav-wrap">
-    <a class="brand" href="#top" aria-label="Accueil">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0726/0690/8753/files/Design_sans_titre_-_2026-01-16T163325.793.png?v=1768577623"
-        alt="Logo"
-        loading="lazy"
-      />
-    </a>
+    <div class="nav-wrap">
+      <a class="brand" href="#top" aria-label="Accueil">
+        <img
+          src="https://cdn.shopify.com/s/files/1/0726/0690/8753/files/Design_sans_titre_-_2026-01-16T163325.793.png?v=1768577623"
+          alt="Logo"
+          loading="lazy"
+        />
+      </a>
 
-    <nav class="menu" aria-label="Navigation principale">
-      <a class="nav-link" href="#top">Accueil</a>
+      <nav class="menu" aria-label="Navigation principale">
+        <a class="nav-link" href="#top">Accueil</a>
 
-      <div class="dropdown" id="tarifsDropdown">
-        <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" id="tarifsBtn">
-          Tarifs <span class="caret" aria-hidden="true"></span>
-        </button>
+        <div class="dropdown" id="tarifsDropdown">
+          <button class="dropbtn" type="button" aria-haspopup="true" aria-expanded="false" id="tarifsBtn">
+            Tarifs <span class="caret" aria-hidden="true"></span>
+          </button>
 
-        <div class="dropdown-menu" role="menu" aria-labelledby="tarifsBtn">
-          <a href="#ongles" role="menuitem">Ongles</a>
-          <a href="https://google.fr" target="_blank" rel="noopener" role="menuitem">Soins</a>
+          <div class="dropdown-menu" role="menu" aria-labelledby="tarifsBtn">
+            <a href="#ongles" role="menuitem">Ongles</a>
+            <a href="https://google.fr" target="_blank" rel="noopener" role="menuitem">Soins</a>
+          </div>
         </div>
-      </div>
-    </nav>
-  </div>
-</header>
+      </nav>
+    </div>
+  </header>
 
   <div class="wrap">
     <header class="hero">
@@ -344,9 +479,7 @@
             <li class="row"><b>Joues / visage</b><span>Inclus</span></li>
           </ul>
 
-          <p class="hint">
-            Le combo complet pour un visage harmonieux : sourcils + lèvre/menton + joues.
-          </p>
+          <p class="hint">Le combo complet : sourcils + lèvre/menton + joues.</p>
         </section>
       </div>
     </section>
@@ -382,7 +515,7 @@
             <li class="row"><b>Maillot intégral (SIF)</b><span>25€</span></li>
           </ul>
 
-          <p class="hint">Pour les zones “maillot”, la prestation est réalisée avec soin et discrétion.</p>
+          <p class="hint">Prestation réalisée avec soin et discrétion.</p>
         </section>
 
         <section class="card service">
@@ -415,7 +548,7 @@
             <li class="row"><b>Fesses</b><span>5€</span></li>
           </ul>
 
-          <p class="hint">Pour toute zone non listée, n’hésitez pas à demander : on s’adapte.</p>
+          <p class="hint">Pour toute zone non listée, n’hésitez pas à demander.</p>
         </section>
       </div>
     </section>
@@ -448,7 +581,7 @@
             <li class="row"><b>Aisselles + maillot intégral + demi-jambes</b><span>45€</span></li>
           </ul>
 
-          <p class="hint">Le pack le plus demandé pour une routine d’entretien simple et efficace.</p>
+          <p class="hint">Le pack le plus demandé pour une routine simple et efficace.</p>
         </section>
 
         <section class="card service">
@@ -464,7 +597,7 @@
             <li class="row"><b>Aisselles + maillot intégral + jambes complètes</b><span>52€</span></li>
           </ul>
 
-          <p class="hint">Pour un résultat complet : jambes entières + zone sensible + aisselles.</p>
+          <p class="hint">Pour un résultat complet : jambes + zone sensible + aisselles.</p>
         </section>
       </div>
     </section>
@@ -498,36 +631,29 @@
         </section>
       </div>
     </section>
-
   </div>
+
   <script>
-  (function(){
-    const dd = document.getElementById('tarifsDropdown');
-    const btn = document.getElementById('tarifsBtn');
+    (function(){
+      const dd = document.getElementById('tarifsDropdown');
+      const btn = document.getElementById('tarifsBtn');
 
-    function closeDropdown(){
-      dd.classList.remove('is-open');
-      btn.setAttribute('aria-expanded', 'false');
-    }
+      function closeDropdown(){
+        dd.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
 
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const open = dd.classList.toggle('is-open');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = dd.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
 
-    // ferme si clic ailleurs
-    document.addEventListener('click', closeDropdown);
-
-    // ferme si on clique un item
-    dd.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDropdown));
-
-    // ferme avec Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeDropdown();
-    });
-  })();
-</script>
-
+      document.addEventListener('click', closeDropdown);
+      dd.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDropdown));
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDropdown(); });
+    })();
+  </script>
 </body>
 </html>
+
