@@ -62,8 +62,8 @@
 .nav-wrap{
   max-width: var(--max);
   margin: 0 auto;
-  padding: 0 0px;        /* ← retire presque toute la marge */
-  height: 0px;           /* ← hauteur FIXE du header */
+  padding: 0 18px;        /* ← retire presque toute la marge */
+  height: 95px;           /* ← hauteur FIXE du header */
   display:flex;
   align-items:center;
   justify-content: space-between;
@@ -80,10 +80,11 @@
 /* logo */
 .brand img{
   height: 150px;          /* plus grand que le header */
-  transform: translateY(-4px);  /* ← remonte pour couper le vide du haut */
+  transform: translateY(-12px);  /* ← remonte pour couper le vide du haut */
   display:block;
   filter: drop-shadow(0 8px 18px rgba(63,46,31,.15));
 }
+
 
 
 .menu{
