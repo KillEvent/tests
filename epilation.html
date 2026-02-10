@@ -266,52 +266,138 @@
     .note p:last-child{ margin:0; }
     .note strong{ color: var(--btn-dark); }
 
-    /* HEADER */
-.site-header{
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  backdrop-filter: blur(10px);
-  background: rgba(244,231,215,.75);
-  border-bottom: 1px solid var(--stroke);
-}
+   /* HEADER (logo grand + dropdown) */
+  .site-header{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(12px);
+    background: rgba(244,231,215,.80);
+    border-bottom: 1px solid var(--stroke);
+  }
 
-.nav-wrap{
-  max-width: var(--max);
-  margin: auto;
-  padding: 10px 18px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-}
+  .nav-wrap{
+    max-width: var(--max);
+    margin: auto;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
 
-.logo img{
-  height: 52px;
-  object-fit: contain;
-  filter: drop-shadow(0 4px 8px rgba(0,0,0,.08));
-}
+  .brand{
+    display:flex;
+    align-items:center;
+    gap: 12px;
+    text-decoration:none;
+    color: inherit;
+  }
 
-.menu{
-  display: flex;
-  gap: 22px;
-  flex-wrap: wrap;
-}
+  .brand img{
+    height: 78px;              /* LOGO PLUS GRAND */
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 8px 16px rgba(63,46,31,.16));
+  }
 
-.menu a{
-  text-decoration: none;
-  color: var(--text);
-  font-weight: 650;
-  padding: 8px 12px;
-  border-radius: 999px;
-  transition: .2s;
-}
+  .menu{
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
 
-.menu a:hover{
-  background: rgba(127,167,122,.18);
-  color: var(--accent);
-}
+  .menu a, .dropbtn{
+    text-decoration:none;
+    color: var(--text);
+    font-weight: 750;
+    padding: 10px 14px;
+    border-radius: 999px;
+    transition: .18s ease;
+    border: 1px solid transparent;
+    background: transparent;
+    cursor: pointer;
+    font: inherit;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
 
+  .menu a:hover, .dropbtn:hover{
+    background: rgba(127,167,122,.18);
+    color: var(--accent);
+    border-color: rgba(48,87,24,.18);
+  }
+
+  /* Dropdown */
+  .dropdown{
+    position: relative;
+  }
+
+  .dropdown .caret{
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(45deg);
+    margin-top: -2px;
+    opacity: .85;
+  }
+
+  .dropdown-menu{
+    position:absolute;
+    right: 0;
+    top: calc(100% + 10px);
+    min-width: 220px;
+    background: rgba(255,255,255,.72);
+    border: 1px solid var(--stroke);
+    box-shadow: var(--shadow);
+    border-radius: 18px;
+    padding: 10px;
+    display:none;
+    backdrop-filter: blur(10px);
+  }
+
+  .dropdown-menu a{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    width:100%;
+    padding: 10px 12px;
+    border-radius: 14px;
+    font-weight: 700;
+    color: var(--text);
+    border: 1px solid transparent;
+  }
+
+  .dropdown-menu a:hover{
+    background: rgba(127,167,122,.18);
+    color: var(--accent);
+    border-color: rgba(48,87,24,.18);
+  }
+
+  .dropdown:hover .dropdown-menu,
+  .dropdown:focus-within .dropdown-menu{
+    display:block;
+  }
+
+  .tag{
+    font-size: .8rem;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: rgba(67,41,12,.08);
+    border: 1px solid rgba(67,41,12,.14);
+    opacity:.9;
+  }
+
+  /* Mobile */
+  @media (max-width: 720px){
+    .brand img{ height: 64px; }
+    .menu{ gap: 8px; }
+    .menu a, .dropbtn{ padding: 9px 12px; }
+    .dropdown-menu{ right: 0; left: 0; min-width: unset; }
+  }
   </style>
 </head>
 
@@ -333,32 +419,24 @@
     </nav>
 
   </div>
-</header>
-  <div class="wrap">
-    <header class="hero">
-      <div class="card hero-left">
-        <div class="badge"><i></i> Épilation • Tarifs</div>
-        <h1>Élégance & Douceur</h1>
-        <p class="sub">
-          Des prestations claires et une épilation soignée, pour une peau douce et un résultat net.
-          Choisissez votre zone (visage ou corps) ou optez pour un forfait avantageux.
-        </p>
-        <div class="pill-row">
-          <span class="pill">Cire <b>PERRON RIGOT</b> — fabriquée en France</span>
-          <span class="pill">Fin de soin : huile nourrissante ou crème hypoallergénique</span>
-        </div>
-      </div>
+<<header class="site-header">
+  <div class="nav-wrap">
+    
+    <div class="logo">
+      <img src="https://cdn.shopify.com/s/files/1/0726/0690/8753/files/Design_sans_titre_-_2026-01-16T163325.793.png?v=1768577623" alt="Logo Beauté">
+    </div>
 
-      <aside class="card hero-right">
-        <div class="imgbox">
-          <img
-            src="https://cdn.shopify.com/s/files/1/0726/0690/8753/files/Elegance_et_douceur_des_jambes.png?v=1768585273"
-            alt="Élégance et douceur des jambes"
-            loading="lazy"
-          />
-        </div>
-      </aside>
-    </header>
+    <nav class="menu">
+      <a href="#">Accueil</a>
+      <a href="#ongles">Tarifs Ongles</a>
+      <a href="#visage">Épilations Visage</a>
+      <a href="#corps">Épilations Corps</a>
+      <a href="#forfaits">Forfaits</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+  </div>
+</header>
 
     <!-- SECTION: VISAGE -->
     <section class="section" id="visage">
