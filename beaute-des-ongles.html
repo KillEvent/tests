@@ -24,16 +24,14 @@
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
       color:var(--text);
       background:
         radial-gradient(1200px 700px at 18% 12%, rgba(127,167,122,.25), transparent 55%),
         radial-gradient(1100px 650px at 82% 18%, rgba(67,41,12,.15), transparent 55%),
         linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
-      line-height:1.5;
     }
 
-    a{color:inherit}
     .wrap{
       max-width: var(--max);
       margin: 0 auto;
@@ -42,13 +40,14 @@
 
     header.hero{
       display:grid;
-      grid-template-columns: 1.15fr .85fr;
+      grid-template-columns: 1.2fr .8fr;
       gap: 18px;
       align-items: stretch;
       margin-top: 10px;
     }
+
     @media (max-width: 920px){
-      header.hero{grid-template-columns: 1fr; }
+      header.hero{grid-template-columns: 1fr;}
     }
 
     .card{
@@ -61,34 +60,14 @@
 
     .hero-left{
       padding: 24px 22px 22px;
-      position:relative;
-      overflow:hidden;
-    }
-
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(48,87,24,.28);
-      background: rgba(127,167,122,.18);
-      font-weight: 650;
-      letter-spacing:.2px;
-      width: fit-content;
-    }
-    .badge i{
-      width:10px;height:10px;border-radius:50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 4px rgba(48,87,24,.12);
     }
 
     h1{
       margin: 12px 0 10px;
       font-size: clamp(28px, 4vw, 44px);
       line-height: 1.08;
-      letter-spacing: -0.4px;
     }
+
     .sub{
       margin: 0 0 16px;
       font-size: 1.05rem;
@@ -96,121 +75,26 @@
       max-width: 60ch;
     }
 
-    .cta-row{
-      display:flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items:center;
-      margin-top: 12px;
-    }
-
-    .btn{
-      appearance:none;
-      border: none;
-      cursor:pointer;
-      border-radius: 999px;
-      padding: 12px 16px;
-      font-weight: 750;
-      letter-spacing:.2px;
-      transition: transform .08s ease, filter .15s ease;
-      text-decoration:none;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      user-select:none;
-    }
-    .btn:active{ transform: translateY(1px); }
-    .btn-primary{
-      background: var(--btn);
-      color: var(--btn-text);
-      box-shadow: 0 12px 24px rgba(127,167,122,.22);
-    }
-    .btn-primary:hover{ filter: brightness(0.98); }
-    .btn-ghost{
-      background: rgba(255,255,255,.45);
-      border: 1px solid var(--stroke);
-      color: var(--text);
-    }
-    .btn-ghost:hover{ filter: brightness(0.98); }
-
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      border: 1px dashed rgba(63,46,31,.22);
-      background: rgba(255,255,255,.28);
-      font-size: .95rem;
-    }
-
     .hero-right{
       padding: 18px;
-      overflow:hidden;
-      display:grid;
-      gap: 12px;
-      align-content: start;
     }
 
     .imgbox{
       border-radius: var(--radius2);
-      border: 1px solid var(--stroke);
       overflow:hidden;
-      background: rgba(255,255,255,.35);
-      box-shadow: 0 10px 28px rgba(63,46,31,.10);
-      min-height: 220px;
+      height:100%;
+      min-height:260px;
     }
+
     .imgbox img{
       width:100%;
       height:100%;
       object-fit: cover;
-      display:block;
-      transform: scale(1.02);
-    }
-
-    .mini-grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    @media (max-width: 520px){
-      .mini-grid{grid-template-columns:1fr;}
-    }
-    .mini{
-      padding: 12px;
-      border-radius: var(--radius);
-      border: 1px solid var(--stroke);
-      background: rgba(255,255,255,.34);
-    }
-    .mini b{
-      display:block;
-      margin-bottom: 4px;
-      font-size: .95rem;
-    }
-    .mini span{
-      font-size: .93rem;
-      opacity: .9;
-    }
-
-    main{
-      margin-top: 18px;
     }
 
     .section-title{
-      display:flex;
-      align-items:baseline;
-      justify-content: space-between;
-      gap: 10px;
-      margin: 22px 2px 12px;
-    }
-    .section-title h2{
-      margin:0;
+      margin: 24px 0 12px;
       font-size: 1.35rem;
-      letter-spacing:-.2px;
-    }
-    .section-title small{
-      opacity:.75;
     }
 
     .grid{
@@ -221,78 +105,32 @@
 
     .service{
       grid-column: span 6;
-      padding: 16px 16px 14px;
-      border-radius: var(--radius2);
+      padding: 16px;
     }
+
     @media (max-width: 920px){
       .service{ grid-column: span 12; }
     }
 
     .service-head{
       display:flex;
-      align-items:flex-start;
       justify-content: space-between;
-      gap: 12px;
       margin-bottom: 8px;
     }
 
-    .service h3{
-      margin: 0;
-      font-size: 1.1rem;
-      line-height:1.25;
-    }
-
     .price{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
       padding: 7px 10px;
       border-radius: 999px;
       background: rgba(48,87,24,.12);
-      border: 1px solid rgba(48,87,24,.22);
-      font-weight: 850;
-      white-space: nowrap;
+      font-weight: 800;
     }
-    .price b{ color: var(--accent); }
 
-    ul{
-      margin: 10px 0 0 18px;
-      padding:0;
-    }
-    li{ margin: 4px 0; }
+    ul{ margin-left:18px }
+    li{ margin:4px 0 }
 
     .note{
       grid-column: span 12;
       padding: 16px;
-      border-radius: var(--radius2);
-      background: rgba(255,255,255,.36);
-      border: 1px solid var(--stroke);
-    }
-    .note p{ margin: 8px 0; }
-    .note strong{ color: var(--btn-dark); }
-
-    footer{
-      margin-top: 18px;
-      display:flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items:center;
-      justify-content: space-between;
-      padding: 16px 18px;
-      border-radius: var(--radius2);
-    }
-    footer .left{
-      display:flex;
-      flex-direction:column;
-      gap:4px;
-    }
-    footer .left b{ font-size: 1.05rem; }
-    footer .left span{ opacity:.85; }
-
-    .divider{
-      height:1px;
-      background: rgba(63,46,31,.12);
-      margin: 18px 0 8px;
     }
   </style>
 </head>
@@ -301,168 +139,98 @@
   <div class="wrap">
     <header class="hero">
       <div class="card hero-left">
-        <div class="badge"><i></i> Beauté des ongles • Tarifs & Prestations</div>
-        <h1>Des mains et des pieds soignés,<br/>un résultat net et durable.</h1>
+        <h1>Beauté des Ongles</h1>
         <p class="sub">
-          Pose de vernis semi-permanent, renforcement pour une meilleure tenue,
-          options French/Babyboomer, et soins complets mains & pieds.
+          Pose de vernis semi-permanent pour des mains et des pieds soignés, avec une tenue longue durée.
         </p>
-
-        <div class="cta-row">
-          <a class="btn btn-primary" href="#tarifs">Voir les tarifs</a>
-          <a class="btn btn-ghost" href="#infos">Infos & conditions</a>
-          <span class="pill">Tenue jusqu’à <b>3 semaines</b> (selon ongles & mode de vie)</span>
-        </div>
       </div>
 
       <aside class="card hero-right">
-        <!-- Image : tu peux en mettre plusieurs ailleurs, mais je la place ici en hero -->
-        <div class="imgbox" aria-label="Illustration beauté des ongles">
-          <img
-            src="https://cdn.shopify.com/s/files/1/0726/0690/8753/files/Beaute_des_ongles.png?v=1768585286"
-            alt="Beauté des ongles"
-            loading="lazy"
-          />
-        </div>
-
-        <div class="mini-grid">
-          <div class="mini">
-            <b>Renforcement</b>
-            <span>Idéal pour ongles fins, mous ou fragiles.</span>
-          </div>
-          <div class="mini">
-            <b>Supplément 3€</b>
-            <span>French ou Babyboomer.</span>
-          </div>
+        <div class="imgbox">
+          <img src="https://cdn.shopify.com/s/files/1/0726/0690/8753/files/Beaute_des_ongles.png?v=1768585286">
         </div>
       </aside>
     </header>
 
-    <main id="tarifs">
-      <div class="section-title">
-        <h2>Prestations</h2>
-        <small>Prix TTC — détails inclus</small>
-      </div>
+    <div class="section-title">Prestations</div>
 
-      <div class="grid">
-        <section class="card service">
-          <div class="service-head">
-            <h3>Pose de vernis semi-permanent</h3>
-            <div class="price"><b>25€</b></div>
-          </div>
-          <ul>
-            <li>Coupe</li>
-            <li>Limage</li>
-            <li>Nettoyage des cuticules</li>
-            <li>Préparation des ongles</li>
-            <li>Pose de vernis semi-permanent</li>
-          </ul>
-        </section>
-
-        <section class="card service">
-          <div class="service-head">
-            <h3>Pose de vernis semi-permanent avec renforcement</h3>
-            <div class="price"><b>30€</b></div>
-          </div>
-          <ul>
-            <li>Coupe, limage, nettoyage des cuticules</li>
-            <li>Préparation des ongles</li>
-            <li>Pose de semi-permanent avec renfort</li>
-          </ul>
-          <p style="margin:10px 0 0; opacity:.9;">
-            <strong>*</strong> Le renforcement améliore la tenue, apporte un rendu plus solide sur ongles fins, mous ou fragiles.
-          </p>
-        </section>
-
-        <section class="card service">
-          <div class="service-head">
-            <h3>Supplément</h3>
-            <div class="price"><b>+3€</b></div>
-          </div>
-          <ul>
-            <li>French</li>
-            <li>Babyboomer</li>
-          </ul>
-        </section>
-
-        <section class="card service">
-          <div class="service-head">
-            <h3>Manucure & Soin + vernis semi-permanent</h3>
-            <div class="price"><b>45€</b> <span style="opacity:.8;">(50€ avec renforcement)</span></div>
-          </div>
-          <ul>
-            <li>Gommage des mains</li>
-            <li>Bain émollient</li>
-            <li>Coupe, limage, retrait des cuticules</li>
-            <li>Modelage</li>
-            <li>Préparation de l’ongle</li>
-            <li>Pose de vernis semi-permanent</li>
-            <li>Huile nourrissante</li>
-          </ul>
-          <p style="margin:10px 0 0; opacity:.9;">
-            L’alliance d’un soin de vos mains et d’une pose de semi-permanent plus longue tenue qu’un vernis classique.
-          </p>
-        </section>
-
-        <section class="card service">
-          <div class="service-head">
-            <h3>Beauté des Pieds Soin & Douceur + vernis semi-permanent</h3>
-            <div class="price"><b>55€</b> <span style="opacity:.8;">(60€ avec renforcement)</span></div>
-          </div>
-          <ul>
-            <li>Gommage</li>
-            <li>Exfoliant pierre à callosités</li>
-            <li>Huile nourrissante</li>
-            <li>Bain de pieds</li>
-            <li>Masque hydratant</li>
-            <li>Modelage</li>
-            <li>Retrait des cuticules, coupe, limage</li>
-            <li>Préparation de l’ongle + pose de vernis semi-permanent</li>
-          </ul>
-          <p style="margin:10px 0 0; opacity:.9;">
-            L’alliance d’un soin de vos pieds et d’une pose de semi-permanent plus longue tenue qu’un vernis classique.
-          </p>
-        </section>
-
-        <section class="card service">
-          <div class="service-head">
-            <h3>Dépose de vernis permanent + soin des ongles</h3>
-            <div class="price"><b>13€</b></div>
-          </div>
-          <ul>
-            <li>Retrait de votre semi-permanent</li>
-            <li>Coupe & limage (mise en forme)</li>
-            <li>Soin nourrissant</li>
-            <li>Pose d’une base protectrice</li>
-          </ul>
-        </section>
-
-        <section class="note" id="infos">
-          <h3 style="margin:0 0 8px;">Infos & conditions</h3>
-          <div class="divider"></div>
-          <p>
-            Une pose de vernis semi-permanent offre une tenue plus longue qu’un vernis classique, vous permettant de profiter de votre pose jusqu’à <strong>3 semaines</strong>.
-          </p>
-          <p>
-            <strong>*</strong> La tenue peut varier en fonction de la qualité des ongles et du mode de vie de chacun.
-          </p>
-          <p>
-            <strong>*</strong> La pose de vernis semi-permanent sur ongles naturels ne convient pas pour une pose d’extension artificielle.
-          </p>
-        </section>
-      </div>
-
-      <footer class="card">
-        <div class="left">
-          <b>Prise de rendez-vous</b>
-          <span>Ajoute ici ton téléphone / lien Planity / Instagram / WhatsApp.</span>
+    <div class="grid">
+      <section class="card service">
+        <div class="service-head">
+          <h3>Pose de vernis semi-permanent</h3>
+          <div class="price">25€</div>
         </div>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="#" aria-label="Réserver">Réserver</a>
-          <a class="btn btn-ghost" href="#tarifs" aria-label="Revenir aux tarifs">Retour tarifs</a>
+        <ul>
+          <li>Coupe</li>
+          <li>Limage</li>
+          <li>Nettoyage des cuticules</li>
+          <li>Préparation des ongles</li>
+          <li>Pose de vernis semi-permanent</li>
+          <li>French ou Babyboomer inclus</li>
+        </ul>
+      </section>
+
+      <section class="card service">
+        <div class="service-head">
+          <h3>Manucure & Soin + vernis semi-permanent</h3>
+          <div class="price">45€</div>
         </div>
-      </footer>
-    </main>
+        <ul>
+          <li>Gommage des mains</li>
+          <li>Bain émollient</li>
+          <li>Coupe, limage, retrait des cuticules</li>
+          <li>Modelage</li>
+          <li>Préparation de l’ongle</li>
+          <li>Pose de vernis semi-permanent</li>
+          <li>Huile nourrissante</li>
+          <li>French ou Babyboomer inclus</li>
+        </ul>
+      </section>
+
+      <section class="card service">
+        <div class="service-head">
+          <h3>Beauté des Pieds Soin & Douceur + vernis semi-permanent</h3>
+          <div class="price">55€</div>
+        </div>
+        <ul>
+          <li>Gommage</li>
+          <li>Exfoliant pierre à callosités</li>
+          <li>Huile nourrissante</li>
+          <li>Bain de pieds</li>
+          <li>Masque hydratant</li>
+          <li>Modelage</li>
+          <li>Retrait des cuticules, coupe, limage</li>
+          <li>Préparation de l’ongle + pose de vernis semi-permanent</li>
+          <li>French ou Babyboomer inclus</li>
+        </ul>
+      </section>
+
+      <section class="card service">
+        <div class="service-head">
+          <h3>Dépose de vernis permanent + soin des ongles</h3>
+          <div class="price">13€</div>
+        </div>
+        <ul>
+          <li>Retrait de votre semi-permanent</li>
+          <li>Coupe & limage (mise en forme)</li>
+          <li>Soin nourrissant</li>
+          <li>Pose d’une base protectrice</li>
+        </ul>
+      </section>
+
+      <section class="note card">
+        <p>
+          Une pose de vernis semi-permanent offre une tenue plus longue qu’un vernis classique,
+          permettant d’en profiter jusqu’à 3 semaines.
+        </p>
+        <p>
+          La tenue peut varier selon la qualité des ongles et le mode de vie.
+        </p>
+        <p>
+          Pose sur ongles naturels uniquement (pas d’extension artificielle).
+        </p>
+      </section>
+    </div>
   </div>
 </body>
 </html>
