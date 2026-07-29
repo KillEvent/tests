@@ -1,489 +1,1976 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>AGZ WEB — Création de site web & boutique Shopify</title>
-  <meta name="description" content="AGZ WEB crée des sites vitrines simples et des sites complets avec Shopify. Design professionnel, textes vendeurs, site responsive et accompagnement clair." />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Murder Party entreprise Kill Event : une animation immersive de 10 à 50 joueurs, environ 2 h 30 de jeu, dès 14 ans.">
+  <title>Murder Party entreprise — Tarifs | Kill Event</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
   <style>
-    :root{
-      --text:#0f172a;
-      --muted:#475569;
-      --accent:#2563eb;
-      --accent2:#7c3aed;
-      --btn:#2563eb;
-      --btn-dark:#111827;
-      --btn-text:#ffffff;
-      --bg:#f8fafc;
-      --bg2:#e0f2fe;
-      --card:rgba(255,255,255,.72);
-      --stroke:rgba(15,23,42,.14);
-      --shadow:0 18px 48px rgba(15,23,42,.14);
-      --radius:18px;
-      --radius2:28px;
-      --max:1120px;
-      --img:url('https://cdn.shopify.com/s/files/1/0726/0690/8753/files/ChatGPT_Image_15_dec._2025_10_31_32.png?v=1765791194');
+    :root {
+      --black: #000000;
+      --white: #ffffff;
+      --gold: #D4AF37;
+      --coral: #DA4F40;
+      --wine: #7B0C05;
+      --surface: #0b0b0b;
+      --surface-2: #121212;
+      --line: rgba(255, 255, 255, 0.12);
+      --muted: rgba(255, 255, 255, 0.68);
+      --radius: 26px;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+      --max: 1180px;
     }
 
-    *{box-sizing:border-box;}
-    html{scroll-behavior:smooth;}
-    body{
-      margin:0;
-      color:var(--text);
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      color-scheme: dark;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      overflow-x: hidden;
       background:
-        radial-gradient(950px 520px at 8% -8%, rgba(37,99,235,.20), transparent 62%),
-        radial-gradient(850px 520px at 108% 8%, rgba(124,58,237,.16), transparent 58%),
-        linear-gradient(180deg, var(--bg), var(--bg2));
-      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      line-height:1.55;
+        radial-gradient(circle at 15% 10%, rgba(123, 12, 5, 0.25), transparent 27rem),
+        radial-gradient(circle at 90% 45%, rgba(212, 175, 55, 0.10), transparent 30rem),
+        var(--black);
+      color: var(--white);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
     }
 
-    a{color:inherit;text-decoration:none;}
-    img{max-width:100%;display:block;}
-    .container{width:min(var(--max), calc(100% - 48px));margin-inline:auto;}
-    .highlight{color:var(--accent);font-weight:900;}
-
-    header{
-      position:sticky;top:0;z-index:50;
-      backdrop-filter:blur(12px);
-      background:rgba(248,250,252,.84);
-      border-bottom:1px solid var(--stroke);
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0.16;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+      mix-blend-mode: soft-light;
     }
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:18px;}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:950;letter-spacing:-.04em;font-size:24px;}
-    .brand-mark{width:48px;height:48px;border-radius:15px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;display:grid;place-items:center;box-shadow:0 14px 30px rgba(37,99,235,.28);font-family:"Space Grotesk",sans-serif;font-weight:900;}
-    .nav-right{display:flex;align-items:center;gap:18px;}
-    .navlinks{display:flex;align-items:center;gap:18px;}
-    .navlinks a{position:relative;font-weight:850;padding:10px 6px;color:#1e293b;}
-    .navlinks a::after{content:"";position:absolute;left:6px;right:6px;bottom:6px;height:2px;background:linear-gradient(90deg,transparent,var(--accent),var(--accent2),transparent);transform:scaleX(0);transition:transform .2s ease;}
-    .navlinks a:hover::after{transform:scaleX(1);}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;border-radius:999px;background:linear-gradient(135deg,var(--btn),var(--accent2));color:var(--btn-text);font-weight:950;border:1px solid rgba(255,255,255,.35);box-shadow:0 15px 34px rgba(37,99,235,.25);transition:transform .15s ease, box-shadow .15s ease;cursor:pointer;}
-    .btn:hover{transform:translateY(-2px);box-shadow:0 20px 42px rgba(37,99,235,.31);}
-    .btn.secondary{background:linear-gradient(135deg,var(--btn-dark),#334155);}
-    .btn.light{background:rgba(255,255,255,.72);color:var(--text);border:1px solid var(--stroke);box-shadow:0 12px 26px rgba(15,23,42,.10);}
-    .wa-dot{width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.20);}
-    .burger{display:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--stroke);background:rgba(255,255,255,.55);align-items:center;justify-content:center;cursor:pointer;}
-    .burger span,.burger span::before,.burger span::after{width:18px;height:2px;background:var(--text);display:block;}
-    .burger span{position:relative;}.burger span::before,.burger span::after{content:"";position:absolute;left:0;}.burger span::before{top:-6px;}.burger span::after{top:6px;}
-    .mobile-panel{display:none;padding:10px 0 18px;} header[data-open="true"] .mobile-panel{display:block;} .mobile-panel .navlinks{flex-direction:column;align-items:flex-start;gap:10px;}
 
-    section{padding:84px 0;scroll-margin-top:110px;}
-    .section-title{font-family:"Space Grotesk",Inter,sans-serif;font-weight:800;letter-spacing:-.04em;font-size:clamp(30px,3.4vw,46px);line-height:1.06;margin:0 0 10px;}
-    .section-kicker{color:var(--muted);font-size:17px;margin:0 0 26px;max-width:75ch;}
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-    .hero{padding-top:34px;}
-    .banner{position:relative;border-radius:34px;overflow:hidden;border:1px solid rgba(255,255,255,.70);box-shadow:var(--shadow);background:radial-gradient(900px 520px at 18% 18%, rgba(37,99,235,.18), transparent 62%),radial-gradient(820px 520px at 92% 16%, rgba(124,58,237,.16), transparent 60%),linear-gradient(135deg, rgba(255,255,255,.96), rgba(224,242,254,.82));}
-    .banner-inner{position:relative;display:grid;grid-template-columns:1.18fr .82fr;align-items:stretch;min-height:560px;z-index:1;}
-    .banner-left{padding:52px 42px;display:flex;flex-direction:column;justify-content:center;gap:16px;}
-    .eyebrow{display:inline-flex;align-items:center;gap:10px;width:max-content;padding:9px 12px;border-radius:999px;background:rgba(37,99,235,.10);border:1px solid rgba(37,99,235,.18);color:#1d4ed8;font-weight:900;}
-    .headline{font-family:"Space Grotesk",Inter,sans-serif;font-weight:900;font-size:clamp(38px,4.8vw,68px);letter-spacing:-.06em;line-height:.98;margin:0;}
-    .lead{margin:0;font-size:18px;color:#334155;max-width:68ch;}
-    .pill{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;}
-    .tag{display:inline-flex;align-items:center;gap:10px;padding:10px 12px;border-radius:999px;background:rgba(255,255,255,.62);border:1px solid var(--stroke);box-shadow:0 10px 22px rgba(15,23,42,.06);font-weight:800;color:#1e293b;}
-    .dot{width:9px;height:9px;border-radius:999px;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 0 4px rgba(37,99,235,.12);}
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;}
-    .banner-right{position:relative;display:flex;align-items:center;justify-content:center;padding:22px 22px 22px 0;}
-    .portrait{width:100%;height:100%;min-height:520px;border-radius:28px;overflow:hidden;border:1px solid rgba(15,23,42,.10);box-shadow:inset 0 0 0 1px rgba(255,255,255,.30), 0 18px 46px rgba(15,23,42,.14);position:relative;background-image:var(--img);background-size:cover;background-position:center;}
-    .portrait::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,23,42,.04),transparent 48%,rgba(15,23,42,.18));pointer-events:none;}
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
 
-    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px;}
-    .card{border-radius:var(--radius2);overflow:hidden;border:1px solid var(--stroke);background:var(--card);box-shadow:0 14px 30px rgba(15,23,42,.09);transition:transform .16s ease, box-shadow .16s ease;position:relative;}
-    .card:hover{transform:translateY(-4px);box-shadow:0 22px 42px rgba(15,23,42,.14);}
-    .card .img{aspect-ratio:4/3;width:100%;object-fit:cover;}
-    .card .body{padding:18px 18px 20px;}
-    .card h3{margin:0 0 7px;font-family:"Space Grotesk",Inter,sans-serif;font-size:24px;letter-spacing:-.03em;}
-    .card p{margin:0;color:var(--muted);font-size:15px;}
-    .price{display:inline-flex;margin:14px 0 0;padding:8px 11px;border-radius:999px;background:rgba(37,99,235,.10);border:1px solid rgba(37,99,235,.16);color:#1d4ed8;font-weight:950;}
-    .linkrow{display:flex;align-items:center;justify-content:space-between;margin-top:14px;font-weight:900;color:var(--btn-dark);}
-    .arrow{width:34px;height:34px;border-radius:999px;display:grid;place-items:center;border:1px solid rgba(15,23,42,.18);background:rgba(255,255,255,.58);}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-    .split{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start;margin-top:22px;}
-    .panel{border-radius:var(--radius2);border:1px solid var(--stroke);background:var(--card);box-shadow:0 14px 30px rgba(15,23,42,.08);padding:22px;}
-    .panel h3,.panel h4{margin:0 0 10px;font-family:"Space Grotesk",Inter,sans-serif;letter-spacing:-.03em;}
-    .panel p{margin:0;color:var(--muted);}
-    .story-img{width:100%;height:220px;object-fit:cover;border-radius:20px;margin-bottom:16px;box-shadow:0 12px 28px rgba(15,23,42,.14);}
-    .checklist{display:grid;gap:10px;margin-top:14px;padding:0;list-style:none;}
-    .checklist li{display:flex;gap:10px;color:#334155;font-weight:750;}.checklist li::before{content:"✓";color:var(--accent);font-weight:950;}
+    :focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 4px;
+    }
 
-    .process{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px;}
-    .step{position:relative;overflow:hidden;border-radius:24px;border:1px solid var(--stroke);background:var(--card);box-shadow:0 12px 28px rgba(15,23,42,.08);padding:20px;min-height:170px;}
-    .step::before{content:"";position:absolute;width:125px;height:125px;right:-48px;top:-48px;border-radius:50%;background:rgba(124,58,237,.12);}
-    .step-num{display:inline-flex;min-width:50px;justify-content:center;padding:6px 10px;border-radius:999px;background:rgba(37,99,235,.10);color:var(--accent);font-weight:950;border:1px solid rgba(37,99,235,.16);margin-bottom:12px;}
-    .step h3{position:relative;margin:0;font-family:"Space Grotesk",Inter,sans-serif;font-size:20px;line-height:1.15;}
-    .step p{position:relative;margin:8px 0 0;color:var(--muted);font-size:14px;}
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin-inline: auto;
+    }
 
-    .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:22px;}
-    .review{border-radius:var(--radius2);border:1px solid var(--stroke);background:var(--card);box-shadow:0 12px 28px rgba(15,23,42,.08);padding:18px;}
-    .review .top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;}.review .name{font-weight:950;}.stars{letter-spacing:1px;color:#f59e0b;font-weight:950;font-size:14px;white-space:nowrap;}.review p{margin:0;color:var(--muted);font-size:15px;}
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 16px;
+      color: var(--gold);
+      font-size: 0.78rem;
+      font-weight: 850;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
 
-    .faq{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px;}
-    details{border-radius:var(--radius2);border:1px solid var(--stroke);background:var(--card);box-shadow:0 12px 28px rgba(15,23,42,.06);padding:15px 16px;}
-    summary{cursor:pointer;font-weight:950;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px;}summary::-webkit-details-marker{display:none;}
-    summary .chev{width:34px;height:34px;border-radius:999px;border:1px solid rgba(15,23,42,.18);display:grid;place-items:center;background:rgba(255,255,255,.46);transition:transform .18s ease;flex:0 0 auto;}details[open] summary .chev{transform:rotate(180deg);}details p{margin:10px 0 0;color:var(--muted);font-size:15px;}
+    .eyebrow::before {
+      content: "";
+      width: 30px;
+      height: 1px;
+      background: var(--gold);
+      box-shadow: 0 0 16px rgba(212, 175, 55, 0.75);
+    }
 
-    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px;align-items:start;}
-    form{display:grid;gap:12px;}label{font-weight:850;font-size:14px;}input,select,textarea{width:100%;padding:12px;border-radius:14px;border:1px solid rgba(15,23,42,.18);background:rgba(255,255,255,.70);color:var(--text);font:inherit;outline:none;transition:border-color .15s ease, box-shadow .15s ease;}input:focus,select:focus,textarea:focus{border-color:rgba(37,99,235,.55);box-shadow:0 0 0 4px rgba(37,99,235,.12);}textarea{min-height:120px;resize:vertical;}.note{font-size:13px;color:#64748b;margin-top:8px;}
+    .section-title {
+      max-width: 780px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.1rem, 5vw, 4.25rem);
+      font-weight: 700;
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
 
-    .footer{padding:46px 0 36px;border-top:1px solid var(--stroke);background:linear-gradient(180deg,rgba(248,250,252,.62),rgba(224,242,254,.90));}
-    .footer-wrap{border:1px solid rgba(255,255,255,.70);background:rgba(255,255,255,.48);border-radius:28px;box-shadow:0 18px 44px rgba(15,23,42,.11);overflow:hidden;}
-    .footer-inner{padding:26px 22px;display:grid;grid-template-columns:1.2fr .9fr .9fr;gap:18px;align-items:start;}.footer-title{font-family:"Space Grotesk",Inter,sans-serif;font-weight:900;font-size:24px;margin:0;letter-spacing:-.04em;}.footer-desc{margin:8px 0 0;color:var(--muted);max-width:52ch;}.footer-col h4{margin:2px 0 10px;font-size:14px;letter-spacing:.2px;text-transform:uppercase;color:#475569;}.footer-links{display:flex;flex-direction:column;gap:10px;}.footer-links a{display:inline-flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 12px;border-radius:14px;border:1px solid rgba(15,23,42,.12);background:rgba(255,255,255,.45);font-weight:850;}.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 22px 18px;border-top:1px solid rgba(15,23,42,.10);background:rgba(255,255,255,.30);}.footer-bottom .note{margin:0;}
+    .section-copy {
+      max-width: 720px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.13rem);
+    }
 
-    @media (max-width:980px){.banner-inner{grid-template-columns:1fr}.banner-right{padding:0 18px 18px}.portrait{min-height:420px}.banner-left{padding:36px 24px 20px}.cards,.reviews,.faq,.contact-grid,.split,.footer-inner{grid-template-columns:1fr}.process{grid-template-columns:1fr 1fr}.footer-bottom{flex-direction:column;align-items:flex-start}}
-    @media (max-width:900px){.nav > .nav-right > nav.navlinks{display:none}.burger{display:flex}.mobile-panel nav.navlinks{display:flex}}
-    @media (max-width:680px){.nav{flex-direction:column;align-items:stretch}.brand{justify-content:center}.nav-right{justify-content:space-between}.container{width:min(var(--max), calc(100% - 32px))}section{padding:66px 0}.process{grid-template-columns:1fr}.headline{font-size:42px}.hero-actions .btn{width:100%}}
+    .gold-text {
+      color: var(--gold);
+    }
+
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 50;
+      border-bottom: 1px solid transparent;
+      transition: background 220ms ease, border-color 220ms ease, backdrop-filter 220ms ease;
+    }
+
+    .site-header.scrolled {
+      background: rgba(0, 0, 0, 0.78);
+      border-color: var(--line);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 950;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(212, 175, 55, 0.7);
+      border-radius: 50%;
+      color: var(--gold);
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
+      transform: rotate(-8deg);
+      box-shadow: inset 0 0 18px rgba(212, 175, 55, 0.08), 0 0 18px rgba(212, 175, 55, 0.08);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: rgba(255, 255, 255, 0.76);
+      font-size: 0.94rem;
+      font-weight: 700;
+    }
+
+    .nav-links a {
+      transition: color 180ms ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .button {
+      position: relative;
+      isolation: isolate;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 22px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 850;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
+    }
+
+    .button::after {
+      content: "";
+      position: absolute;
+      inset: 2px;
+      z-index: -1;
+      border-radius: inherit;
+      opacity: 0;
+      background: linear-gradient(110deg, transparent 25%, rgba(255, 255, 255, 0.26), transparent 75%);
+      transform: translateX(-100%);
+      transition: opacity 180ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button:hover::after {
+      opacity: 1;
+      animation: sheen 850ms ease;
+    }
+
+    .button-primary {
+      color: var(--white);
+      background: linear-gradient(135deg, var(--coral), var(--wine));
+      box-shadow: 0 16px 42px rgba(123, 12, 5, 0.35);
+    }
+
+    .button-primary:hover {
+      box-shadow: 0 20px 52px rgba(218, 79, 64, 0.28);
+    }
+
+    .button-secondary {
+      color: var(--white);
+      border-color: rgba(212, 175, 55, 0.45);
+      background: rgba(0, 0, 0, 0.38);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+    }
+
+    .button-secondary:hover {
+      border-color: var(--gold);
+      background: rgba(212, 175, 55, 0.08);
+    }
+
+    .button-small {
+      min-height: 42px;
+      padding-inline: 18px;
+      font-size: 0.9rem;
+    }
+
+    .icon {
+      width: 18px;
+      height: 18px;
+      flex: 0 0 auto;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 94svh;
+      display: grid;
+      align-items: end;
+      overflow: hidden;
+      padding: 150px 0 72px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-media {
+      position: absolute;
+      inset: 0;
+      z-index: -3;
+      overflow: hidden;
+    }
+
+    .hero-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      scale: 1.035;
+      transition: transform 160ms linear;
+      will-change: transform;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.75) 43%, rgba(0, 0, 0, 0.20) 76%, rgba(0, 0, 0, 0.58) 100%),
+        linear-gradient(0deg, var(--black) 0%, transparent 42%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(120deg, rgba(123, 12, 5, 0.28), transparent 40%, rgba(212, 175, 55, 0.06));
+      mix-blend-mode: screen;
+    }
+
+    .hero-content {
+      max-width: 860px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 13px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(212, 175, 55, 0.42);
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.38);
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 0.82rem;
+      font-weight: 800;
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-badge span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--coral);
+      box-shadow: 0 0 0 5px rgba(218, 79, 64, 0.18), 0 0 22px rgba(218, 79, 64, 0.75);
+    }
+
+    .hero h1 {
+      max-width: 900px;
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3.35rem, 9vw, 7.8rem);
+      line-height: 0.83;
+      letter-spacing: -0.065em;
+      text-wrap: balance;
+      text-shadow: 0 18px 70px rgba(0, 0, 0, 0.75);
+    }
+
+    .hero h1 em {
+      display: block;
+      color: var(--gold);
+      font-weight: inherit;
+    }
+
+    .hero-lead {
+      max-width: 700px;
+      margin: 30px 0 0;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 34px;
+    }
+
+    .quick-facts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px 26px;
+      margin-top: 38px;
+      color: rgba(255, 255, 255, 0.82);
+      font-size: 0.92rem;
+      font-weight: 750;
+    }
+
+    .quick-facts span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .quick-facts i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 16px rgba(212, 175, 55, 0.7);
+    }
+
+    .stats-wrap {
+      position: relative;
+      z-index: 4;
+      margin-top: -34px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(8, 8, 8, 0.88);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(20px);
+    }
+
+    .stat {
+      min-height: 148px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 26px;
+      border-right: 1px solid var(--line);
+    }
+
+    .stat:last-child {
+      border-right: 0;
+    }
+
+    .stat strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--gold);
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 4vw, 3.35rem);
+      line-height: 1;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 750;
+    }
+
+    .logos-section {
+      padding: 72px 0 22px;
+      overflow: hidden;
+    }
+
+    .logos-label {
+      margin: 0 0 24px;
+      color: rgba(255, 255, 255, 0.47);
+      text-align: center;
+      font-size: 0.76rem;
+      font-weight: 850;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .logo-marquee {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+    }
+
+    .logo-track {
+      width: max-content;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      animation: marquee 25s linear infinite;
+    }
+
+    .logo-marquee:hover .logo-track {
+      animation-play-state: paused;
+    }
+
+    .logo-card {
+      width: 180px;
+      height: 92px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.035);
+      filter: grayscale(1);
+      opacity: 0.72;
+      transition: filter 180ms ease, opacity 180ms ease, border-color 180ms ease, transform 180ms ease;
+    }
+
+    .logo-card:hover {
+      filter: grayscale(0);
+      opacity: 1;
+      border-color: rgba(212, 175, 55, 0.4);
+      transform: translateY(-3px);
+    }
+
+    .logo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    section {
+      padding: 112px 0;
+    }
+
+    .experience-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .feature-panel {
+      position: sticky;
+      top: 108px;
+      overflow: hidden;
+      min-height: 590px;
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      background:
+        linear-gradient(180deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.86)),
+        url("assets/hero.webp") center / cover;
+      box-shadow: var(--shadow);
+    }
+
+    .feature-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      box-shadow: inset 0 0 0 1px rgba(212, 175, 55, 0.12);
+      pointer-events: none;
+    }
+
+    .feature-panel-copy {
+      position: absolute;
+      inset: auto 28px 28px;
+      padding: 25px;
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 22px;
+      background: rgba(0, 0, 0, 0.58);
+      backdrop-filter: blur(18px);
+    }
+
+    .feature-panel-copy strong {
+      display: block;
+      color: var(--gold);
+      font-family: Georgia, serif;
+      font-size: 1.75rem;
+    }
+
+    .feature-panel-copy span {
+      color: var(--muted);
+    }
+
+    .steps {
+      margin-top: 48px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .step {
+      position: relative;
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 22px;
+      padding: 27px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018));
+      transition: border-color 180ms ease, transform 180ms ease, background 180ms ease;
+    }
+
+    .step::before {
+      content: "";
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      right: -85px;
+      top: -85px;
+      border-radius: 50%;
+      background: rgba(123, 12, 5, 0.24);
+      filter: blur(14px);
+      transition: transform 260ms ease;
+    }
+
+    .step:hover {
+      border-color: rgba(212, 175, 55, 0.42);
+      background: linear-gradient(145deg, rgba(212, 175, 55, 0.07), rgba(255, 255, 255, 0.018));
+      transform: translateX(7px);
+    }
+
+    .step:hover::before {
+      transform: scale(1.35);
+    }
+
+    .step-number {
+      width: 66px;
+      height: 66px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      border-radius: 50%;
+      color: var(--gold);
+      font-family: Georgia, serif;
+      font-size: 1.6rem;
+      background: rgba(212, 175, 55, 0.04);
+    }
+
+    .step h3 {
+      margin: 2px 0 8px;
+      font-size: 1.2rem;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .pricing-section {
+      position: relative;
+    }
+
+    .pricing-section::before {
+      content: "";
+      position: absolute;
+      inset: 80px 0;
+      z-index: -1;
+      background: linear-gradient(90deg, rgba(123, 12, 5, 0.16), transparent 40%, rgba(212, 175, 55, 0.06));
+      border-block: 1px solid rgba(255, 255, 255, 0.035);
+    }
+
+    .pricing-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 44px;
+    }
+
+    .pricing-head .section-copy {
+      max-width: 420px;
+      margin: 0 0 6px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 0.88fr 1.12fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: linear-gradient(150deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018));
+      box-shadow: var(--shadow);
+    }
+
+    .rate-card {
+      padding: 24px;
+    }
+
+    .rate-card h3,
+    .calculator-card h3 {
+      margin: 0;
+      font-family: Georgia, serif;
+      font-size: 1.7rem;
+    }
+
+    .rate-card > p,
+    .calculator-card > p {
+      margin: 8px 0 22px;
+      color: var(--muted);
+    }
+
+    .rate-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0 7px;
+    }
+
+    .rate-table th {
+      padding: 0 14px 8px;
+      color: rgba(255, 255, 255, 0.43);
+      text-align: left;
+      font-size: 0.72rem;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+    }
+
+    .rate-table th:last-child,
+    .rate-table td:last-child {
+      text-align: right;
+    }
+
+    .rate-table td {
+      padding: 13px 14px;
+      background: rgba(255, 255, 255, 0.033);
+      border-block: 1px solid rgba(255, 255, 255, 0.06);
+      transition: background 180ms ease, color 180ms ease, border-color 180ms ease, transform 180ms ease;
+    }
+
+    .rate-table td:first-child {
+      border-left: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 13px 0 0 13px;
+    }
+
+    .rate-table td:last-child {
+      border-right: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 0 13px 13px 0;
+      color: var(--gold);
+      font-weight: 900;
+    }
+
+    .rate-table tr.active td {
+      color: var(--white);
+      background: linear-gradient(90deg, rgba(218, 79, 64, 0.20), rgba(123, 12, 5, 0.30));
+      border-color: rgba(218, 79, 64, 0.46);
+      transform: scale(1.015);
+    }
+
+    .rate-table tr.active td:last-child {
+      color: var(--gold);
+    }
+
+    .calculator-card {
+      position: relative;
+      overflow: hidden;
+      padding: 34px;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(212, 175, 55, 0.16), transparent 24rem),
+        linear-gradient(145deg, rgba(123, 12, 5, 0.28), rgba(13, 13, 13, 0.96) 52%);
+    }
+
+    .calculator-card::after {
+      content: "";
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      right: -150px;
+      bottom: -170px;
+      border: 1px solid rgba(212, 175, 55, 0.22);
+      border-radius: 50%;
+      box-shadow: 0 0 0 40px rgba(212, 175, 55, 0.025), 0 0 0 80px rgba(212, 175, 55, 0.018);
+    }
+
+    .calculator-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .range-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .range-header label {
+      display: block;
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 0.86rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .players-input {
+      width: 112px;
+      min-height: 58px;
+      padding: 0 12px;
+      border: 1px solid rgba(212, 175, 55, 0.42);
+      border-radius: 16px;
+      color: var(--white);
+      background: rgba(0, 0, 0, 0.35);
+      text-align: center;
+      font-family: Georgia, serif;
+      font-size: 1.75rem;
+      font-weight: 800;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 5px;
+      margin: 30px 0 10px;
+      appearance: none;
+      border-radius: 999px;
+      background: linear-gradient(to right, var(--gold) var(--range-progress, 0%), rgba(255, 255, 255, 0.14) var(--range-progress, 0%));
+      cursor: pointer;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      width: 24px;
+      height: 24px;
+      appearance: none;
+      border: 5px solid #111;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.9), 0 0 28px rgba(212, 175, 55, 0.5);
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      border: 5px solid #111;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.9), 0 0 28px rgba(212, 175, 55, 0.5);
+    }
+
+    .range-labels {
+      display: flex;
+      justify-content: space-between;
+      color: rgba(255, 255, 255, 0.42);
+      font-size: 0.8rem;
+      font-weight: 750;
+    }
+
+    .estimate {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .estimate-box {
+      min-height: 140px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 20px;
+      background: rgba(0, 0, 0, 0.30);
+      backdrop-filter: blur(12px);
+    }
+
+    .estimate-box span {
+      color: rgba(255, 255, 255, 0.54);
+      font-size: 0.78rem;
+      font-weight: 850;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .estimate-box strong {
+      margin-top: 8px;
+      font-family: Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      line-height: 1;
+    }
+
+    .estimate-box.total {
+      border-color: rgba(212, 175, 55, 0.30);
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.11), rgba(123, 12, 5, 0.25));
+    }
+
+    .estimate-box.total strong {
+      color: var(--gold);
+    }
+
+    .calculator-note {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin: 18px 0 0;
+      padding: 15px 17px;
+      border-left: 2px solid var(--coral);
+      border-radius: 0 12px 12px 0;
+      background: rgba(218, 79, 64, 0.06);
+      color: rgba(255, 255, 255, 0.67);
+      font-size: 0.88rem;
+    }
+
+    .calculator-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .gallery-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-bottom: 38px;
+    }
+
+    .gallery-head .section-copy {
+      max-width: 430px;
+      margin: 0;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .gallery-card {
+      position: relative;
+      min-height: 570px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 50% 15%, rgba(123, 12, 5, 0.26), transparent 55%),
+        #080808;
+      box-shadow: var(--shadow);
+    }
+
+    .gallery-card:nth-child(2) {
+      transform: translateY(28px);
+    }
+
+    .gallery-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      transition: transform 500ms cubic-bezier(.2,.8,.2,1), filter 500ms ease;
+    }
+
+    .gallery-card:hover img {
+      transform: scale(1.045);
+      filter: contrast(1.06);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      inset: auto 16px 16px;
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+      background: rgba(0, 0, 0, 0.70);
+      backdrop-filter: blur(14px);
+    }
+
+    .gallery-caption strong {
+      display: block;
+      color: var(--gold);
+      font-family: Georgia, serif;
+      font-size: 1.25rem;
+    }
+
+    .gallery-caption span {
+      display: block;
+      margin-top: 3px;
+      color: rgba(255, 255, 255, 0.63);
+      font-size: 0.88rem;
+    }
+
+    .scenario-cta {
+      position: relative;
+      overflow: hidden;
+      padding: 58px;
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      border-radius: 34px;
+      background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.93), rgba(0, 0, 0, 0.58)),
+        url("assets/hero.webp") center 38% / cover;
+      box-shadow: var(--shadow);
+    }
+
+    .scenario-cta::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, rgba(123, 12, 5, 0.34), transparent 45%, rgba(212, 175, 55, 0.10));
+    }
+
+    .scenario-cta-content {
+      position: relative;
+      max-width: 700px;
+    }
+
+    .scenario-cta h2 {
+      margin: 0;
+      font-family: Georgia, serif;
+      font-size: clamp(2.3rem, 5vw, 4.5rem);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
+
+    .scenario-cta p {
+      max-width: 560px;
+      margin: 20px 0 28px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 1.05rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      gap: 58px;
+      align-items: start;
+    }
+
+    .contact-aside {
+      position: sticky;
+      top: 110px;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 13px;
+      margin-top: 34px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .contact-item-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      color: var(--gold);
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.22);
+    }
+
+    .contact-item span {
+      display: block;
+      color: rgba(255, 255, 255, 0.48);
+      font-size: 0.76rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .contact-item strong {
+      display: block;
+      margin-top: 2px;
+      font-size: 0.96rem;
+    }
+
+    .quote-form {
+      padding: 30px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    .field label {
+      color: rgba(255, 255, 255, 0.67);
+      font-size: 0.85rem;
+      font-weight: 750;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      min-height: 52px;
+      padding: 13px 15px;
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: 14px;
+      color: var(--white);
+      background: rgba(0, 0, 0, 0.38);
+      transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+    }
+
+    .field textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder {
+      color: rgba(255, 255, 255, 0.28);
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: rgba(212, 175, 55, 0.62);
+      background: rgba(212, 175, 55, 0.035);
+      box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.07);
+    }
+
+    .form-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .form-hint {
+      max-width: 410px;
+      margin: 0;
+      color: rgba(255, 255, 255, 0.43);
+      font-size: 0.78rem;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      z-index: 80;
+      max-width: min(92vw, 520px);
+      padding: 13px 18px;
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.88);
+      color: var(--white);
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translate(-50%, 24px);
+      pointer-events: none;
+      transition: opacity 220ms ease, transform 220ms ease;
+      backdrop-filter: blur(16px);
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    footer {
+      padding: 34px 0 46px;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      color: rgba(255, 255, 255, 0.43);
+      font-size: 0.86rem;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 700ms cubic-bezier(.2,.8,.2,1), transform 700ms cubic-bezier(.2,.8,.2,1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal.delay-1 { transition-delay: 90ms; }
+    .reveal.delay-2 { transition-delay: 180ms; }
+    .reveal.delay-3 { transition-delay: 270ms; }
+
+    @keyframes marquee {
+      to { transform: translateX(calc(-50% - 9px)); }
+    }
+
+    @keyframes sheen {
+      from { transform: translateX(-100%); }
+      to { transform: translateX(100%); }
+    }
+
+    @media (max-width: 980px) {
+      .nav-links a:not(.button) {
+        display: none;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat:nth-child(2) {
+        border-right: 0;
+      }
+
+      .stat:nth-child(-n+2) {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .experience-grid,
+      .pricing-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-panel,
+      .contact-aside {
+        position: relative;
+        top: auto;
+      }
+
+      .feature-panel {
+        min-height: 520px;
+      }
+
+      .pricing-head,
+      .gallery-head {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .pricing-head .section-copy,
+      .gallery-head .section-copy {
+        max-width: 720px;
+        margin-top: 16px;
+      }
+
+      .gallery-card {
+        min-height: 500px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .container {
+        width: min(calc(100% - 22px), var(--max));
+      }
+
+      section {
+        padding: 82px 0;
+      }
+
+      .site-header .button-small {
+        padding-inline: 14px;
+      }
+
+      .brand {
+        font-size: 0.86rem;
+      }
+
+      .hero {
+        min-height: 860px;
+        padding-top: 130px;
+      }
+
+      .hero::before {
+        background:
+          linear-gradient(0deg, var(--black) 0%, rgba(0, 0, 0, 0.78) 52%, rgba(0, 0, 0, 0.35) 100%),
+          linear-gradient(90deg, rgba(0, 0, 0, 0.65), transparent);
+      }
+
+      .hero h1 {
+        font-size: clamp(3.1rem, 16vw, 5.4rem);
+      }
+
+      .hero-actions .button {
+        width: 100%;
+      }
+
+      .stats-wrap {
+        margin-top: -20px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stat {
+        min-height: 125px;
+        padding: 20px;
+      }
+
+      .stat strong {
+        font-size: 2.15rem;
+      }
+
+      .experience-grid {
+        gap: 46px;
+      }
+
+      .feature-panel {
+        min-height: 460px;
+      }
+
+      .feature-panel-copy {
+        inset: auto 14px 14px;
+      }
+
+      .step {
+        grid-template-columns: 58px 1fr;
+        gap: 15px;
+        padding: 20px;
+      }
+
+      .step-number {
+        width: 52px;
+        height: 52px;
+        font-size: 1.3rem;
+      }
+
+      .rate-card,
+      .calculator-card,
+      .quote-form {
+        padding: 21px;
+      }
+
+      .estimate {
+        grid-template-columns: 1fr;
+      }
+
+      .estimate-box {
+        min-height: 112px;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-card,
+      .gallery-card:nth-child(2) {
+        min-height: 560px;
+        transform: none;
+      }
+
+      .scenario-cta {
+        padding: 34px 24px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .form-footer,
+      .footer-inner {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .form-footer .button {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 440px) {
+      .nav-links .button {
+        min-height: 40px;
+        padding-inline: 12px;
+        font-size: 0.78rem;
+      }
+
+      .quick-facts {
+        display: grid;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .stat:last-child {
+        border-bottom: 0;
+      }
+
+      .range-header {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .players-input {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
+      }
+    }
   </style>
 </head>
-
 <body>
-  <header id="top" data-open="false">
-    <div class="container">
-      <div class="nav">
-        <a class="brand" href="#top" aria-label="Retour en haut">
-          <span class="brand-mark">AGZ</span>
-          <span>AGZ WEB</span>
-        </a>
+  <header class="site-header" id="siteHeader">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Retour en haut">
+        <span class="brand-mark" aria-hidden="true">K</span>
+        <span>Kill Event</span>
+      </a>
 
-        <div class="nav-right">
-          <nav class="navlinks" aria-label="Navigation principale">
-            <a href="#offres">Offres</a>
-            <a href="#methode">Méthode</a>
-            <a href="#avis">Avis</a>
-            <a href="#faq">FAQ</a>
-            <a href="#contact">Contact</a>
-          </nav>
-
-          <a class="btn" href="mailto:kill-event@hotmail.com?subject=Demande%20de%20site%20web%20-%20AGZ%20WEB&body=Bonjour%20AGZ%20WEB%2C%0A%0AJe%20souhaite%20cr%C3%A9er%20un%20site%20web.%0AType%20de%20site%20%3A%20site%20vitrine%20simple%20/%20site%20complet%20Shopify%0AMon%20activit%C3%A9%20%3A%20%0AMon%20objectif%20%3A%20%0A%0AMerci%20%21">
-            <span class="wa-dot" aria-hidden="true"></span>
-            Demander un devis
-          </a>
-
-          <button class="burger" id="burger" aria-label="Menu mobile" aria-expanded="false"><span></span></button>
-        </div>
-      </div>
-
-      <div class="mobile-panel">
-        <nav class="navlinks" aria-label="Navigation mobile">
-          <a href="#offres">Offres</a><a href="#methode">Méthode</a><a href="#avis">Avis</a><a href="#faq">FAQ</a><a href="#contact">Contact</a>
-        </nav>
-      </div>
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a href="#experience">L'expérience</a>
+        <a href="#tarifs">Tarifs</a>
+        <a href="#galerie">Galerie</a>
+        <a class="button button-primary button-small" href="#devis">Demander un devis</a>
+      </nav>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="container">
-      <div class="banner">
-        <div class="banner-inner">
-          <div class="banner-left">
-            <div class="eyebrow"><span class="dot"></span> Création de site web qui vend vraiment</div>
-            <h1 class="headline">Votre site doit donner envie. <span class="highlight">Pas juste exister.</span></h1>
-            <p class="lead">
-              AGZ WEB crée des sites modernes, rapides et convaincants pour transformer vos visiteurs en clients :
-              <span class="highlight">site vitrine simple</span> pour présenter votre activité ou
-              <span class="highlight">site complet avec Shopify</span> pour vendre en ligne avec une boutique professionnelle.
-            </p>
-            <div class="pill" aria-label="Points forts">
-              <div class="tag"><span class="dot"></span>Design premium & responsive</div>
-              <div class="tag"><span class="dot"></span>Textes pensés pour convertir</div>
-              <div class="tag"><span class="dot"></span>Mise en ligne accompagnée</div>
-              <div class="tag"><span class="dot"></span>Shopify prêt à vendre</div>
-            </div>
-            <div class="hero-actions">
-              <a class="btn secondary" href="#offres">Voir les offres</a>
-              <a class="btn light" href="#contact">Parler de mon projet</a>
-            </div>
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-media" aria-hidden="true">
+        <img src="assets/hero.webp" alt="" id="heroImage">
+      </div>
+
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-badge"><span></span> Team building immersif pour entreprises</div>
+          <h1 id="hero-title">Votre équipe.<br><em>Votre enquête.</em></h1>
+          <p class="hero-lead">
+            Transformez vos collaborateurs en suspects, enquêteurs et conspirateurs le temps d'une Murder Party grandeur nature, animée et pensée pour créer de vrais souvenirs d'équipe.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button button-primary" href="#tarifs">
+              Calculer mon budget
+              <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="button button-secondary" href="https://kill-event.com/collections/all" target="_blank" rel="noopener noreferrer">
+              Voir les scénarios
+            </a>
           </div>
-          <div class="banner-right"><div class="portrait" aria-label="Illustration AGZ WEB"></div></div>
+
+          <div class="quick-facts" aria-label="Informations essentielles">
+            <span><i></i> Environ 2 h 30 de jeu</span>
+            <span><i></i> 10 à 50 joueurs</span>
+            <span><i></i> À partir de 14 ans</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="stats-wrap container reveal">
+      <div class="stats">
+        <div class="stat">
+          <strong data-counter="4.9" data-decimals="1">4,9</strong>
+          <span>note moyenne / 5</span>
+        </div>
+        <div class="stat">
+          <strong data-counter="2500" data-suffix="+">2 500+</strong>
+          <span>soirées organisées</span>
+        </div>
+        <div class="stat">
+          <strong data-counter="50">50</strong>
+          <span>joueurs maximum</span>
+        </div>
+        <div class="stat">
+          <strong data-counter="150">150</strong>
+          <span>minutes d'immersion</span>
         </div>
       </div>
     </div>
-  </section>
 
-  <section id="offres">
-    <div class="container">
-      <h2 class="section-title">Deux offres claires pour lancer votre présence en ligne</h2>
-      <p class="section-kicker">Pas besoin d’un site compliqué. Vous avez besoin d’un site beau, crédible, facile à comprendre et construit pour déclencher l’envie de vous contacter ou d’acheter.</p>
-
-      <div class="cards">
-        <article class="card">
-          <img class="img" src="https://cdn.shopify.com/s/files/1/0726/0690/8753/files/ChatGPT_Image_15_dec._2025_10_31_32.png?v=1765791194" alt="Site vitrine professionnel" loading="lazy">
-          <div class="body">
-            <h3>Site vitrine simple</h3>
-            <p>Idéal pour présenter votre activité, vos services, vos tarifs, vos avis et permettre aux clients de vous contacter rapidement.</p>
-            <span class="price">Pour artisans, indépendants, services & marques locales</span>
-            <div class="linkrow"><span>Créer ma vitrine</span><span class="arrow">➜</span></div>
-          </div>
-        </article>
-
-        <article class="card">
-          <img class="img" src="https://cdn.shopify.com/s/files/1/0726/0690/8753/files/ChatGPT_Image_15_dec._2025_10_31_32.png?v=1765791194" alt="Boutique Shopify complète" loading="lazy">
-          <div class="body">
-            <h3>Site complet Shopify</h3>
-            <p>Une boutique en ligne prête à vendre : pages clés, collections, fiches produits, tunnel d’achat, design rassurant et expérience client fluide.</p>
-            <span class="price">Pour vendre vos produits sans perdre des semaines</span>
-            <div class="linkrow"><span>Lancer ma boutique</span><span class="arrow">➜</span></div>
-          </div>
-        </article>
-
-        <article class="card">
-          <img class="img" src="https://cdn.shopify.com/s/files/1/0726/0690/8753/files/ChatGPT_Image_15_dec._2025_10_31_32.png?v=1765791194" alt="Optimisation et refonte de site" loading="lazy">
-          <div class="body">
-            <h3>Refonte & optimisation</h3>
-            <p>Votre site existe déjà mais ne donne pas confiance ? AGZ WEB améliore le design, les textes, la structure et les appels à l’action.</p>
-            <span class="price">Pour passer d’un site moyen à un site vendeur</span>
-            <div class="linkrow"><span>Améliorer mon site</span><span class="arrow">➜</span></div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section id="pourquoi">
-    <div class="container">
-      <h2 class="section-title">Un site web n’est pas une dépense. C’est votre meilleur commercial.</h2>
-      <p class="section-kicker">Disponible 24h/24, il présente votre offre, rassure vos prospects, répond aux objections et donne une raison claire de passer à l’action.</p>
-
-      <div class="split">
-        <div class="panel">
-          <img class="story-img" src="https://cdn.shopify.com/s/files/1/0726/0690/8753/files/ChatGPT_Image_15_dec._2025_10_31_32.png?v=1765791194" alt="Création de site web moderne" loading="lazy">
-          <h3>Ce que vos clients doivent ressentir</h3>
-          <p>En quelques secondes, votre site doit dire : “cette entreprise est sérieuse, je comprends ce qu’elle propose, j’ai envie de lui faire confiance”.</p>
-          <ul class="checklist">
-            <li>Une première impression professionnelle</li>
-            <li>Une offre claire et facile à choisir</li>
-            <li>Des boutons visibles pour demander un devis ou acheter</li>
-          </ul>
-        </div>
-        <div class="panel">
-          <img class="story-img" src="https://cdn.shopify.com/s/files/1/0726/0690/8753/files/ChatGPT_Image_15_dec._2025_10_31_32.png?v=1765791194" alt="Boutique Shopify pensée pour vendre" loading="lazy">
-          <h3>Ce que AGZ WEB construit pour vous</h3>
-          <p>Un site qui met en valeur votre univers, explique votre valeur, supprime les doutes et guide le visiteur vers l’action la plus importante.</p>
-          <ul class="checklist">
-            <li>Structure de page persuasive</li>
-            <li>Design adapté à votre marque</li>
-            <li>Site lisible sur mobile, tablette et ordinateur</li>
-          </ul>
+    <div class="logos-section reveal">
+      <p class="logos-label">Ils nous ont fait confiance</p>
+      <div class="logo-marquee" aria-label="Entreprises clientes">
+        <div class="logo-track">
+          <!-- Remplace chaque image par le logo de l'entreprise correspondante. -->
+          <div class="logo-card"><img src="assets/logo-colas.png" alt="Logo entreprise partenaire 1"></div>
+          <div class="logo-card"><img src="assets/logo-colas.png" alt="Logo entreprise partenaire 2"></div>
+          <div class="logo-card"><img src="assets/logo-colas.png" alt="Logo entreprise partenaire 3"></div>
+          <div class="logo-card"><img src="assets/logo-colas.png" alt="Logo entreprise partenaire 4"></div>
+          <div class="logo-card"><img src="assets/logo-colas.png" alt="Logo entreprise partenaire 5"></div>
+          <div class="logo-card"><img src="assets/logo-colas.png" alt="Logo entreprise partenaire 6"></div>
+          <div class="logo-card"><img src="assets/logo-colas.png" alt="Logo entreprise partenaire 7"></div>
+          <div class="logo-card"><img src="assets/logo-colas.png" alt="Logo entreprise partenaire 8"></div>
+          <!-- Copie du premier groupe pour une boucle fluide. -->
+          <div class="logo-card" aria-hidden="true"><img src="assets/logo-colas.png" alt=""></div>
+          <div class="logo-card" aria-hidden="true"><img src="assets/logo-colas.png" alt=""></div>
+          <div class="logo-card" aria-hidden="true"><img src="assets/logo-colas.png" alt=""></div>
+          <div class="logo-card" aria-hidden="true"><img src="assets/logo-colas.png" alt=""></div>
+          <div class="logo-card" aria-hidden="true"><img src="assets/logo-colas.png" alt=""></div>
+          <div class="logo-card" aria-hidden="true"><img src="assets/logo-colas.png" alt=""></div>
+          <div class="logo-card" aria-hidden="true"><img src="assets/logo-colas.png" alt=""></div>
+          <div class="logo-card" aria-hidden="true"><img src="assets/logo-colas.png" alt=""></div>
         </div>
       </div>
     </div>
-  </section>
 
-  <section id="methode">
-    <div class="container">
-      <h2 class="section-title">Une méthode simple, rapide et rassurante</h2>
-      <p class="section-kicker">Vous n’avez pas besoin de tout savoir techniquement. AGZ WEB vous guide étape par étape, avec des choix simples et des explications claires.</p>
-
-      <div class="process">
-        <div class="step"><span class="step-num">01</span><h3>Analyse</h3><p>On clarifie votre activité, vos objectifs, vos clients et le type de site le plus adapté.</p></div>
-        <div class="step"><span class="step-num">02</span><h3>Structure</h3><p>On organise les pages, les messages importants et les appels à l’action pour convertir.</p></div>
-        <div class="step"><span class="step-num">03</span><h3>Création</h3><p>Design, textes, images, mise en page, Shopify si besoin : votre site prend forme.</p></div>
-        <div class="step"><span class="step-num">04</span><h3>Lancement</h3><p>Votre site est mis en ligne, vérifié sur mobile et prêt à être partagé à vos clients.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="avis">
-    <div class="container">
-      <h2 class="section-title">Ce que vos futurs clients doivent se dire</h2>
-      <p class="section-kicker">Un bon site inspire confiance avant même le premier échange.</p>
-      <div class="reviews">
-        <div class="review"><div class="top"><div class="name">“C’est clair.”</div><div class="stars">★★★★★</div></div><p>Le visiteur comprend immédiatement ce que vous proposez, pour qui, et pourquoi vous choisir plutôt qu’un concurrent.</p></div>
-        <div class="review"><div class="top"><div class="name">“Ça fait sérieux.”</div><div class="stars">★★★★★</div></div><p>Un design propre et cohérent donne confiance. Votre site devient une preuve de professionnalisme.</p></div>
-        <div class="review"><div class="top"><div class="name">“Je passe à l’action.”</div><div class="stars">★★★★★</div></div><p>Les boutons, les textes et la structure guident naturellement vers le devis, le contact ou l’achat.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="faq">
-    <div class="container">
-      <h2 class="section-title">FAQ</h2>
-      <p class="section-kicker">Les réponses aux questions les plus fréquentes avant de créer votre site.</p>
-      <div class="faq">
-        <details><summary>Quelle offre choisir ? <span class="chev">⌄</span></summary><p>Le site vitrine simple est parfait pour présenter une activité et recevoir des demandes. Le site complet Shopify est adapté si vous voulez vendre des produits en ligne.</p></details>
-        <details><summary>Est-ce que le site sera adapté au mobile ? <span class="chev">⌄</span></summary><p>Oui. Le site est pensé pour être lisible et agréable sur téléphone, tablette et ordinateur.</p></details>
-        <details><summary>Est-ce que tu peux écrire les textes ? <span class="chev">⌄</span></summary><p>Oui. Les textes sont rédigés pour être clairs, professionnels et orientés conversion, afin de donner envie de vous contacter ou d’acheter.</p></details>
-        <details><summary>Pourquoi Shopify pour une boutique ? <span class="chev">⌄</span></summary><p>Shopify permet de gérer facilement les produits, commandes, paiements et collections avec une base solide pour vendre en ligne.</p></details>
-        <details><summary>Je n’ai pas encore toutes mes photos, c’est grave ? <span class="chev">⌄</span></summary><p>Non. On peut démarrer avec une direction visuelle propre, puis remplacer ou améliorer les visuels au fur et à mesure.</p></details>
-        <details><summary>Comment démarrer ? <span class="chev">⌄</span></summary><p>Envoyez un message avec votre activité, le type de site souhaité et votre objectif. AGZ WEB vous répond avec une proposition claire.</p></details>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="container">
-      <h2 class="section-title">Prêt à avoir un site qui donne envie d’acheter ?</h2>
-      <p class="section-kicker">Décrivez votre projet en quelques lignes. AGZ WEB vous aide à transformer votre idée en site professionnel, convaincant et prêt à attirer vos clients.</p>
-      <div class="contact-grid">
-        <div class="panel">
-          <h4>Demande rapide</h4>
-          <p>Le plus simple : envoyez un message avec votre activité, votre objectif et le type de site souhaité.</p>
-          <div style="margin-top:16px;display:flex;gap:12px;flex-wrap:wrap;">
-            <a class="btn" href="mailto:kill-event@hotmail.com?subject=Projet%20site%20web%20-%20AGZ%20WEB&body=Bonjour%20AGZ%20WEB%2C%0A%0AJe%20souhaite%20cr%C3%A9er%20un%20site%20web.%0A%0AMon%20activit%C3%A9%20%3A%20%0AType%20de%20site%20%3A%20site%20vitrine%20simple%20/%20site%20complet%20Shopify%0AMon%20objectif%20principal%20%3A%20%0ADeadline%20souhait%C3%A9e%20%3A%20%0A%0AMerci%20%21"><span class="wa-dot"></span>Écrire à AGZ WEB</a>
-            <a class="btn secondary" href="#offres">Revoir les offres</a>
+    <section id="experience">
+      <div class="container experience-grid">
+        <div class="feature-panel reveal">
+          <div class="feature-panel-copy">
+            <strong>Une mission commune</strong>
+            <span>Observer, communiquer, négocier et coopérer pour résoudre l'affaire avant la révélation finale.</span>
           </div>
-          <p class="note">Email : kill-event@hotmail.com — Remplacez cette adresse dans le code si besoin.</p>
         </div>
-        <div class="panel">
-          <h4>Formulaire de contact</h4>
-          <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-            <div><label for="name">Nom</label><input id="name" name="name" type="text" placeholder="Votre nom" required></div>
-            <div><label for="email">Email</label><input id="email" name="email" type="email" placeholder="votre@email.com" required></div>
-            <div><label for="offer">Type de projet</label><select id="offer" name="offer"><option>Site vitrine simple</option><option>Site complet Shopify</option><option>Refonte / optimisation</option><option>Je ne sais pas encore</option></select></div>
-            <div><label for="message">Message</label><textarea id="message" name="message" placeholder="Présentez votre activité, votre objectif et ce que vous aimeriez vendre ou mettre en avant…" required></textarea></div>
-            <button class="btn" type="submit">Envoyer ma demande</button>
-            <div class="note">Remplacez YOUR_FORM_ID par votre identifiant Formspree.</div>
-          </form>
+
+        <div>
+          <div class="reveal">
+            <p class="eyebrow">Le déroulé</p>
+            <h2 class="section-title">La Murder Party<br>en <span class="gold-text">4 étapes</span></h2>
+            <p class="section-copy">Une expérience fluide et clé en main qui transforme votre événement d'entreprise en intrigue vivante.</p>
+          </div>
+
+          <div class="steps">
+            <article class="step reveal delay-1">
+              <div class="step-number">01</div>
+              <div>
+                <h3>Choisissez votre univers</h3>
+                <p>Vous sélectionnez le scénario adapté à votre équipe, à votre lieu et à l'ambiance souhaitée.</p>
+              </div>
+            </article>
+
+            <article class="step reveal delay-1">
+              <div class="step-number">02</div>
+              <div>
+                <h3>Entrez dans votre rôle</h3>
+                <p>Chaque participant découvre son personnage, ses secrets et ses objectifs personnels.</p>
+              </div>
+            </article>
+
+            <article class="step reveal delay-2">
+              <div class="step-number">03</div>
+              <div>
+                <h3>Enquêtez, échangez, suspectez</h3>
+                <p>Le crime bouleverse la soirée. Les équipes recoupent les indices, négocient et construisent leur théorie.</p>
+              </div>
+            </article>
+
+            <article class="step reveal delay-3">
+              <div class="step-number">04</div>
+              <div>
+                <h3>Accusez et découvrez la vérité</h3>
+                <p>Chaque groupe rend son verdict avant la révélation finale et la remise des distinctions.</p>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-wrap">
-        <div class="footer-inner">
+    <section class="pricing-section" id="tarifs">
+      <div class="container">
+        <div class="pricing-head reveal">
           <div>
-            <p class="footer-title">AGZ WEB</p>
-            <p class="footer-desc">Création de sites vitrines simples et de boutiques Shopify complètes pour les entrepreneurs qui veulent un site beau, clair et vendeur.</p>
+            <p class="eyebrow">Tarifs entreprise</p>
+            <h2 class="section-title">Plus vous êtes nombreux,<br><span class="gold-text">plus le tarif baisse.</span></h2>
           </div>
-          <div class="footer-col"><h4>Navigation</h4><div class="footer-links"><a href="#offres">Offres <small>↓</small></a><a href="#methode">Méthode <small>↓</small></a><a href="#faq">FAQ <small>↓</small></a></div></div>
-          <div class="footer-col"><h4>Contact</h4><div class="footer-links"><a href="mailto:kill-event@hotmail.com">kill-event@hotmail.com <small>↗</small></a><a href="#contact">Demander un devis <small>↓</small></a></div></div>
+          <p class="section-copy">Sélectionnez votre nombre de participants pour obtenir immédiatement une estimation de votre animation.</p>
         </div>
-        <div class="footer-bottom"><p class="note">© <span id="year"></span> <strong>AGZ WEB</strong> — Tous droits réservés</p><a class="btn light" href="#top">↑ Retour en haut</a></div>
+
+        <div class="pricing-grid">
+          <article class="card rate-card reveal">
+            <h3>Grille tarifaire</h3>
+            <p>Tarif par participant selon la taille du groupe.</p>
+
+            <table class="rate-table">
+              <thead>
+                <tr>
+                  <th>Joueurs</th>
+                  <th>Tarif / personne</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-min="10" data-max="15"><td>10 – 15</td><td>37,90 €</td></tr>
+                <tr data-min="16" data-max="20"><td>16 – 20</td><td>35,60 €</td></tr>
+                <tr data-min="21" data-max="25"><td>21 – 25</td><td>33,90 €</td></tr>
+                <tr data-min="26" data-max="30"><td>26 – 30</td><td>32,60 €</td></tr>
+                <tr data-min="31" data-max="35"><td>31 – 35</td><td>31,60 €</td></tr>
+                <tr data-min="36" data-max="40"><td>36 – 40</td><td>30,80 €</td></tr>
+                <tr data-min="41" data-max="45"><td>41 – 45</td><td>30,10 €</td></tr>
+                <tr data-min="46" data-max="50"><td>46 – 50</td><td>29,50 €</td></tr>
+              </tbody>
+            </table>
+          </article>
+
+          <article class="card calculator-card reveal delay-1">
+            <div class="calculator-content">
+              <h3>Votre estimation</h3>
+              <p>Déplacez le curseur ou saisissez directement le nombre de joueurs.</p>
+
+              <div class="range-header">
+                <label for="playersNumber">Nombre de participants</label>
+                <input class="players-input" id="playersNumber" type="number" min="10" max="50" value="20" inputmode="numeric" aria-describedby="playersHelp">
+              </div>
+
+              <input id="playersRange" type="range" min="10" max="50" value="20" step="1" aria-label="Nombre de participants">
+              <div class="range-labels" id="playersHelp"><span>10 joueurs</span><span>50 joueurs</span></div>
+
+              <div class="estimate" aria-live="polite">
+                <div class="estimate-box">
+                  <span>Tarif par personne</span>
+                  <strong id="unitPrice">35,60 €</strong>
+                </div>
+                <div class="estimate-box total">
+                  <span>Budget estimé</span>
+                  <strong id="totalPrice">712,00 €</strong>
+                </div>
+              </div>
+
+              <p class="calculator-note">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 8v4m0 4h.01M10.3 3.8 2.4 17.5A2 2 0 0 0 4.1 20h15.8a2 2 0 0 0 1.7-2.5L13.7 3.8a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Estimation hors éventuels frais kilométriques. Le devis final dépend du lieu, de la date et des besoins de votre événement.
+              </p>
+
+              <div class="calculator-actions">
+                <a class="button button-primary" id="quoteWithEstimate" href="#devis">Demander un devis</a>
+                <button class="button button-secondary" id="copyEstimate" type="button">Copier l'estimation</button>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
+    </section>
+
+    <section id="galerie">
+      <div class="container">
+        <div class="gallery-head reveal">
+          <div>
+            <p class="eyebrow">En immersion</p>
+            <h2 class="section-title">Des équipes qui<br><span class="gold-text">jouent vraiment le jeu.</span></h2>
+          </div>
+          <p class="section-copy">Déguisements, faux-semblants, révélations et fous rires : chacun trouve sa place dans l'enquête.</p>
+        </div>
+
+        <div class="gallery">
+          <figure class="gallery-card reveal">
+            <img src="assets/photo-1.webp" alt="Participants à une soirée enquête Kill Event" loading="lazy">
+            <figcaption class="gallery-caption">
+              <strong>Immersion immédiate</strong>
+              <span>Un rôle, des secrets et une mission dès les premières minutes.</span>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-card reveal delay-1">
+            <img src="assets/photo-2.webp" alt="Joueuses costumées lors d'une Murder Party Kill Event" loading="lazy">
+            <figcaption class="gallery-caption">
+              <strong>Une ambiance mémorable</strong>
+              <span>Vos collaborateurs sortent du quotidien et créent un souvenir commun.</span>
+            </figcaption>
+          </figure>
+
+          <figure class="gallery-card reveal delay-2">
+            <img src="assets/photo-3.webp" alt="Groupe de joueurs déguisés lors d'une Murder Party" loading="lazy">
+            <figcaption class="gallery-caption">
+              <strong>La cohésion par le jeu</strong>
+              <span>Écoute, analyse et coopération deviennent les clés de l'enquête.</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="scenario-cta reveal">
+          <div class="scenario-cta-content">
+            <p class="eyebrow">Quel crime choisirez-vous ?</p>
+            <h2>Découvrez tous nos scénarios.</h2>
+            <p>Manoir hanté, cour royale, casino, navire ou univers fantastique : trouvez l'intrigue qui fera entrer votre équipe dans une autre époque.</p>
+            <a class="button button-primary" href="https://kill-event.com/collections/all" target="_blank" rel="noopener noreferrer">
+              Voir les scénarios Kill Event
+              <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="devis">
+      <div class="container contact-grid">
+        <aside class="contact-aside reveal">
+          <p class="eyebrow">Votre événement</p>
+          <h2 class="section-title">Parlons de votre <span class="gold-text">prochaine enquête.</span></h2>
+          <p class="section-copy">Décrivez-nous votre projet. Le formulaire prépare un e-mail complet avec toutes les informations utiles à votre devis.</p>
+
+          <div class="contact-list">
+            <a class="contact-item" href="mailto:info@kill-event.com">
+              <span class="contact-item-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="m4 6 8 6 8-6M5 19h14a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span><span>E-mail</span><strong>info@kill-event.com</strong></span>
+            </a>
+
+            <div class="contact-item">
+              <span class="contact-item-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M8 2v3m8-3v3M3 9h18M5 4h14a2 2 0 0 1 2 2v14H3V6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span><span>Format</span><strong>Environ 2 h 30 d'animation</strong></span>
+            </div>
+
+            <div class="contact-item">
+              <span class="contact-item-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M8 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm8 2a4 4 0 1 0 0-8m-8 8c-4 0-6 2-6 5v2h12v-2c0-3-2-5-6-5Zm8 2c3 0 5 1.5 5 4v1h-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <span><span>Capacité</span><strong>De 10 à 50 participants</strong></span>
+            </div>
+          </div>
+        </aside>
+
+        <form class="card quote-form reveal delay-1" id="quoteForm">
+          <div class="form-grid">
+            <div class="field">
+              <label for="name">Nom et prénom *</label>
+              <input id="name" name="name" type="text" autocomplete="name" required placeholder="Votre nom">
+            </div>
+
+            <div class="field">
+              <label for="company">Entreprise *</label>
+              <input id="company" name="company" type="text" autocomplete="organization" required placeholder="Nom de l'entreprise">
+            </div>
+
+            <div class="field">
+              <label for="email">Adresse e-mail *</label>
+              <input id="email" name="email" type="email" autocomplete="email" required placeholder="vous@entreprise.fr">
+            </div>
+
+            <div class="field">
+              <label for="phone">Téléphone</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="06 00 00 00 00">
+            </div>
+
+            <div class="field">
+              <label for="eventPlayers">Nombre de participants *</label>
+              <input id="eventPlayers" name="eventPlayers" type="number" min="10" max="50" value="20" required>
+            </div>
+
+            <div class="field">
+              <label for="eventDate">Date envisagée</label>
+              <input id="eventDate" name="eventDate" type="date">
+            </div>
+
+            <div class="field full">
+              <label for="location">Ville / lieu de l'événement *</label>
+              <input id="location" name="location" type="text" autocomplete="address-level2" required placeholder="Ex. Aix-en-Provence, dans nos locaux">
+            </div>
+
+            <div class="field full">
+              <label for="message">Informations complémentaires</label>
+              <textarea id="message" name="message" placeholder="Contexte, horaires, type d'équipe, scénario préféré, contraintes particulières…"></textarea>
+            </div>
+          </div>
+
+          <div class="form-footer">
+            <p class="form-hint">Ce site GitHub Pages est statique : le bouton ouvre votre application de messagerie avec la demande préremplie.</p>
+            <button class="button button-primary" type="submit">
+              Préparer ma demande
+              <svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4 20-7Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">K</span>
+        <span>Kill Event</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://kill-event.com/collections/all" target="_blank" rel="noopener noreferrer">Nos scénarios</a>
+        <a href="mailto:info@kill-event.com">info@kill-event.com</a>
+        <a href="#top">Retour en haut</a>
+      </div>
+      <span>© <span id="year"></span> Kill Event</span>
     </div>
   </footer>
 
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-    const header = document.querySelector("header");
-    const burger = document.getElementById("burger");
-    function setOpen(isOpen){header.dataset.open = isOpen ? "true" : "false";burger.setAttribute("aria-expanded", isOpen ? "true" : "false");}
-    burger.addEventListener("click", () => setOpen(header.dataset.open !== "true"));
-    document.querySelectorAll('.mobile-panel a[href^="#"]').forEach(a => a.addEventListener("click", () => setOpen(false)));
-    window.addEventListener("resize", () => { if (window.innerWidth > 860) setOpen(false); });
+    const pricing = [
+      { min: 10, max: 15, price: 37.90 },
+      { min: 16, max: 20, price: 35.60 },
+      { min: 21, max: 25, price: 33.90 },
+      { min: 26, max: 30, price: 32.60 },
+      { min: 31, max: 35, price: 31.60 },
+      { min: 36, max: 40, price: 30.80 },
+      { min: 41, max: 45, price: 30.10 },
+      { min: 46, max: 50, price: 29.50 }
+    ];
+
+    const euro = new Intl.NumberFormat("fr-FR", {
+      style: "currency",
+      currency: "EUR",
+      minimumFractionDigits: 2
+    });
+
+    const playersNumber = document.querySelector("#playersNumber");
+    const playersRange = document.querySelector("#playersRange");
+    const eventPlayers = document.querySelector("#eventPlayers");
+    const unitPrice = document.querySelector("#unitPrice");
+    const totalPrice = document.querySelector("#totalPrice");
+    const rateRows = [...document.querySelectorAll(".rate-table tbody tr")];
+    const copyEstimate = document.querySelector("#copyEstimate");
+    const quoteWithEstimate = document.querySelector("#quoteWithEstimate");
+    const toast = document.querySelector("#toast");
+
+    let currentEstimate = { players: 20, price: 35.60, total: 712 };
+
+    function clampPlayers(value) {
+      const parsed = Number.parseInt(value, 10);
+      if (Number.isNaN(parsed)) return 10;
+      return Math.min(50, Math.max(10, parsed));
+    }
+
+    function getRate(players) {
+      return pricing.find((tier) => players >= tier.min && players <= tier.max) || pricing[0];
+    }
+
+    function updateCalculator(rawValue) {
+      const players = clampPlayers(rawValue);
+      const tier = getRate(players);
+      const total = players * tier.price;
+      const progress = ((players - 10) / 40) * 100;
+
+      playersNumber.value = players;
+      playersRange.value = players;
+      playersRange.style.setProperty("--range-progress", `${progress}%`);
+      eventPlayers.value = players;
+      unitPrice.textContent = euro.format(tier.price);
+      totalPrice.textContent = euro.format(total);
+      currentEstimate = { players, price: tier.price, total };
+
+      rateRows.forEach((row) => {
+        const min = Number(row.dataset.min);
+        const max = Number(row.dataset.max);
+        row.classList.toggle("active", players >= min && players <= max);
+      });
+    }
+
+    playersRange.addEventListener("input", (event) => updateCalculator(event.target.value));
+    playersNumber.addEventListener("input", (event) => {
+      if (event.target.value !== "") updateCalculator(event.target.value);
+    });
+    playersNumber.addEventListener("blur", (event) => updateCalculator(event.target.value));
+    eventPlayers.addEventListener("change", (event) => updateCalculator(event.target.value));
+
+    quoteWithEstimate.addEventListener("click", () => {
+      eventPlayers.value = currentEstimate.players;
+      document.querySelector("#message").value = `Estimation actuelle : ${currentEstimate.players} participants, ${euro.format(currentEstimate.price)} par personne, soit ${euro.format(currentEstimate.total)} hors éventuels frais kilométriques.`;
+    });
+
+    copyEstimate.addEventListener("click", async () => {
+      const text = `Kill Event — ${currentEstimate.players} participants : ${euro.format(currentEstimate.price)} / personne, soit ${euro.format(currentEstimate.total)} hors éventuels frais kilométriques.`;
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast("Estimation copiée dans le presse-papiers.");
+      } catch {
+        showToast(text);
+      }
+    });
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      window.clearTimeout(showToast.timeout);
+      showToast.timeout = window.setTimeout(() => toast.classList.remove("show"), 3200);
+    }
+
+    document.querySelector("#quoteForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+      const form = new FormData(event.currentTarget);
+      const players = clampPlayers(form.get("eventPlayers"));
+      const tier = getRate(players);
+      const total = players * tier.price;
+
+      const subject = `Demande de devis Murder Party entreprise — ${form.get("company")}`;
+      const body = [
+        "Bonjour Kill Event,",
+        "",
+        "Je souhaite recevoir un devis pour une Murder Party entreprise.",
+        "",
+        `Nom : ${form.get("name")}`,
+        `Entreprise : ${form.get("company")}`,
+        `E-mail : ${form.get("email")}`,
+        `Téléphone : ${form.get("phone") || "Non renseigné"}`,
+        `Nombre de participants : ${players}`,
+        `Date envisagée : ${form.get("eventDate") || "À définir"}`,
+        `Lieu : ${form.get("location")}`,
+        "",
+        `Estimation indicative : ${euro.format(tier.price)} par personne, soit ${euro.format(total)} hors éventuels frais kilométriques.`,
+        "",
+        "Informations complémentaires :",
+        form.get("message") || "Aucune information complémentaire.",
+        "",
+        "Merci."
+      ].join("\n");
+
+      window.location.href = `mailto:info@kill-event.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      showToast("Votre demande a été préparée dans votre messagerie.");
+    });
+
+    const header = document.querySelector("#siteHeader");
+    const heroImage = document.querySelector("#heroImage");
+
+    function onScroll() {
+      header.classList.toggle("scrolled", window.scrollY > 24);
+      if (window.matchMedia("(prefers-reduced-motion: no-preference)").matches && window.innerWidth > 760) {
+        const offset = Math.min(window.scrollY * 0.12, 60);
+        heroImage.style.transform = `translateY(${offset}px)`;
+      }
+    }
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach((element) => revealObserver.observe(element));
+
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const element = entry.target;
+        const target = Number(element.dataset.counter);
+        const decimals = Number(element.dataset.decimals || 0);
+        const suffix = element.dataset.suffix || "";
+        const duration = 1100;
+        const start = performance.now();
+
+        function tick(now) {
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const value = target * eased;
+          element.textContent = `${value.toLocaleString("fr-FR", {
+            minimumFractionDigits: decimals,
+            maximumFractionDigits: decimals
+          })}${suffix}`;
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+
+        requestAnimationFrame(tick);
+        observer.unobserve(element);
+      });
+    }, { threshold: 0.6 });
+
+    document.querySelectorAll("[data-counter]").forEach((element) => counterObserver.observe(element));
+
+    document.querySelector("#year").textContent = new Date().getFullYear();
+    updateCalculator(20);
   </script>
-  <!-- COOKIE BANNER -->
-<div id="cookie-banner" class="cookie-banner">
-  <div class="cookie-content">
-    <p>
-      Ce site utilise des cookies pour améliorer votre expérience utilisateur,
-      mesurer l’audience et optimiser les performances du site.
-    </p>
-
-    <div class="cookie-actions">
-      <button id="accept-cookies" class="cookie-btn accept">
-        Oui, j'accepte
-      </button>
-
-      <button id="decline-cookies" class="cookie-btn decline">
-        Non merci
-      </button>
-    </div>
-  </div>
-</div>
-
-<style>
-.cookie-banner{
-  position:fixed;
-  bottom:20px;
-  left:20px;
-  right:20px;
-  z-index:9999;
-  display:flex;
-  justify-content:center;
-}
-
-.cookie-content{
-  max-width:900px;
-  width:100%;
-  background:#0f172a;
-  color:white;
-  padding:20px;
-  border-radius:18px;
-  box-shadow:0 10px 40px rgba(0,0,0,.35);
-  display:flex;
-  flex-wrap:wrap;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-  border:1px solid rgba(255,255,255,.1);
-}
-
-.cookie-content p{
-  margin:0;
-  font-size:15px;
-  line-height:1.5;
-  flex:1;
-}
-
-.cookie-actions{
-  display:flex;
-  gap:12px;
-}
-
-.cookie-btn{
-  border:none;
-  padding:12px 18px;
-  border-radius:999px;
-  font-weight:700;
-  cursor:pointer;
-  transition:.2s ease;
-}
-
-.cookie-btn:hover{
-  transform:translateY(-2px);
-}
-
-.cookie-btn.accept{
-  background:#2563eb;
-  color:white;
-}
-
-.cookie-btn.decline{
-  background:#1e293b;
-  color:white;
-  border:1px solid rgba(255,255,255,.15);
-}
-
-@media(max-width:700px){
-  .cookie-content{
-    flex-direction:column;
-    align-items:flex-start;
-  }
-
-  .cookie-actions{
-    width:100%;
-  }
-
-  .cookie-btn{
-    width:100%;
-  }
-}
-</style>
-
-<script>
-const cookieBanner = document.getElementById("cookie-banner");
-
-if(localStorage.getItem("cookie-consent")){
-  cookieBanner.style.display = "none";
-}
-
-document.getElementById("accept-cookies").addEventListener("click", () => {
-  localStorage.setItem("cookie-consent", "accepted");
-  cookieBanner.style.display = "none";
-});
-
-document.getElementById("decline-cookies").addEventListener("click", () => {
-  localStorage.setItem("cookie-consent", "declined");
-  cookieBanner.style.display = "none";
-});
-</script>
 </body>
 </html>
-
 
